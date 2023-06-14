@@ -1,10 +1,10 @@
-import Banner from '@/components/Banner';
-import Carousel from '@/components/Carousel';
-import FeaturedItems from '@/components/FeaturedItems';
-import Footer from '@/components/Footer';
-import ForYou from '@/components/ForYou';
-import NavBar from '@/components/NavBar';
-import NewItems from '@/components/NewItems';
+import Banner from '@/components/Banner/Banner';
+import Carousel from '@/components/Carousel/Carousel';
+import FeaturedItems from '@/components/FeaturedItems/FeaturedItems';
+import Footer from '@/components/Footer/Footer';
+import ForYou from '@/components/ForYou/ForYou';
+
+import NewItems from '@/components/NewItems/NewItems';
 
 export default function Landing() {
   return (
@@ -17,8 +17,6 @@ export default function Landing() {
       </section>
 
       <div className='bg-slate-700'>
-        <NavBar />
-
         <Carousel />
 
         <FeaturedItems />
