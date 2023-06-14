@@ -1,23 +1,22 @@
-import Banner from "@/components/Banner";
-import Carousel from "@/components/Carousel";
-import FeaturedItems from "@/components/FeaturedItems";
-import Footer from "@/components/Footer";
-import ForYou from "@/components/ForYou";
-import NavBar from "@/components/NavBar";
-import NewItems from "@/components/NewItems";
+import Banner from '@/components/Banner';
+import Carousel from '@/components/Carousel';
+import FeaturedItems from '@/components/FeaturedItems';
+import Footer from '@/components/Footer';
+import ForYou from '@/components/ForYou';
 import NavBar from '@/components/NavBar';
+import NewItems from '@/components/NewItems';
 
 export default function Landing() {
   return (
     <div>
-      <section className="bg-black text-white py-20">
-        <div className="flex justify-around">
-          <h1 className="text-4xl font-bold">Mi Landing Page</h1>
+      <section className='bg-black text-white py-20'>
+        <div className='flex justify-around'>
+          <h1 className='text-4xl font-bold'>Mi Landing Page</h1>
           <p>text u otras cosas</p>
         </div>
       </section>
 
-      <div className="bg-slate-700">
+      <div className='bg-slate-700'>
         <NavBar />
 
         <Carousel />
@@ -31,9 +30,9 @@ export default function Landing() {
         <ForYou />
       </div>
 
-      <div className="bg-neutral-700">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold mb-8">Miscelánea</h2>
+      <div className='bg-neutral-700'>
+        <div className='container mx-auto'>
+          <h2 className='text-2xl font-bold mb-8'>Miscelánea</h2>
           <p>
             Lorem Ipsum es simplemente el texto de relleno de las imprentas y
             archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar
@@ -46,10 +45,10 @@ export default function Landing() {
             creación de las hojas etraset, las cuales contenian pasajes de Lorem
             Ipsum, y más recientemente con software de autoedición, como por
             ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-          </p>{" "}
+          </p>{' '}
         </div>
 
-        <div className="bg-sky-700 p-8">
+        <div className='bg-sky-700 p-8'>
           <Footer />
         </div>
       </div>
