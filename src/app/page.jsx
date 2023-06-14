@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ForYou from "@/components/ForYou";
 import NavBar from "@/components/NavBar";
 import NewItems from "@/components/NewItems";
+import NavBar from '@/components/NavBar';
 
 export default function Landing() {
   return (
@@ -24,7 +25,6 @@ export default function Landing() {
         <FeaturedItems />
 
         <NewItems />
-        <button></button>
 
         <Banner />
 
