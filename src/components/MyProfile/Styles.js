@@ -6,7 +6,7 @@ export const MainDiv = styled.div`
   align-items: center;
   border: 3px solid white;
   border-radius: 10px;
-  background-color: #fffa;
+  background-color: #504e5a;
   padding: 10px;
   /* max-width: 350px; */
 `;

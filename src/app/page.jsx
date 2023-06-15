@@ -1,11 +1,10 @@
-import Banner from "@/components/Banner";
+import Banner from "../components/Banner";
 import Carousel from "@/components/Carousel";
 import FeaturedItems from "@/components/FeaturedItems";
 import Footer from "@/components/Footer";
 import ForYou from "@/components/ForYou";
 import NavBar from "@/components/NavBar";
 import NewItems from "@/components/NewItems";
-import NavBar from '@/components/NavBar';
 
 export default function Landing() {
   return (
