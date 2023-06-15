@@ -1,23 +1,31 @@
-function getInfoCards() {
-  return fetch('https://jsonplaceholder.typicode.com/photos').then((res) =>
-    res.json()
-  );
-}
+'use client';
 
-export default async function Card() {
-  const info = await getInfoCards();
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '@/redux/features/searchBar';
+
+export default function Card() {
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
   return (
     <div>
-      {info.slice(0, 5).map((album) => {
-        return (
-          <section>
-            <article>
-              {album.title}
-              <img src={album.url} alt='' />
-            </article>
-          </section>
-        );
-      })}
+      {items.loading ? <h1>Loading...</h1> : ''}
+      {items.products &&
+        items.products.map((item) => {
+          return (
+            <section key={item.id}>
+              <article>
+                <img src={item.image} alt='' />
+                <h3>{item.image && item.name}</h3>
+              </article>
+            </section>
+          );
+        })}
     </div>
   );
 }

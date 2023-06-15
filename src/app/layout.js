@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import { Inter } from 'next/font/google';
-import Pagination from '@/components/Pagination/Pagination';
 import NavBar from '@/components/NavBar/NavBar';
+import { Providers } from '@/redux/provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <header>
           <NavBar />
         </header>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
