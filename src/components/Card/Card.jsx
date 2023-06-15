@@ -1,17 +1,22 @@
 'use client';
 
+
+import ModalCard from '../../components/ModalCard/ModalCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '@/redux/features/searchBar';
 import { useEffect, useState } from 'react';
 import ModalCard from '../../components/ModalCard/ModalCard';
+
 
 export default function Card() {
   const [info, setInfo] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/photos')
-      .then((res) => res.json())
-      .then((data) => setInfo(data.slice(0, 5)));
-  }, []);
+    dispatch(fetchProducts())
+  },[])
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -23,14 +28,18 @@ export default function Card() {
 
   return (
     <div>
-      {info.map((album) => (
-        <section key={album.id} onClick={() => handleCardClick(album)}>
-          <article>
-            {album.title}
-            <img src={album.url} alt="" />
-          </article>
-        </section>
-      ))}
+      {items.loading ? <h1>Loading...</h1> : ''}
+      {items.products &&
+        items.products.map((item) => {
+          return (
+            <section key={item.id}>
+              <article>
+                <img src={item.image} alt='' />
+                <h3>{item.image && item.name}</h3>
+              </article>
+            </section>
+          );
+        })}
       {selectedCard && (
         <ModalCard
           isOpen={true}
