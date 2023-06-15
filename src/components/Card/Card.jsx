@@ -1,16 +1,27 @@
 'use client';
 
 import { useEffect } from 'react';
+import ModalCard from '../../components/ModalCard/ModalCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '@/redux/features/searchBar';
 
 export default function Card() {
+  const [info, setInfo] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
+
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedCard(null);
+  };
 
   return (
     <div>
@@ -26,6 +37,14 @@ export default function Card() {
             </section>
           );
         })}
+      {selectedCard && (
+        <ModalCard
+          isOpen={true}
+          handleClose={handleCloseModal}
+          image={selectedCard.url}
+          title={selectedCard.title}
+        />
+      )}
     </div>
   );
 }
