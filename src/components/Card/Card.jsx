@@ -1,9 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
+
 import ModalCard from '../../components/ModalCard/ModalCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '@/redux/features/searchBar';
+import { useEffect, useState } from 'react';
+import ModalCard from '../../components/ModalCard/ModalCard';
+
 
 export default function Card() {
   const [info, setInfo] = useState([]);
@@ -12,8 +15,8 @@ export default function Card() {
   const items = useSelector((state) => state.items);
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
+    dispatch(fetchProducts())
+  },[])
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
