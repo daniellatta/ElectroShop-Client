@@ -1,35 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
-  loading: false,
-  products: [],
+  productsByName: [],
   error: '',
 };
 
-export const fetchProducts = createAsyncThunk('items/fetch', () => {
-  return fetch('http://localhost:8080/api/v1/product')
-    .then((res) => res.json())
-    .then((data) => data);
-});
+export const fetchProductByName = createAsyncThunk(
+  'itemByName/fetch',
+  (name) => {
+    return axios
+      .get(`http://localhost:8080/api/v1/product/find/${name}`)
+      .then(({ data }) => data);
+  }
+);
 
-const productSlice = createSlice({
-  name: 'items',
+const byNameSlice = createSlice({
+  name: 'byName',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(fetchProducts.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.loading = false;
-      state.products = [...action.payload];
+    builder.addCase(fetchProductByName.fulfilled, (state, action) => {
+      state.productsByName = [...action.payload];
       state.error = '';
     });
-    builder.addCase(fetchProducts.rejected, (state, action) => {
-      state.loading = false;
-      state.products = [];
+    builder.addCase(fetchProductByName.rejected, (state, action) => {
+      state.productsByName = [];
       state.error = action.error.message;
     });
   },
 });
 
-export default productSlice.reducer;
+export default byNameSlice.reducer;
