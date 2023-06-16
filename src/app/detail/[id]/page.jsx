@@ -23,22 +23,25 @@ const DetailPage = ({ params }) => {
   const { name, description, price, stock, image } = product;
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="max-w-3xl bg-white rounded-lg shadow-lg p-8">
-        <div className="flex justify-between">
-          <img src={image} alt="" className="w-1/3 object-contain" />
-          <div className="ml-4">
-            <h1 className="text-2xl font-bold">{name}</h1>
-            <p className="text-gray-600">{description}</p>
-            <p className="text-xl font-bold mt-4">Price: ${price}</p>
-            <p className="text-xl font-bold">Stock: {stock}</p>
-            <button className="bg-blue-500 text-white rounded-md py-2 px-4 mt-4">
-              Buy Now
-            </button>
-          </div>
-        </div>
-      </div>
+    <div className="flex justify-center bg-slate-700 h-screen">
+  <div className="w-90vw mx-40 my-10 bg-slate-800 rounded-lg shadow-lg p-8 flex">
+    <div className="w-9/10">
+      <img src={image} alt="" className="object-cover h-full p-8" />
     </div>
+    <div className="ml-8 flex flex-col justify-between rounded-lg border border-gray-600 p-8">
+      <h1 className="text-2xl font-bold text-white mb-4">{name}</h1>
+      <div className="flex flex-col justify-center">
+        <p className="text-gray-600 text-white mb-4">{description}</p>
+        <p className="text-xl font-bold text-white">Price: ${price}</p>
+        <p className="text-xl font-bold text-white">Stock: {stock}</p>
+      </div>
+      <button className="bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4">
+        Buy Now
+      </button>
+    </div>
+  </div>
+</div>
+    
   );
 };
 
