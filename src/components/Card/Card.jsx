@@ -5,15 +5,15 @@ import { fetchProducts } from "@/redux/features/searchBar";
 import ModalCard from "../../components/ModalCard/ModalCard";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-const Card = () => {
-  const [visibleItems, setVisibleItems] = useState(6);
+export default function Card() {
   const [selectedCard, setSelectedCard] = useState(null);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items);
+  const byName = useSelector((state) => state.byName);
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -23,43 +23,56 @@ const Card = () => {
     setSelectedCard(null);
   };
 
-  const handleShowMore = () => {
-    setVisibleItems((prevVisibleItems) => prevVisibleItems + 6);
-  };
-
   return (
     <div className="grid grid-cols-3 gap-8 px-4 pt-12">
-      {items.loading ? <h1>Loading...</h1> : ""}
+      {items.loading && <h1>Loading...</h1>}
+
       {items.products &&
-        items.products.slice(0, visibleItems).map((item) => {
-          return (
-            <section key={item.id}>
-              <article>
-                <div className="relative">
-                  <img src={item.image} alt="" />
-                  <div className="absolute top-0 left-0 p-2">
-                    <AiOutlineInfoCircle
-                      size={24}
-                      className="text-black-500 hover:text-blue-500 transition-colors cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCardClick(item);
-                      }}
-                    />
-                  </div>
+        items.products.slice(0, 6).map((item) => (
+          <section key={item.id}>
+            <article>
+              <div className="relative">
+                <img src={item.image} alt="" />
+                <div className="absolute top-0 left-0 p-2">
+                  <AiOutlineInfoCircle
+                    size={24}
+                    className="text-black-500 hover:text-blue-500 transition-colors cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCardClick(item);
+                    }}
+                  />
                 </div>
-                <h3>{item.name}</h3>
-              </article>
-            </section>
-          );
-        })}
+              </div>
+              <h3>{item.name}</h3>
+            </article>
+          </section>
+        ))}
 
-      {visibleItems < items.products.length && (
-        <button className="bg-white" onClick={handleShowMore}>
-          Mostrar más
-        </button>
-      )}
+      {items.productsByName &&
+        items.productsByName.map((item) => (
+          <section key={item.id}>
+            <article>
+              <div className="relative">
+                <img src={item.image} alt="" />
+                <div className="absolute top-0 left-0 p-2">
+                  <AiOutlineInfoCircle
+                    size={24}
+                    className="text-black-500 hover:text-blue-500 transition-colors cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCardClick(item);
+                    }}
+                  />
+                </div>
+              </div>
+              <h3>{item.name}</h3>
+            </article>
+          </section>
+        ))}
 
+      {items.loading && <h1>Loading...</h1>}
+      
       {selectedCard && (
         <ModalCard
           isOpen={true}
@@ -74,6 +87,4 @@ const Card = () => {
       )}
     </div>
   );
-};
-
-export default Card;
+}
