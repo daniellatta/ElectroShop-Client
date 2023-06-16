@@ -4,36 +4,54 @@ import { FaBeer, FaGalacticRepublic, FaGenderless } from "react-icons/fa";
 
 const Footer = () => {
   const keyBoardSize = [
-    "20% Keyboards",
-    "60% Keyboards",
-    "65% Keyboards",
-    "75% Keyboards",
-    "80% Keyboards",
-    "96% Keyboards",
-    "100% Keyboards",
+    "Bluetooth Keyboards",
+    "Ergonomic Keyboards",
+    "Backlit Keyboards",
+    "Tenkeyless Keyboards",
+    "Numpad Keyboards",
+    "60% Dvorak Keyboards",
+    "USB-C Keyboards",
+  ];
+
+  const moreItems = [
+    "50% Keyboards",
+    "TKL Keyboards",
+    "Ortholinear Keyboards",
+    "Split Keyboards",
+    "Hot-swappable Keyboards",
+  ];
+
+  const someMoreItems = [
+    "Wireless Keyboards",
+    "Mechanical Keyboards",
+    "RGB Keyboards",
+    "Gaming Keyboards",
+    "Programmable Keyboards",
+    "Macropad Keyboards",
+    "Compact Keyboards",
+    "Low-profile Keyboards",
   ];
 
   return (
-    <div className="flex justify-around">
+    <div className="flex justify-around bg-slate-500">
       <h1 className="text-4xl">Footer</h1>
+      <div className="flex flex-col">
+        {keyBoardSize.map((keyboard, i) => (
+          <a key={i}>{keyboard}</a>
+        ))}
+      </div>
+
       <div>
         <ul>
-          {keyBoardSize.map((keyboard, i) => (
+          {someMoreItems.map((keyboard, i) => (
             <li key={i}>{keyboard}</li>
           ))}
         </ul>{" "}
       </div>
       <div>
         <ul>
-          {keyBoardSize.map((keyboard, i) => (
-            <li key={i}>{keyboard}</li>
-          ))}
-        </ul>{" "}
-      </div>
-      <div>
-        <ul>
-          {keyBoardSize.map((keyboard, i) => (
-            <li key={i}>{keyboard}</li>
+          {moreItems.map((items, i) => (
+            <li key={i}>{items}</li>
           ))}
         </ul>{" "}
       </div>
