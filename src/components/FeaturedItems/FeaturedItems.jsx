@@ -14,32 +14,44 @@ const FeaturedItems = () => {
   ];
 
   return (
-    <div className="grid grid-cols-5 gap-4 px-4">
-      <div className="col-span-5 md:col-span-5 lg:col-span-2">
-        <img src={items[0].url} alt="Featured Item" className="w-full" />
+    <div className="grid grid-cols-4 gap-4 px-4 ">
+      <div className="col-span-2">
+        <img
+          src={items[0].url}
+          alt="Featured Item"
+          className="w-full hover:scale-[103%] transition-all duration-500 border-white border-2 rounded-xl cursor-pointer h-[450px] "
+        />
       </div>
-      <div className="">
-        <div className="pb-8">
-          <img src={items[1].url} alt="Featured Item" className="w-full" />
+      <div>
+        <div className="mb-[10px]">
+          <img
+            src={items[1].url}
+            alt="Featured Item"
+            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer "
+          />
         </div>
         <div>
-          <img src={items[2].url} alt="Featured Item" className="w-full" />
+          <img
+            src={items[2].url}
+            alt="Featured Item"
+            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+          />
         </div>
       </div>
       <div className="">
-        <div className="pb-8">
-          <img src={items[1].url} alt="Featured Item" className="w-full" />
+        <div className="mb-[10px]">
+          <img
+            src={items[1].url}
+            alt="Featured Item"
+            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+          />
         </div>
         <div>
-          <img src={items[2].url} alt="Featured Item" className="w-full" />
-        </div>
-      </div>
-      <div className="">
-        <div className="pb-8">
-          <img src={items[1].url} alt="Featured Item" className="w-full" />
-        </div>
-        <div>
-          <img src={items[2].url} alt="Featured Item" className="w-full" />
+          <img
+            src={items[2].url}
+            alt="Featured Item"
+            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+          />
         </div>
       </div>
     </div>
