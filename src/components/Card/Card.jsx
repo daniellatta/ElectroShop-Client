@@ -1,23 +1,12 @@
-function getInfoCards() {
-  return fetch('https://jsonplaceholder.typicode.com/photos').then((res) =>
-    res.json()
-  );
-}
-
-export default async function Card() {
-  const info = await getInfoCards();
+export default function Card({ name, image, price, review }) {
   return (
     <div>
-      {info.slice(0, 5).map((album) => {
-        return (
-          <section>
-            <article>
-              {album.title}
-              <img src={album.url} alt='' />
-            </article>
-          </section>
-        );
-      })}
+      <article>
+        {name && <h3>{name}</h3>}
+        {price && <h3>{price}</h3>}
+        {review && <h3>{review}</h3>}
+        {image && <img src={image} alt='' />}
+      </article>
     </div>
   );
 }
