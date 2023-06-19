@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "@/redux/features/searchBar";
-import ModalCard from "../../components/ModalCard/ModalCard";
-import { AiOutlineInfoCircle } from "react-icons/ai";
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '@/redux/features/products';
+import ModalCard from '../../components/ModalCard/ModalCard';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 export default function Card() {
   const [visibleItems, setVisibleItems] = useState(6);
@@ -28,60 +30,36 @@ export default function Card() {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-8 px-4 pt-12">
+    <div className='grid grid-cols-3 gap-8 px-4 pt-12'>
       {items.loading ? <h1>Loading...</h1> : null}
       {items.products &&
         items.products.slice(0, visibleItems).map((item) => (
           <section key={item.id}>
             <article onClick={() => handleCardClick(item)}>
               <img
-                className="rounded-xl border-black border-2"
+                className='rounded-xl border-black border-2'
                 src={item.image}
-                alt=""
+                alt=''
               />
-              <h3 className="text-center">{item.image && item.name}</h3>
+              <h3 className='text-center'>{item.image && item.name}</h3>
             </article>
           </section>
         ))}
-
       {visibleItems < items.products.length && (
-        <button className="bg-white" onClick={handleShowMore}>
-          Mostrar más
+        <button className='bg-white' onClick={handleShowMore}>
+          Mostrar mÃ¡s
         </button>
       )}
-
-      {items.products &&
-        items.products.slice(0, 6).map((item) => (
-          <section key={item.id}>
-            <article>
-              <div className="relative">
-                <img src={item.image} alt="" />
-                <div className="absolute top-0 left-0 p-2">
-                  <AiOutlineInfoCircle
-                    size={24}
-                    className="text-black-500 hover:text-blue-500 transition-colors cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCardClick(item);
-                    }}
-                  />
-                </div>
-              </div>
-              <h3>{item.name}</h3>
-            </article>
-          </section>
-        ))}
-
       {items.productsByName &&
         items.productsByName.map((item) => (
           <section key={item.id}>
             <article>
-              <div className="relative">
-                <img src={item.image} alt="" />
-                <div className="absolute top-0 left-0 p-2">
+              <div className='relative'>
+                <img src={item.image} alt='' />
+                <div className='absolute top-0 left-0 p-2'>
                   <AiOutlineInfoCircle
                     size={24}
-                    className="text-black-500 hover:text-blue-500 transition-colors cursor-pointer"
+                    className='text-black-500 hover:text-blue-500 transition-colors cursor-pointer'
                     onClick={(e) => {
                       e.stopPropagation();
                       handleCardClick(item);
@@ -93,8 +71,6 @@ export default function Card() {
             </article>
           </section>
         ))}
-
-      {items.loading && <h1>Loading...</h1>}
 
       {selectedCard && (
         <ModalCard
@@ -108,4 +84,7 @@ export default function Card() {
           id={selectedCard.id}
         />
       )}
+    </div>
+  );
+}
    
