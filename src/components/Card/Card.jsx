@@ -41,7 +41,7 @@ export default function Card({
         {review && <h3>{review}</h3>}
         {image && <img src={image} alt='' />}
       </article>
-
+         
       {selectedCard && (
         <ModalCard
           isOpen={true}

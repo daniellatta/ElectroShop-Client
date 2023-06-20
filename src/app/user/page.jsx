@@ -10,7 +10,6 @@ import {
 } from "./styles";
 import UserHeader from "../../components/UserHeader/UserHeader";
 import MyProfile from "../../components/MyProfile/MyProfile";
-import PersonalData from "../../components/PersonalData/PersonalData";
 import MyOrders from "../../components/MyOrders/MyOrders";
 import MyCart from "../../components/MyCart/MyCart";
 import Settings from "../../components/Settings/Settings";
@@ -26,8 +25,6 @@ const UserPage = () => {
     switch (activeTab) {
       case "personalData":
         return <MyProfile />;
-      // case "personalData":
-      //   return <PersonalData />;
       case "orders":
         return <MyOrders />;
       case "cart":
@@ -72,7 +69,9 @@ const UserPage = () => {
           >
             Settings
           </NavigationItem>
-          <LogoutButton>Logout</LogoutButton>
+          <LogoutButton className="text-red-100 bg-red-500">
+            Logout
+          </LogoutButton>
         </NavigationPanel>
         <ContentPanel>{renderContent()}</ContentPanel>
       </ComponentContent>
