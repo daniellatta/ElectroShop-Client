@@ -10,8 +10,8 @@ export default function Card() {
   const [visibleItems, setVisibleItems] = useState(6);
   const [selectedCard, setSelectedCard] = useState(null);
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.items);
-  const byName = useSelector((state) => state.byName);
+  const items = useSelector((state) => state.products);
+  const productsByName = useSelector((state) => state.byName);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -50,8 +50,8 @@ export default function Card() {
           Mostrar más
         </button>
       )}
-      {items.productsByName &&
-        items.productsByName.map((item) => (
+      {productsByName &&
+        productsByName.map((item) => (
           <section key={item.id}>
             <article>
               <div className='relative'>
@@ -87,3 +87,4 @@ export default function Card() {
     </div>
   );
 }
+
