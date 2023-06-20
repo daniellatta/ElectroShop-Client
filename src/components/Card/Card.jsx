@@ -1,59 +1,12 @@
-'use client';
-
-import { useState } from 'react';
-import ModalCard from '../ModalCard/ModalCard';
-
-export default function Card({
-  id,
-  name,
-  image,
-  price,
-  review,
-  stock,
-  description,
-}) {
-  const [selectedCard, setSelectedCard] = useState(null);
-
-  const handleCardClick = (card) => {
-    setSelectedCard(card);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedCard(null);
-  };
-
+export default function Card({ name, image, price, review }) {
   return (
     <div>
-      <article
-        onClick={() =>
-          handleCardClick({
-            id,
-            name,
-            image,
-            price,
-            review,
-            stock,
-            description,
-          })
-        }>
+      <article>
         {name && <h3>{name}</h3>}
         {price && <h3>{price}</h3>}
         {review && <h3>{review}</h3>}
         {image && <img src={image} alt='' />}
       </article>
-
-      {selectedCard && (
-        <ModalCard
-          isOpen={true}
-          handleClose={handleCloseModal}
-          image={image}
-          title={name}
-          description={description}
-          price={price}
-          stock={stock}
-          id={id}
-        />
-      )}
     </div>
   );
 }

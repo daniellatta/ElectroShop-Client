@@ -19,22 +19,17 @@ export default function CardsContainer() {
   return (
     <div>
       {items.loading && <p>Loading...</p>}
-
       <section className='grid grid-cols-3 gap-12'>
         {products.map((product) => {
           return (
-            <section className='h-[300px] w-[300px]' key={product.id}>
+            <div className='h-[300px] w-[300px]'>
               <Card
                 key={product.id}
-                id={product.id}
                 name={product.name}
                 image={product.image}
                 price={product.price}
-                review={product.review}
-                stock={product.stock}
-                description={product.description}
               />
-            </section>
+            </div>
           );
         })}
       </section>
