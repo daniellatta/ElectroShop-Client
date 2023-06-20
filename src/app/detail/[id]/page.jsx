@@ -38,19 +38,17 @@ const DetailPage = ({ params }) => {
           </div>
           <div className="ml-10 flex flex-col justify-between rounded-lg border border-gray-600 p-8 m-4">
             <div>
-              <h1 className="text-2xl font-bold text-white mb-2">{name}</h1>
-              <div className="flex items-center text-xl text-white mb-2">
+              <h1 className="text-2xl font-bold text-white mb-6">{name}</h1>
+              <div className="flex items-center text-xl text-white mb-6">
                 ${price}
               </div>
-              <p className="flex items-center text-green-400">
-                <FaTruck className="text-green-400 mr-2" />
+              <p className="flex items-center text-green-400 mb-6">
+                <FaTruck className="text-green-400 mr-2 " />
                 Shipping nationwide
               </p>
             </div>
-            <div className="mt-4">
               <p className="text-gray-600 text-white mb-4">{description}</p>
-              <p className="text-xl font-bold text-white">Stock: {stock}</p>
-            </div>
+              <p className="text-xl text-white">Stock: {stock}</p>
             <button className="bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4">
               Buy Now
             </button>
