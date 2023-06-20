@@ -1,10 +1,10 @@
 import React from "react";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const MyCart = () => {
   return (
-    <div style={{ position: "relative", top: "100px", textAlign: "center" }}>
-      <p>Your cart is empty.</p>
-      <p>Browse our categories and find something awesome</p>
+    <div style={{ position: "relative", textAlign: "center" }}>
+      <ShoppingCart />
     </div>
   );
 };

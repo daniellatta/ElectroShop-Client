@@ -28,6 +28,7 @@ export const Title = styled.div`
   align-items: center;
   flex: 1;
   position: absolute;
+  z-index: 1;
   top: 75px;
   width: 100%;
   color: white;
