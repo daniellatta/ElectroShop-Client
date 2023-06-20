@@ -4,6 +4,8 @@ import FeaturedItems from "@/components/FeaturedItems/FeaturedItems";
 import Footer from "@/components/Footer/Footer";
 import ForYou from "@/components/ForYou/ForYou";
 import NewItems from "@/components/NewItems/NewItems";
+import Image from "next/image";
+import logo from "../images/logoimage.png";
 
 export default function Landing() {
   return (
@@ -11,7 +13,7 @@ export default function Landing() {
       <section className="bg-black text-white py-20">
         <div className="flex justify-around">
           <h1 className="text-4xl font-bold">Mi Landing Page</h1>
-          <p>text u otras cosas</p>
+          <Image src={logo} alt="asd" height={50} width={50} />
         </div>
       </section>
 

@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "@/redux/features/searchBar";
+import { fetchProductByName } from "@/redux/features/searchBar";
 import ModalCard from "../../components/ModalCard/ModalCard";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
@@ -12,7 +14,7 @@ export default function Card() {
   const byName = useSelector((state) => state.byName);
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProductByName());
   }, []);
 
   const handleCardClick = (card) => {
@@ -108,4 +110,6 @@ export default function Card() {
           id={selectedCard.id}
         />
       )}
-   
+    </div>
+  );
+}
