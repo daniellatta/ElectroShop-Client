@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     productID: 12345,
     name: "Pendrive 32GB",
@@ -222,21 +222,38 @@ const products = [
 ];
 
 const getProductPrice = (productID) => {
-  const price = products.forEach((product) => {
-    if (product.productID === productID) {
-      return product.price;
-    }
-  });
-  return price;
+  const product = products.find((product) => product.productID === productID);
+  if (product) {
+    return product.price;
+  }
+  return 0; // Valor predeterminado si no se encuentra el producto
 };
 
+// const getProductPrice = (productID) => {
+//   const price = products.forEach((product) => {
+//     if (product.productID === productID) {
+//       return product.price;
+//     }
+//   });
+//   console.log(price);
+//   return price;
+// };
+
 const getTotalAmount = (productsArray) => {
-  let total = 0;
-  productsArray.forEach((product) => {
-    total += product.price;
-  });
+  const total = productsArray
+    .reduce((acc, product) => {
+      return acc + product.unitPrice * product.quantity;
+    }, 0)
+    .toFixed(2);
   return total;
 };
+// const getTotalAmount = (productsArray) => {
+//   let total = 0;
+//   productsArray.forEach((product) => {
+//     total += product.price;
+//   });
+//   return total;
+// };
 
 //[12345, 23456, 34567, 45678, 56789, 67890, 78901, 89012, 90123, 10111, 12123, 13131, 14141, 15151, 16161, 17171, 18181, 19191, 20202, 21212, 22222, 23232]
 export const orders = [
@@ -278,7 +295,7 @@ export const orders = [
         quantity: 1,
         discount: 0,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 234567,
@@ -332,7 +349,7 @@ export const orders = [
         quantity: 2,
         discount: 20,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 345678,
@@ -358,7 +375,7 @@ export const orders = [
         quantity: 1,
         discount: 0,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 456789,
@@ -398,7 +415,7 @@ export const orders = [
         quantity: 2,
         discount: 0,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 567890,
@@ -438,7 +455,7 @@ export const orders = [
         quantity: 1,
         discount: 0,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 678901,
@@ -492,7 +509,7 @@ export const orders = [
         quantity: 3,
         discount: 15,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 789012,
@@ -532,7 +549,7 @@ export const orders = [
         quantity: 2,
         discount: 10,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
   {
     ID: 890123,
@@ -572,6 +589,6 @@ export const orders = [
         quantity: 1,
         discount: 20,
       },
-    ]), // Se calculará más adelante
+    ]),
   },
 ];

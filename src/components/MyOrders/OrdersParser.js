@@ -1,32 +1,70 @@
 import React from "react";
-import { OrderDiv, OrderDetails } from "./Styles";
+import {
+  OrderDiv,
+  OrderDetails,
+  InfoItem,
+  ProductBox,
+  OrderSection,
+} from "./Styles";
+import OrderAgainButton from "../OrderAgainButton/OrderAgainButton";
 
 const OrdersParser = (props) => {
-  const { ordersArray } = props;
+  const { products, ordersArray } = props;
   console.log(ordersArray);
   return (
-    <OrderDiv>
+    <OrderDiv id={`OrderDiv`}>
       {ordersArray?.map((order, index) => {
+        const productList = order?.orderProducts?.map((orderProduct) =>
+          products.find(
+            (product) => orderProduct.productID === product.productID
+          )
+        );
         return (
-          <OrderDetails key={index}>
-            <p>Order ID: {order.ID}</p>
-            <p>Created: {order.dateCreated}</p>
-            <p>Active: {order.active}</p>
-            <p>Completed: {order.completed}</p>
-            <div>
-              Products:{" "}
-              {order.orderProducts.map((product, index) => {
+          <OrderDetails id={`Order #${index}`} key={index}>
+            <OrderSection>
+              <InfoItem>
+                <p>Order number:</p>
+                <p>#{order.ID}</p>
+              </InfoItem>
+              <InfoItem>
+                <p>Created:</p>
+                <p>{order.dateCreated.slice(0, 10)}</p>
+              </InfoItem>
+              <InfoItem>
+                <p>Active:</p>
+                <p>{order.active ? "Yes" : "No"}</p>
+              </InfoItem>
+              <InfoItem>
+                <p>Status:</p>
+                <p>{order.completed ? "Completed" : "Cancelled"}</p>
+              </InfoItem>
+            </OrderSection>
+            <hr />
+            Products:
+            <OrderSection>
+              {productList.map((product, index) => {
+                const productData = products.find(
+                  (obj) => obj.productID === product.productID
+                );
                 return (
-                  <div key={index}>
-                    <p>Product ID: {product.productID}</p>
-                    <p>Unit price: {product.unitPrice}</p>
+                  <ProductBox key={index}>
+                    <p className="font-bold">{productData.name}</p>
+                    <p>Unit price: ${productData.price}</p>
                     <p>Quantity: {product.quantity}</p>
                     <p>Product ID: {product.productID}</p>
-                  </div>
+                  </ProductBox>
                 );
               })}
-            </div>
-            <span>Total: {order.totalAmount}</span>
+            </OrderSection>
+            <OrderSection>
+              <span className="text-green-500 font-bold">
+                Total: ${order.totalAmount}
+              </span>
+              {console.log(order.totalAmount)}
+            </OrderSection>
+            <OrderSection>
+              <OrderAgainButton products={productList} />
+            </OrderSection>
           </OrderDetails>
         );
       })}
