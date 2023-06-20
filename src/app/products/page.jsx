@@ -1,4 +1,4 @@
-import Card from '@/components/Card/Card';
+import CardsContainer from '@/components/CardsContainer/CardsContainer';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
 export default function productPage() {
@@ -8,7 +8,7 @@ export default function productPage() {
         <SearchBar />
       </section>
       <section className='flex items-center justify-center'>
-        <Card />
+        <CardsContainer />
       </section>
     </div>
   );

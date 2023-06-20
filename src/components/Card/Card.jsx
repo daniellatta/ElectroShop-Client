@@ -1,19 +1,18 @@
-"use client";
+'use client';
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "@/redux/features/searchBar";
-import { useEffect, useState } from "react";
-import ModalCard from "../../components/ModalCard/ModalCard";
+import { useState } from 'react';
+import ModalCard from '../ModalCard/ModalCard';
 
-export default function Card() {
-  const [info, setInfo] = useState([]);
+export default function Card({
+  id,
+  name,
+  image,
+  price,
+  review,
+  stock,
+  description,
+}) {
   const [selectedCard, setSelectedCard] = useState(null);
-  const dispatch = useDispatch();
-  const items = useSelector((state) => state.items);
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -25,24 +24,34 @@ export default function Card() {
 
   return (
     <div>
-      {items.loading ? <h1>Loading...</h1> : ""}
-      {items.products &&
-        items.products.map((item) => {
-          return (
-            <section key={item.id}>
-              <article>
-                <img src={item.image} alt="" />
-                <h3>{item.image && item.name}</h3>
-              </article>
-            </section>
-          );
-        })}
+      <article
+        onClick={() =>
+          handleCardClick({
+            id,
+            name,
+            image,
+            price,
+            review,
+            stock,
+            description,
+          })
+        }>
+        {name && <h3>{name}</h3>}
+        {price && <h3>{price}</h3>}
+        {review && <h3>{review}</h3>}
+        {image && <img src={image} alt='' />}
+      </article>
+         
       {selectedCard && (
         <ModalCard
           isOpen={true}
           handleClose={handleCloseModal}
-          image={selectedCard.url}
-          title={selectedCard.title}
+          image={image}
+          title={name}
+          description={description}
+          price={price}
+          stock={stock}
+          id={id}
         />
       )}
     </div>
