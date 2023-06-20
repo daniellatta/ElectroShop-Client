@@ -28,6 +28,7 @@ export default function SearchBar() {
           placeholder='Keyboard...'
           onChange={handleChange}
           value={input}
+          className='bg-red-400'
         />
         <button type='submit'>search</button>
       </form>
