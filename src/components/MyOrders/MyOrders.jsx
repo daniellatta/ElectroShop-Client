@@ -1,7 +1,7 @@
 import React from "react";
-import { orders } from "./OrderData";
+import { products, orders } from "./OrderData";
 import OrdersParser from "./OrdersParser";
-import { OrderContainer } from "./Styles";
+import { OrdersContainer } from "./Styles";
 
 const MyOrders = () => {
   return (
@@ -36,9 +36,9 @@ const MyOrders = () => {
         </div>
       </div>
       MyOrders
-      <OrderContainer>
-        <OrdersParser ordersArray={orders} />
-      </OrderContainer>
+      <OrdersContainer>
+        <OrdersParser ordersArray={orders} products={products} />
+      </OrdersContainer>
     </div>
   );
 };

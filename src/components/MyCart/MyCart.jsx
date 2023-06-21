@@ -1,53 +1,15 @@
 "use client";
 import { useState } from "react";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
-/*
-import React, { useContext, useEffect, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
-import { Store } from "../Store";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, orders: action.payload, loading: false };
-    case "FETCH_FAIL":
-      return { ...state, loading: false };
-    default:
-      return state;
-  }
-};*/
 
 function App() {
   const [loading, setLoading] = useState(false);
-  //  const { state } = useContext(Store);
-  //  const { userInfo } = state;
-  //  const navigate = useNavigate();
-  /*
-  const [{ loading, orders }, dispatch] = useReducer(reducer, {
-    loading: true,
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
-      try {
-        const { data } = await axios.get("/api/orders/mine", {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_FAIL" });
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [userInfo]);
-*/
 
   return (
-    <div className="bg-gray-300 h-screen">
+
+    <div style={{ position: "relative", textAlign: "center" }}>
+      <ShoppingCart />
       <div>
         <p className="text-4xl font-bold text-center pb-12">Order history</p>
       </div>
@@ -85,39 +47,6 @@ function App() {
                   <th>DELIVERED</th>
                 </tr>
               </thead>
-              {/* <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <td className="p-2 border-b-2 border-black">
-                      {order._id}{" "}
-                    </td>
-                    <td className="border-b-2 border-black">
-                      {order.createdAt}{" "}
-                    </td>
-                    <td className="border-b-2 border-black">
-                      {order.totalPrice}{" "}
-                    </td>
-                    <td className="border-b-2 border-black">
-                      {order.isPaid ? order.paidAt : "No"}{" "}
-                    </td>
-                    <td className="border-b-2 border-black">
-                      {order.isDelivered ? order.deliveredAt : "No"}{" "}
-                    </td>
-                    <td className="border-b-2 border-black">
-                    
-                      <button
-                        className="text-orange-900 rounded-lg p-1 hover:text-orange-500"
-                        onClick={() => {
-                          navigate(`/order/${order._id}`);
-                        }}
-                      >
-                        Details
-                      </button>
-                      
-                    </td>
-                  </tr>
-                ))}
-              </tbody> */}
             </table>
           </div>
         )}
