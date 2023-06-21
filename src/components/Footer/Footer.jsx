@@ -1,72 +1,39 @@
 import React from "react";
-import { BsFillWrenchAdjustableCircleFill } from "react-icons/bs";
-import { FaBeer, FaGalacticRepublic, FaGenderless } from "react-icons/fa";
+import Link from "next/link";
+import { FaMoneyBill, FaTruck, FaShieldAlt } from "react-icons/fa";
 
 const Footer = () => {
-  const keyBoardSize = [
-    "Bluetooth Keyboards",
-    "Ergonomic Keyboards",
-    "Backlit Keyboards",
-    "Tenkeyless Keyboards",
-    "Numpad Keyboards",
-    "60% Dvorak Keyboards",
-    "USB-C Keyboards",
-  ];
-
-  const moreItems = [
-    "50% Keyboards",
-    "TKL Keyboards",
-    "Ortholinear Keyboards",
-    "Split Keyboards",
-    "Hot-swappable Keyboards",
-  ];
-
-  const someMoreItems = [
-    "Wireless Keyboards",
-    "Mechanical Keyboards",
-    "RGB Keyboards",
-    "Gaming Keyboards",
-    "Programmable Keyboards",
-    "Macropad Keyboards",
-    "Compact Keyboards",
-    "Low-profile Keyboards",
-  ];
-
   return (
-    <div className="flex justify-around bg-slate-500">
-      <h1 className="text-4xl">Footer</h1>
+    <div className="flex justify-around py-4 text-blue-200 bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <div className="flex flex-col">
-        {keyBoardSize.map((keyboard, i) => (
-          <a key={i}>{keyboard}</a>
-        ))}
+        <div className="flex justify-center">
+          <FaMoneyBill size="4em" />
+        </div>
+        <p className="p-4 text-center">
+          Elegí cómo pagar Podés pagar con tarjeta, débito, efectivo o hasta 12
+          cuotas sin tarjeta con ElectroShopsin.
+        </p>
       </div>
 
       <div>
-        <ul>
-          {someMoreItems.map((keyboard, i) => (
-            <li key={i}>{keyboard}</li>
-          ))}
-        </ul>{" "}
+        <div className="flex justify-center">
+          <FaTruck size="4em" />
+        </div>
+
+        <p className="p-4 text-center">
+          Envío gratis desde $ 8.000 Solo por estar registrado en ElectroShop
+          tenés envíos gratis en miles de productos. Es un beneficio
+          ElectroCredito.
+        </p>
       </div>
       <div>
-        <ul>
-          {moreItems.map((items, i) => (
-            <li key={i}>{items}</li>
-          ))}
-        </ul>{" "}
-      </div>
-      <div>
-        <p className="py-4">
-          <BsFillWrenchAdjustableCircleFill size="1.8em" />
-        </p>
-        <p className="pb-4">
-          <FaGalacticRepublic size="1.8em" />
-        </p>
-        <p className="pb-4">
-          <FaBeer size="1.8em" />
-        </p>
-        <p className="pb-4">
-          <FaGenderless size="1.8em" />
+        <div className="flex justify-center">
+          <FaShieldAlt size="4em" />
+        </div>
+        <p className="p-4 text-center">
+          Seguridad, de principio a fin ¿No te gusta? ¡Devolvelo! En
+          ElectroShop, no hay nada que no puedas hacer, porque estás siempre
+          protegido.
         </p>
       </div>
     </div>
