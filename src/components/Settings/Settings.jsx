@@ -13,16 +13,16 @@ const Settings = () => {
 
   const accordionData = [
     {
-      title: "Hello wrold",
-      desc: "Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      title: "Titulo 1",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra.",
     },
     {
-      title: "Hello wrold",
-      desc: "Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      title: "Titulo 2",
+      desc: "Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.",
     },
     {
-      title: "Hello wrold",
-      desc: "Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      title: "Titulo 3",
+      desc: " Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.",
     },
   ];
 
@@ -37,6 +37,14 @@ const Settings = () => {
           desc={data.desc}
         />
       ))}
+      <div className="flex justify-center ">
+        <a
+          href="delete"
+          className="w-full p-10 align-middle bg-red-500 mt-12 font-bold text-4xl text-center"
+        >
+          DELETE ACCOUNT
+        </a>
+      </div>
     </div>
   );
 };
