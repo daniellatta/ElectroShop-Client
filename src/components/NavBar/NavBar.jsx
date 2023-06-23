@@ -14,6 +14,7 @@ const NavBar = () => {
   };
 
   return (
+    <nav className='fixed top-0 z-50 w-full'>
       <div className='flex flex-row items-center h-16 bg-slate-800 text-white font-sans font-semibold'>
         <Link
           href='/'
@@ -63,6 +64,7 @@ const NavBar = () => {
           </div>
         </div>
       </div>
+    </nav>
   );
 };
 
