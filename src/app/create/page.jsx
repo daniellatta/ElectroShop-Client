@@ -10,12 +10,14 @@ const page = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
-    userName: "",
     name: "",
-    surname: "",
+    dni: "",
+    username: "",
     email: "",
-    age: "",
-    address: "",
+    password: "",
+    birthDate: "",
+    adress: "",
+    city: "",
     phoneNumber: "",
   });
 
@@ -23,23 +25,15 @@ const page = () => {
   const [validUser, setValidUser] = useState(false);
 
   const [errorMessages, setErrorMessages] = useState({
-    userName: "",
+    username: "",
+    password: "",
     name: "",
-    surname: "",
+    dni: "",
     email: "",
     age: "",
-    address: "",
+    adress: "",
     phoneNumber: "",
   });
-
-  const notify = () => {
-    toast.success("Usuario creado correctamente", {
-      position: "top-center",
-      autoClose: 5000,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  };
 
   const handleChange = (e) => {
     setFormData({
@@ -52,26 +46,26 @@ const page = () => {
     e.preventDefault();
 
     setErrorMessages({
-      userName: "",
+      username: "",
       name: "",
-      surname: "",
+      dni: "",
       email: "",
       age: "",
-      address: "",
+      adress: "",
       phoneNumber: "",
+      city: "",
     });
-
     let hasError = false;
 
     const forbiddenWords = ["puto", "mierda", "joto"];
 
     const containsForbiddenWord = forbiddenWords.some((word) =>
-      formData.userName.toLowerCase().includes(word.toLowerCase())
+      formData.username.toLowerCase().includes(word.toLowerCase())
     );
 
     if (
       containsForbiddenWord ||
-      !/^[a-zA-Z0-9_]{3,16}$/.test(formData.userName)
+      !/^[a-zA-Z0-9_]{3,16}$/.test(formData.username)
     ) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
@@ -88,11 +82,10 @@ const page = () => {
       hasError = true;
     }
 
-    if (!/^.{2,25}$/.test(formData.surname)) {
+    if (!/^.{2,25}$/.test(formData.dni)) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        surname:
-          "Ingrese solamente su primer apellido, con un máximo de 25 caracteres.",
+        dni: "Ingrese solamente su primer apellido, con un máximo de 25 caracteres.",
       }));
       hasError = true;
     }
@@ -106,15 +99,15 @@ const page = () => {
       hasError = true;
     }
 
-    if (!formData.age) {
+    if (!formData.birthDate) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        age: "Debes ingresar una fecha de nacimiento.",
+        birthDate: "Debes ingresar una fecha de nacimiento.",
       }));
       hasError = true;
     }
 
-    if (formData.address.length < 5 || formData.address.length > 25) {
+    if (formData.adress.length < 5 || formData.adress.length > 25) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
         address: "La dirección debe tener entre 5 y 25 caracteres.",
@@ -147,6 +140,15 @@ const page = () => {
     }
   }, [validUser]);
 
+  const notify = () => {
+    toast.success("Usuario creado correctamente", {
+      position: "top-center",
+      autoClose: 5000,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
   const getInputClassName = (fieldName) => {
     const hasError = errorMessages[fieldName];
     return hasError
@@ -155,31 +157,49 @@ const page = () => {
   };
 
   return (
-    <div className="flex justify-center bg-black p-10">
+    <div className="flex justify-center text-white bg-black p-10">
       <div
         className="flex w-[70%] flex-col items-center border-solid rounded-lg bg-slate-400 p-[10px] "
         id="PersonalData"
       >
         <h4 className="py-8 font-bold text-4xl">MyProfile</h4>
 
-        <label htmlFor="userName">User name: </label>
+        <label htmlFor="username">User name: </label>
         <input
           type="text"
-          className={getInputClassName("userName")}
-          name="userName"
-          id="userName"
-          value={formData.userName}
+          className={getInputClassName("username")}
+          name="username"
+          id="username"
+          value={formData.username}
           onChange={handleChange}
           placeholder="Ingrese su usuario"
         />
-        {errorMessages.userName && (
+        {errorMessages.username && (
           <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
-            {errorMessages.userName}
+            {errorMessages.username}
+          </p>
+        )}
+
+        <label className="pt-8" htmlFor="password">
+          Contraseña:
+        </label>
+        <input
+          type="password"
+          className={getInputClassName("password")}
+          name="password"
+          id="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Ingrese su usuario"
+        />
+        {errorMessages.password && (
+          <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
+            {errorMessages.password}
           </p>
         )}
 
         <label className="pt-8" htmlFor="name">
-          Full name:{" "}
+          Nombre completo:
         </label>
         <input
           type="text"
@@ -196,26 +216,26 @@ const page = () => {
           </p>
         )}
 
-        <label className="pt-8" htmlFor="surname">
-          Surname:{" "}
+        <label className="pt-8" htmlFor="dni">
+          D.N.I:
         </label>
         <input
           placeholder="Ingrese su apellido"
           type="text"
-          value={formData.surname}
-          name="surname"
-          id="surname"
-          className={getInputClassName("surname")}
+          value={formData.dni}
+          name="dni"
+          id="dni"
+          className={getInputClassName("dni")}
           onChange={handleChange}
         />
-        {errorMessages.surname && (
+        {errorMessages.dni && (
           <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
-            {errorMessages.surname}
+            {errorMessages.dni}
           </p>
         )}
 
         <label className="pt-8" htmlFor="email">
-          eMail:{" "}
+          e-Mail:{" "}
         </label>
         <input
           placeholder="Ingrese su email"
@@ -232,39 +252,39 @@ const page = () => {
           </p>
         )}
 
-        <label className="pt-8" htmlFor="age">
+        <label className="pt-8" htmlFor="birthDate">
           Fecha de nacimiento:{" "}
         </label>
         <input
           type="date"
-          name="age"
-          id="age"
-          className={getInputClassName("age")}
-          value={formData.age}
+          name="birthDate"
+          id="birthDate"
+          className={getInputClassName("birthDate")}
+          value={formData.birthDate}
           onChange={handleChange}
         />
 
-        {errorMessages.age && (
+        {errorMessages.birthDate && (
           <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
-            {errorMessages.age}
+            {errorMessages.birthDate}
           </p>
         )}
 
-        <label className="pt-8" htmlFor="address">
-          Address:{" "}
+        <label className="pt-8" htmlFor="adress">
+          Direccion.
         </label>
         <input
           placeholder="Ingrese su dirección"
           type="text"
           onChange={handleChange}
-          name="address"
-          className={getInputClassName("address")}
-          id="address"
-          value={formData.address}
+          name="adress"
+          className={getInputClassName("adress")}
+          id="adress"
+          value={formData.adress}
         />
-        {errorMessages.address && (
+        {errorMessages.adress && (
           <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
-            {errorMessages.address}
+            {errorMessages.adress}
           </p>
         )}
 
@@ -284,6 +304,25 @@ const page = () => {
         {errorMessages.phoneNumber && (
           <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
             {errorMessages.phoneNumber}
+          </p>
+        )}
+
+        <label className="pt-8" htmlFor="city">
+          Ciudad.
+        </label>
+        <input
+          placeholder="Ingrese su ciudad."
+          type="text"
+          onChange={handleChange}
+          name="city"
+          id="city"
+          className={getInputClassName("city")}
+          inputMode="text"
+          value={formData.city}
+        />
+        {errorMessages.city && (
+          <p className="text-grey-500 bg-slate-500 rounded-xl p-2 my-2">
+            {errorMessages.city}
           </p>
         )}
 
