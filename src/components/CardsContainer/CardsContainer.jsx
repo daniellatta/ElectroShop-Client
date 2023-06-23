@@ -25,7 +25,7 @@ export default function CardsContainer() {
   //
   return (
     <div className='flex flex-col w-full'>
-      {items.loading && <p>Loading...</p>}
+      {items.loading && <h1>Loading...</h1>}
       <section className='grid grid-cols-3 gap-12'>
         {breedPage.map((product) => {
           return (
