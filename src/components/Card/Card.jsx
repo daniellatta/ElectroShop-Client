@@ -36,10 +36,10 @@ export default function Card({
             description,
           })
         }>
+        {image && <img src={image} alt='' />}
         {name && <h3>{name}</h3>}
         {price && <h3>{price}</h3>}
         {review && <h3>{review}</h3>}
-        {image && <img src={image} alt='' />}
       </article>
          
       {selectedCard && (

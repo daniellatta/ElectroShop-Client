@@ -13,12 +13,19 @@ import MyProfile from "../../components/MyProfile/MyProfile";
 import MyOrders from "../../components/MyOrders/MyOrders";
 import MyCart from "../../components/MyCart/MyCart";
 import Settings from "../../components/Settings/Settings";
+import { logout } from "@/redux/features/login";
+import { useDispatch } from "react-redux";
 
 const UserPage = () => {
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("personalData");
 
   const handleNavigationClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  const onClickLogout = () => {
+    dispatch(logout());
   };
 
   const renderContent = () => {
@@ -69,7 +76,10 @@ const UserPage = () => {
           >
             Settings
           </NavigationItem>
-          <LogoutButton className="text-red-100 bg-red-500">
+          <LogoutButton
+            onClick={onClickLogout}
+            className="text-red-100 bg-red-500"
+          >
             Logout
           </LogoutButton>
         </NavigationPanel>

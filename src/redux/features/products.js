@@ -4,8 +4,19 @@ import axios from 'axios';
 const initialState = {
   loading: false,
   products: [],
-  error: '',
+  productsByPrice: [],
 };
+
+export const fetchByPrice = createAsyncThunk(
+  'ByPriceFilter/fetch',
+  ({ min, max }) => {
+    return axios
+      .get(
+        `http://localhost:8080/api/v1/product/order/price?min=${min}&max=${max}`
+      )
+      .then(({ data }) => data);
+  }
+);
 
 export const fetchProducts = createAsyncThunk('items/fetch', () => {
   return axios
@@ -25,10 +36,8 @@ const productSlice = createSlice({
       state.products = [...action.payload];
       state.error = '';
     });
-    builder.addCase(fetchProducts.rejected, (state, action) => {
-      state.loading = false;
-      state.products = [];
-      state.error = action.error.message;
+    builder.addCase(fetchByPrice.fulfilled, (state, action) => {
+      state.productsByPrice = action.payload;
     });
   },
 });

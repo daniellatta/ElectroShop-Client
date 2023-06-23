@@ -1,14 +1,20 @@
 import CardsContainer from '@/components/CardsContainer/CardsContainer';
+import FilterProducts from '@/components/FilterProducts/FilterProducts';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
 export default function productPage() {
   return (
-    <div className='flex flex-col'>
-      <section className='flex items-center justify-center'>
-        <SearchBar />
+    <div className='flex bg-slate-700 mt-16'>
+      <section className='w-1/5'>
+        <FilterProducts />
       </section>
-      <section className='flex items-center justify-center'>
-        <CardsContainer />
+      <section className='flex flex-col gap-20 w-4/5'>
+        <section className='flex justify-center'>
+          <SearchBar />
+        </section>
+        <section className='flex justify-center'>
+          <CardsContainer />
+        </section>
       </section>
     </div>
   );
