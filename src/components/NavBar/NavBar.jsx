@@ -54,8 +54,10 @@ const NavBar = () => {
             <CartContainer isOpen={isCartOpen} />
           </div>
           <div
-            className={`fixed z-[10002] top-[50px] right-[20px] flex justify-center text-white text-lg font-bold shadow rounded border-2 border-white w-9 hover:bg-black/10 transition-all duration-300 ${
-              isCartOpen ? "translate-x-[0px]" : "translate-x-full right-[-40px]"
+            className={`fixed z-[10002] top-[50px] right-[0px] flex justify-center text-white text-lg font-bold shadow rounded border-2 border-white w-9 hover:bg-black/10 transition-all duration-300 ${
+              isCartOpen
+                ? "translate-x-[0px]"
+                : "translate-x-full right-[-20px]"
             }`}
             onClick={handleCartClick}
           >
