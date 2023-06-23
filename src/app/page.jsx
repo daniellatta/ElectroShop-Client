@@ -10,7 +10,7 @@ import HeaderText from "@/components/HeaderText/HeaderText";
 export default function Landing() {
   return (
     <div>
-      <div className="bg-gradient-to-r from-slate-900 to-slate-700">
+      <div className="bg-gradient-to-r from-slate-900 to-slate-700 mt-16">
         <HeaderText />
 
         <Carousel />

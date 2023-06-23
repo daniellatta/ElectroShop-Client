@@ -9,8 +9,6 @@ export default function ByPrice({ filterValues, setFilterValues }) {
     setFilterValues({ ...filterValues, [name]: value });
   };
 
-  console.log(setFilterValues);
-
   return (
     <div>
       <form

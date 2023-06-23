@@ -4,14 +4,15 @@ import { useDispatch } from 'react-redux';
 import { fetchByPrice } from '@/redux/features/products';
 import { useState } from 'react';
 import ByPrice from './ByPrice';
+import ByCategory from './ByCategory';
 
 export default function FilterProducts() {
   const dispatch = useDispatch();
   const [filterValues, setFilterValues] = useState({
     price: { min: '0', max: '500' },
+    category: 0,
   });
 
-  console.log(filterValues.price);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchByPrice(filterValues.price));
@@ -19,12 +20,21 @@ export default function FilterProducts() {
 
   return (
     <div className='w-2/12 h-screen bg-slate-600 fixed'>
-      <section className='text-white'>
+      <section className='text-white mt-10'>
         <h3 className='text-center'>Price</h3>
         <ByPrice
           filterValues={filterValues.price}
           setFilterValues={(values) =>
             setFilterValues({ ...filterValues, price: values })
+          }
+        />
+      </section>
+      <section className='flex flex-col gap-2 justify-center items-center mt-5'>
+        <h3 className='text-center'>Category</h3>
+        <ByCategory
+          filterValues={filterValues.category}
+          setFilterValues={(value) =>
+            setFilterValues({ ...filterValues, category: value })
           }
         />
       </section>

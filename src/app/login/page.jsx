@@ -14,21 +14,23 @@ const page = () => {
     dispatch(login(user));
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        placeholder='Username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type='password'
-        placeholder='Password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type='submit'>Login</button>
-    </form>
+    <div className='mt-16'>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          placeholder='Username'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type='password'
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type='submit'>Login</button>
+      </form>
+    </div>
   );
 };
 
