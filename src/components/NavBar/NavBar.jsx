@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaUser, FaShoppingCart, FaSearch } from 'react-icons/fa';
+import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt } from 'react-icons/fa';
 import { TbArrowBigRightLinesFilled } from 'react-icons/tb';
 import CartContainer from '../CartContainer/CartContainer';
 import CartProductsCount from '@/app/CartProductsCount/CartProductsCount';
@@ -33,6 +33,11 @@ const NavBar = () => {
         </Link>
 
         <div className='ml-auto flex flex-row items-center'>
+        <Link
+            href='/create'
+            className='p-2 hover:text-blue-500 transition-colors duration-300'>
+            <FaSignInAlt className='text-lg' />
+          </Link>
           <Link
             href='/user'
             className='p-2 hover:text-blue-500 transition-colors duration-300'>

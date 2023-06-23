@@ -4,6 +4,7 @@ import { fetchProducts } from '@/redux/features/products';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Card/Card';
+import LoadingCard from '../LoadingCard/LoadingCard';
 
 export default function CardsContainer() {
   const dispatch = useDispatch();
@@ -16,10 +17,21 @@ export default function CardsContainer() {
 
   let products = items.products;
   if (byName.productsByName.length) products = byName.productsByName;
+
+  if (items.loading) {
+    return (
+      <div>
+        <section className='grid grid-cols-3 gap-12'>
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {items.loading && <p>Loading...</p>}
-
       <section className='grid grid-cols-3 gap-12'>
         {products.map((product) => {
           return (
