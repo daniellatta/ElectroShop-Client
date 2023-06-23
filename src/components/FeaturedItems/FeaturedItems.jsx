@@ -14,44 +14,47 @@ const FeaturedItems = () => {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-4 px-4 ">
-      <div className="col-span-2">
-        <img
-          src={items[0].url}
-          alt="Featured Item"
-          className="w-full hover:scale-[103%] transition-all duration-500 border-white border-2 rounded-xl cursor-pointer h-[450px] "
-        />
-      </div>
-      <div>
-        <div className="mb-[10px]">
+    <div>
+      <h1 className="text-center text-2xl font-bold py-4">FEATURED ITEMS</h1>
+      <div className="grid grid-cols-4 gap-4 px-4 ">
+        <div className="col-span-2">
           <img
-            src={items[1].url}
+            src={items[0].url}
             alt="Featured Item"
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer "
+            className="w-full border-white border-2 rounded-xl cursor-pointer h-[450px] "
           />
         </div>
         <div>
-          <img
-            src={items[2].url}
-            alt="Featured Item"
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
-          />
+          <div className="mb-[10px]">
+            <img
+              src={items[1].url}
+              alt="Featured Item"
+              className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer "
+            />
+          </div>
+          <div>
+            <img
+              src={items[2].url}
+              alt="Featured Item"
+              className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+            />
+          </div>
         </div>
-      </div>
-      <div className="">
-        <div className="mb-[10px]">
-          <img
-            src={items[1].url}
-            alt="Featured Item"
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
-          />
-        </div>
-        <div>
-          <img
-            src={items[2].url}
-            alt="Featured Item"
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
-          />
+        <div className="">
+          <div className="mb-[10px]">
+            <img
+              src={items[1].url}
+              alt="Featured Item"
+              className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+            />
+          </div>
+          <div>
+            <img
+              src={items[2].url}
+              alt="Featured Item"
+              className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+            />
+          </div>
         </div>
       </div>
     </div>

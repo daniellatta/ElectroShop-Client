@@ -1,7 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Pagination = () => {
-  return <div>Pagination</div>;
+const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
+ return(
+   <div>
+    <p>Pagination</p>
+   </div>
+ )
 };
 
 export default Pagination;
