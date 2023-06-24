@@ -1,7 +1,7 @@
 'use client';
 
 import { useDispatch } from 'react-redux';
-import { fetchByPrice } from '@/redux/features/products';
+import { fetchByCategory, fetchByPrice } from '@/redux/features/products';
 import { useState } from 'react';
 import ByPrice from './ByPrice';
 import ByCategory from './ByCategory';
@@ -16,6 +16,8 @@ export default function FilterProducts() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchByPrice(filterValues.price));
+    dispatch(fetchByCategory(filterValues.category));
+    console.log(filterValues.category);
   };
 
   return (
@@ -29,8 +31,8 @@ export default function FilterProducts() {
           }
         />
       </section>
-      <section className='flex flex-col gap-2 justify-center items-center mt-5'>
-        <h3 className='text-center'>Category</h3>
+      <section className='mt-8'>
+        <h3 className='text-center text-white'>Category</h3>
         <ByCategory
           filterValues={filterValues.category}
           setFilterValues={(value) =>
@@ -38,10 +40,10 @@ export default function FilterProducts() {
           }
         />
       </section>
-      <div className='flex justify-center items-center mt-5'>
+      <div className='flex justify-center items-center mt-8'>
         <button
           onClick={handleSubmit}
-          className='text-gray-900 bg-white border focus:outline-none hover:bg-gray-100 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600'>
+          className='text-gray-900 bg-white border focus:outline-none hover:bg-gray-100 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600'>
           Submit
         </button>
       </div>

@@ -1,25 +1,16 @@
 'use client';
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function ByCategory({ filterValues, setFilterValues }) {
-  const dispatch = useDispatch();
-  const [categories, setCategories] = useState();
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:8080/api/v1/category')
-      .then(({ data }) => setCategories(data));
-  }, []);
+  const categories = useSelector((state) => state.items.categories);
 
   const handleChange = (e) => {
     setFilterValues(e.target.value);
   };
 
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center mt-3'>
       <select onChange={handleChange}>
         {categories &&
           categories.map((category) => {
