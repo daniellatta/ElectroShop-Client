@@ -1,14 +1,20 @@
 import React from "react";
 import Image from "next/image";
+import banner from "../../images/banner.png";
 
 const Banner = () => {
   return (
-    <div className="flex justify-center py-20 ">
-      <img
-        src="https://img.lovepik.com/background/20211021/large/lovepik-cool-line-technology-banner-background-image_400112106.jpg"
-        alt="banner"
-        className="w-[95%] h-[420px]  cursor-pointer object-contain hover:w-[99%]  transition-all duration-500 "
-      />
+    <div>
+      <h1 className="text-2xl font-bold text-center">
+        Unite a nuestra comunidad en Discord!
+      </h1>
+      <div className="flex justify-center py-12 ">
+        <Image
+          src={banner}
+          alt="banner"
+          className="w-[1200px] cursor-pointer object-contain transition-all duration-500 "
+        />
+      </div>
     </div>
   );
 };

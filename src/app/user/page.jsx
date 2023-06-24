@@ -10,24 +10,30 @@ import {
 } from "./styles";
 import UserHeader from "../../components/UserHeader/UserHeader";
 import MyProfile from "../../components/MyProfile/MyProfile";
-import PersonalData from "../../components/PersonalData/PersonalData";
 import MyOrders from "../../components/MyOrders/MyOrders";
 import MyCart from "../../components/MyCart/MyCart";
 import Settings from "../../components/Settings/Settings";
+import { logout } from "@/redux/features/login";
+import { useDispatch } from "react-redux";
 
 const UserPage = () => {
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("personalData");
 
   const handleNavigationClick = (tab) => {
     setActiveTab(tab);
   };
 
+  const onClickLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case "personalData":
         return <MyProfile />;
-      // case "personalData":
-      //   return <PersonalData />;
       case "orders":
         return <MyOrders />;
       case "cart":
@@ -72,7 +78,12 @@ const UserPage = () => {
           >
             Settings
           </NavigationItem>
-          <LogoutButton>Logout</LogoutButton>
+          <LogoutButton
+            onClick={onClickLogout}
+            className="text-red-100 bg-red-500"
+          >
+            Logout
+          </LogoutButton>
         </NavigationPanel>
         <ContentPanel>{renderContent()}</ContentPanel>
       </ComponentContent>

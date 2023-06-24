@@ -4,12 +4,11 @@ import BG_Image from "../../images/ElectronicPattern.png";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-image: linear-gradient(to bottom, #ffff, #aaaa),
     url(${BG_Image.src});
   background-size: 50%;
   background-repeat: repeat;
-  background-position: fixed;
   background-attachment: fixed;
 `;
 
@@ -24,8 +23,12 @@ export const Header = styled.div`
 `;
 
 export const NavigationPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 200px;
-  background-color: #f0f0f0;
+  height: 70vh;
+  background-image: linear-gradient(#f0f0f0, transparent);
   padding: 20px;
 `;
 
@@ -39,12 +42,8 @@ export const NavigationItem = styled.button`
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: transparent;
-  border: none;
-  text-align: left;
   font-size: 16px;
   cursor: pointer;
-  outline: none;
 
   &:hover {
     background-color: #e0e0e0;
@@ -52,17 +51,18 @@ export const NavigationItem = styled.button`
 `;
 
 export const LogoutButton = styled.button`
-  margin-top: auto;
-  width: 100%;
+  width: 70%;
+  height: 30px;
+  line-height: 0px;
   padding: 10px;
-  background-color: #f0f0f0;
   border: none;
+  border-radius: 30px;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
   outline: none;
 
   &:hover {
-    background-color: #e0e0e0;
+    background-color: brown;
   }
 `;
