@@ -4,7 +4,9 @@ import axios from 'axios';
 const initialState = {
   loading: false,
   products: [],
+  categories: [],
   productsByPrice: [],
+  productsByCategory: [],
 };
 
 export const fetchByPrice = createAsyncThunk(
@@ -18,9 +20,24 @@ export const fetchByPrice = createAsyncThunk(
   }
 );
 
+export const fetchByCategory = createAsyncThunk(
+  'ByCategoryFilter/fetch',
+  (id) => {
+    return axios
+      .get(`http://localhost:8080/api/v1/product/order/category/${id}`)
+      .then(({ data }) => data);
+  }
+);
+
 export const fetchProducts = createAsyncThunk('items/fetch', () => {
   return axios
     .get('http://localhost:8080/api/v1/product')
+    .then(({ data }) => data);
+});
+
+export const fetchCategories = createAsyncThunk('category/fetch', () => {
+  return axios
+    .get('http://localhost:8080/api/v1/category')
     .then(({ data }) => data);
 });
 
@@ -36,8 +53,14 @@ const productSlice = createSlice({
       state.products = [...action.payload];
       state.error = '';
     });
+    builder.addCase(fetchCategories.fulfilled, (state, action) => {
+      state.categories = action.payload;
+    });
     builder.addCase(fetchByPrice.fulfilled, (state, action) => {
       state.productsByPrice = action.payload;
+    });
+    builder.addCase(fetchByCategory.fulfilled, (state, action) => {
+      state.productsByCategory = action.payload;
     });
   },
 });
