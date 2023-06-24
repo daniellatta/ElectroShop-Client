@@ -6,7 +6,6 @@ const initialState = {
   products: [],
   categories: [],
   productsByPrice: [],
-  productsByCategory: [],
 };
 
 export const fetchByPrice = createAsyncThunk(
@@ -44,6 +43,16 @@ export const fetchCategories = createAsyncThunk('category/fetch', () => {
 const productSlice = createSlice({
   name: 'items',
   initialState,
+  reducers: {
+    orderProducts: (state, action) => {
+      const orderType = action.payload.toLowerCase();
+      if (orderType === 'az') {
+        state.products.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (orderType === 'za') {
+        state.products.sort((a, b) => b.name.localeCompare(a.name));
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.loading = true;
@@ -60,9 +69,10 @@ const productSlice = createSlice({
       state.productsByPrice = action.payload;
     });
     builder.addCase(fetchByCategory.fulfilled, (state, action) => {
-      state.productsByCategory = action.payload;
+      state.products = action.payload;
     });
   },
 });
 
+export const { orderProducts } = productSlice.actions;
 export default productSlice.reducer;

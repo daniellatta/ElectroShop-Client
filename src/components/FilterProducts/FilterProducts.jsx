@@ -1,10 +1,9 @@
 'use client';
 
 import { useDispatch } from 'react-redux';
-import { fetchByCategory, fetchByPrice } from '@/redux/features/products';
+import { fetchByPrice} from '@/redux/features/products';
 import { useState } from 'react';
 import ByPrice from './ByPrice';
-import ByCategory from './ByCategory';
 
 export default function FilterProducts() {
   const dispatch = useDispatch();
@@ -16,8 +15,6 @@ export default function FilterProducts() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchByPrice(filterValues.price));
-    dispatch(fetchByCategory(filterValues.category));
-    console.log(filterValues.category);
   };
 
   return (
@@ -28,15 +25,6 @@ export default function FilterProducts() {
           filterValues={filterValues.price}
           setFilterValues={(values) =>
             setFilterValues({ ...filterValues, price: values })
-          }
-        />
-      </section>
-      <section className='mt-8'>
-        <h3 className='text-center text-white'>Category</h3>
-        <ByCategory
-          filterValues={filterValues.category}
-          setFilterValues={(value) =>
-            setFilterValues({ ...filterValues, category: value })
           }
         />
       </section>
