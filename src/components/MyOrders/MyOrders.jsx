@@ -19,8 +19,8 @@ const MyOrders = () => {
                 <span className="cursor-pointer font-bold">Ronald Oliver</span>{" "}
               </div>
             </div>
-            <button className="w-22 h-9 rounded-full bg-fFill flex items-center justify-center focus:outline-none bg-red-500 ">
-              Volver al inicio
+            <button className="w-22 h-9 p-4 rounded-full bg-fFill flex items-center justify-center focus:outline-none text-[#000] border-black border-2">
+              Go back
             </button>
           </div>
           <div className="w-full mt-4">

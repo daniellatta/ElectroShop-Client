@@ -82,7 +82,7 @@ const UserPage = () => {
             onClick={onClickLogout}
             className="text-red-100 bg-red-500"
           >
-            Logout
+            Sign out
           </LogoutButton>
         </NavigationPanel>
         <ContentPanel>{renderContent()}</ContentPanel>

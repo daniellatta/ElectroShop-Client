@@ -15,7 +15,7 @@ const FeaturedItems = () => {
 
   return (
     <div>
-      <h1 className="text-center text-2xl font-bold py-4">FEATURED ITEMS</h1>
+      <h1 className="text-center text-2xl font-black text-indigo-400 pt-4 pb-6">Featured products</h1>
       <div className="grid grid-cols-4 gap-4 px-4 ">
         <div className="col-span-2">
           <img

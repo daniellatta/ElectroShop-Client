@@ -5,8 +5,8 @@ import banner from "../../images/banner.png";
 const Banner = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center">
-        Unite a nuestra comunidad en Discord!
+      <h1 className="text-2xl font-black text-center text-[#fff] tracking-wide pt-4 uppercase">
+        Unite a nuestra comunidad en Discord:
       </h1>
       <div className="flex justify-center py-12 ">
         <Image
