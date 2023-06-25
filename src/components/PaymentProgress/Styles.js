@@ -7,7 +7,7 @@ export const ProgressBar = styled.div`
   border-radius: 50px;
   background-color: #ccc;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 90px;
 `;
 
 export const Progress = styled.div`
@@ -36,7 +36,7 @@ export const AlmostYours = styled.div`
   border-radius: 100%;
   outline: 1px solid lightseagreen;
   box-shadow: 0 0 3px 1px black;
-  z-index: 100;
+  z-index: 40;
 `;
 
 export const StepNumber = styled.div`
@@ -55,5 +55,5 @@ export const StepNumber = styled.div`
   outline: 1px solid lightseagreen;
   text-shadow: 0 0 3px black;
   box-shadow: 0 0 3px 1px black;
-  z-index: 100;
+  z-index: 40;
 `;
