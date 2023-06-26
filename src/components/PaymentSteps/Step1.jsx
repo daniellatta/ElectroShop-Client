@@ -28,13 +28,13 @@ const Step1 = () => {
             <ProductInfo>{product?.details.price}</ProductInfo>
             <ProductInfo>{product?.quantity}</ProductInfo>
             <ProductInfo>
-              ${product?.details.price * product?.quantity}
+              ${(product?.details.price * product?.quantity).toFixed(2)}
             </ProductInfo>
           </Product>
         );
       })}
       <Product>
-        <Total>Purchase Total: ${total}</Total>
+        <Total>Purchase Total: ${total.toFixed(2)}</Total>
       </Product>
     </div>
   );
