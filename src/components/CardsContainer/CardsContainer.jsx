@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchProducts } from '@/redux/features/products';
+import { fetchCategories, fetchProducts } from '@/redux/features/products';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Card/Card';
@@ -14,16 +14,25 @@ export default function CardsContainer() {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchCategories());
   }, []);
 
-<<<<<<< HEAD
-  let products = items.products;
-  if (byName.productsByName.length) products = byName.productsByName;
+  // Paginado
+  let products = [...items.products];
+  if (byName.productsByName.length) products = [...byName.productsByName];
+  if (items.productsByPrice.length) products = [...items.productsByPrice];
+  const lastIndex = currentPage * 9;
+  const firstIndex = lastIndex - 9;
+  let breedPage = products.slice(firstIndex, lastIndex);
+  //
 
   if (items.loading) {
     return (
-      <div>
+      <div className='flex flex-col w-[90%]'>
         <section className='grid grid-cols-3 gap-12'>
+          <LoadingCard />
+          <LoadingCard />
+          <LoadingCard />
           <LoadingCard />
           <LoadingCard />
           <LoadingCard />
@@ -33,24 +42,11 @@ export default function CardsContainer() {
   }
 
   return (
-    <div>
-=======
-  //Paginado
-  let products = [...items.products];
-  if (byName.productsByName.length) products = [...byName.productsByName];
-  if (items.productsByPrice.length) products = [...items.productsByPrice];
-  const lastIndex = currentPage * 9;
-  const firstIndex = lastIndex - 9;
-  let breedPage = products.slice(firstIndex, lastIndex);
-  //
-  return (
-    <div className='flex flex-col w-full'>
-      {items.loading && <h1>Loading...</h1>}
->>>>>>> bdf9f2ef428ec9c57e6e0a5facc702f788e14321
+    <div className='flex flex-col w-[90%]'>
       <section className='grid grid-cols-3 gap-12'>
         {breedPage.map((product) => {
           return (
-            <section className='h-[300px] w-[300px]' key={product.id}>
+            <section key={product.id}>
               <Card
                 key={product.id}
                 id={product.id}

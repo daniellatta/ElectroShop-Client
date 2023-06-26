@@ -1,23 +1,16 @@
-<<<<<<< HEAD
-'use client';
+'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt } from 'react-icons/fa';
+import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { TbArrowBigRightLinesFilled } from 'react-icons/tb';
 import CartContainer from '../CartContainer/CartContainer';
 import CartProductsCount from '@/app/CartProductsCount/CartProductsCount';
-=======
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
-import { TbArrowBigRightLinesFilled } from "react-icons/tb";
-import CartContainer from "../CartContainer/CartContainer";
-import CartProductsCount from "@/app/CartProductsCount/CartProductsCount";
->>>>>>> bdf9f2ef428ec9c57e6e0a5facc702f788e14321
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuthenticated);
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -45,22 +38,33 @@ const NavBar = () => {
           Our Products
         </Link>
 
-<<<<<<< HEAD
-        <div className='ml-auto flex flex-row items-center'>
-        <Link
-            href='/create'
-            className='p-2 hover:text-blue-500 transition-colors duration-300'>
-            <FaSignInAlt className='text-lg' />
-          </Link>
-=======
         <div className="ml-auto flex flex-row items-center">
->>>>>>> bdf9f2ef428ec9c57e6e0a5facc702f788e14321
-          <Link
-            href="/user"
-            className="p-2 hover:text-blue-500 transition-colors duration-300"
-          >
-            <FaUser className="text-lg" />
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              href="/user"
+              className="p-2 hover:text-blue-500 transition-colors duration-300"
+            >
+              <FaUser className="text-lg" />
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/create"
+                alt="create"
+                className="p-2 hover:text-blue-500 transition-colors duration-300"
+              >
+                <FaUserPlus className="text-lg" />
+              </Link>
+              <Link
+                href="/login"
+                alt="login"
+                className="p-2 hover:text-blue-500 transition-colors duration-300"
+              >
+                <FaSignInAlt className="text-lg" />
+              </Link>
+            </>
+          )}
+
           <div className="p-2 hover:text-blue-500 transition-colors duration-300">
             <FaSearch className="text-lg" />
           </div>
@@ -73,8 +77,10 @@ const NavBar = () => {
             <CartContainer isOpen={isCartOpen} />
           </div>
           <div
-            className={`fixed z-[10002] top-[50px] right-[20px] flex justify-center text-white text-lg font-bold shadow rounded border-2 border-white w-9 hover:bg-black/10 transition-all duration-300 ${
-              isCartOpen ? "translate-x-[0px]" : "translate-x-full right-[-40px]"
+            className={`fixed z-[10002] top-[50px] right-[0px] flex justify-center text-white text-lg font-bold shadow rounded border-2 border-white w-9 hover:bg-black/10 transition-all duration-300 ${
+              isCartOpen
+                ? "translate-x-[0px]"
+                : "translate-x-full right-[-20px]"
             }`}
             onClick={handleCartClick}
           >

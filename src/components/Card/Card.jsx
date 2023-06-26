@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import ModalCard from '../ModalCard/ModalCard';
+import Image from 'next/image';
 
 export default function Card({
   id,
@@ -35,13 +36,24 @@ export default function Card({
             stock,
             description,
           })
-        }>
-        {image && <img src={image} alt='' />}
-        {name && <h3>{name}</h3>}
-        {price && <h3>{price}</h3>}
-        {review && <h3>{review}</h3>}
+        }
+        className='bg-slate-800 border-transparente rounded-lg p-2.5'>
+        {image && (
+          <div className='flex justify-center items-center mx-0'>
+            <Image
+              src={image}
+              width={300}
+              height={300}
+              alt={`Imagen de ${name}`}
+              priority
+              className='border-transparent rounded-lg w-full h-full'
+            />
+          </div>
+        )}
+        {name && <h3 className='text-white'>{name}</h3>}
+        {price && <h3 className='text-white'>{price}</h3>}
+        {review && <h3 className='text-white'>{review.rating}</h3>}
       </article>
-         
       {selectedCard && (
         <ModalCard
           isOpen={true}

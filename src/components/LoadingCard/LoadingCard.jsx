@@ -1,14 +1,23 @@
-import Image from "next/image"
+import Image from "next/image";
 import loadImage from '../../images/loadingCard.jpg';
 
-
-
-export default function LoadingCard() {
+const LoadingCard = () => {
   return (
-    <section className='h-[300px] w-[300px]'>
-      <h3>Wait a moment</h3>
-      <h3>$000.0</h3>
-      <Image src={loadImage} alt="asd"/>
-    </section>
+    <article className='bg-slate-800 border-transparent rounded-lg p-2.5'>
+      <div className='flex justify-center items-center mx-0'>
+        <Image
+          src={loadImage}
+          width={300}
+          height={300}
+          alt="Loading"
+          priority
+          className='border-transparent rounded-lg w-full h-full'
+        />
+      </div>
+      <h3 className='text-white'>Wait a moment</h3>
+      <h3 className='text-white'>$000.0</h3>
+    </article>
   );
-}
+};
+
+export default LoadingCard;
