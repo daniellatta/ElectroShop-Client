@@ -6,7 +6,6 @@ import {
   NavigationPanel,
   ContentPanel,
   NavigationItem,
-  LogoutButton,
 } from "./styles";
 import UserHeader from "../../components/UserHeader/UserHeader";
 import MyProfile from "../../components/MyProfile/MyProfile";
@@ -15,6 +14,7 @@ import MyCart from "../../components/MyCart/MyCart";
 import Settings from "../../components/Settings/Settings";
 import { logout } from "@/redux/features/login";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -78,12 +78,13 @@ const UserPage = () => {
           >
             Settings
           </NavigationItem>
-          <LogoutButton
+          <Link
+            href="/"
             onClick={onClickLogout}
-            className="text-red-100 bg-red-500"
+            className="bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
           >
             Logout
-          </LogoutButton>
+          </Link>
         </NavigationPanel>
         <ContentPanel>{renderContent()}</ContentPanel>
       </ComponentContent>

@@ -1,6 +1,5 @@
-'use client';
-
-import { useSelector } from 'react-redux';
+"use client";
+import { useSelector } from "react-redux";
 
 export default function ByCategory({ filterValues, setFilterValues }) {
   const categories = useSelector((state) => state.items.categories);
@@ -9,8 +8,10 @@ export default function ByCategory({ filterValues, setFilterValues }) {
     setFilterValues(e.target.value);
   };
 
+  console.log(categories);
+
   return (
-    <div className='flex flex-col justify-center items-center mt-3'>
+    <div className="flex flex-col justify-center items-center mt-3">
       <select onChange={handleChange}>
         {categories &&
           categories.map((category) => {

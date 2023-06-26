@@ -14,7 +14,6 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validar campos vacíos
     if (username.trim() === "" || password.trim() === "") {
       setError("Por favor, completa todos los campos");
       return;
@@ -23,8 +22,8 @@ const LoginPage = () => {
     const user = { username, password };
 
     try {
-      const response = await dispatch(loginUser(user));
-      console.log(response);
+      const loginAction = loginUser(user);
+      await dispatch(loginAction);
 
       const usersResponse = await axios.get(
         "http://localhost:8080/api/v1/user"
@@ -39,10 +38,10 @@ const LoginPage = () => {
 
       if (foundUser) {
         dispatch(login(foundUser));
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("username", response.username);
+        localStorage.setItem("token", foundUser.token);
+        localStorage.setItem("username", foundUser.username);
       } else {
-        console.log("Credenciales invalidas");
+        console.log("Credenciales inválidas");
       }
     } catch (error) {
       console.log("Error:", error);
