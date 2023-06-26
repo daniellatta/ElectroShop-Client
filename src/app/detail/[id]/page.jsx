@@ -27,7 +27,7 @@ const DetailPage = ({ params }) => {
   return (
     <div className="flex flex-col bg-slate-700 h-screen">
       <div className="px-4 pt-10 pb-0">
-        <Link href="/" className="text-gray-400 hover:text-gray-500 ml-40 p-0 mb-0">
+        <Link href="/products" className="text-gray-400 hover:text-gray-500 ml-40 p-0 mb-0">
           Back
         </Link>
       </div>
@@ -47,11 +47,13 @@ const DetailPage = ({ params }) => {
                 Shipping nationwide
               </p>
             </div>
-              <p className="text-gray-600 text-white mb-4">{description}</p>
-              <p className="text-xl text-white">Stock: {stock}</p>
-            <button className="bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4">
-              Buy Now
-            </button>
+            <p className="text-gray-600 text-white mb-4">{description}</p>
+            <p className="text-xl text-white">Stock: {stock}</p>
+            <Link href='/completePurchase'>
+              <button className="bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4 w-full">
+                Buy Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -5,10 +5,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "loremflickr.com",
-        port: '',
-        pathname: '/640/480/cats'
-    }]
-  }
+        port: "",
+        pathname: "/640/480/cats",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

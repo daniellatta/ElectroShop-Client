@@ -1,9 +1,11 @@
 "use client";
-import PaymentProgress from "@/components/PaymentProgress/PaymentProgress";
+import React, { useState } from "react";
+import PaymentPage from "@/components/PaymentMethodSelector/PaymentMethodSelector";
+import PaymentConfirmation from "@/components/PaymentConfirmation/PaymentConfirmation";
 import Step1 from "@/components/PaymentSteps/Step1";
 import Step2 from "@/components/PaymentSteps/Step2";
+import PaymentProgress from "@/components/PaymentProgress/PaymentProgress";
 import { Button } from "@/components/PaymentSteps/Styles";
-import React, { useEffect, useState } from "react";
 import { IoIosHome } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -53,19 +55,7 @@ const PaymentForm = () => {
 
           {step === 3 && (
             <div>
-              <h1>Pantalla 3</h1>
-              <Button onClick={handlePrev}>Previous</Button>
-              <Button onClick={handleNext}>Next</Button>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div>
-              <h1>Pantalla 4 - Confirmación</h1>
-              <Button onClick={handlePrev}>Previous</Button>
-              <Button onClick={handleFinish}>
-                Back to home <IoIosHome />
-              </Button>
+              <PaymentPage onClick={handlePrev} />
             </div>
           )}
         </>

@@ -1,13 +1,16 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
-import { TbArrowBigRightLinesFilled } from "react-icons/tb";
-import CartContainer from "../CartContainer/CartContainer";
-import CartProductsCount from "@/app/CartProductsCount/CartProductsCount";
+'use client'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import { TbArrowBigRightLinesFilled } from 'react-icons/tb';
+import CartContainer from '../CartContainer/CartContainer';
+import CartProductsCount from '@/app/CartProductsCount/CartProductsCount';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuthenticated);
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -36,12 +39,32 @@ const NavBar = () => {
         </Link>
 
         <div className="ml-auto flex flex-row items-center">
-          <Link
-            href="/user"
-            className="p-2 hover:text-blue-500 transition-colors duration-300"
-          >
-            <FaUser className="text-lg" />
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              href="/user"
+              className="p-2 hover:text-blue-500 transition-colors duration-300"
+            >
+              <FaUser className="text-lg" />
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/create"
+                alt="create"
+                className="p-2 hover:text-blue-500 transition-colors duration-300"
+              >
+                <FaUserPlus className="text-lg" />
+              </Link>
+              <Link
+                href="/login"
+                alt="login"
+                className="p-2 hover:text-blue-500 transition-colors duration-300"
+              >
+                <FaSignInAlt className="text-lg" />
+              </Link>
+            </>
+          )}
+
           <div className="p-2 hover:text-blue-500 transition-colors duration-300">
             <FaSearch className="text-lg" />
           </div>
