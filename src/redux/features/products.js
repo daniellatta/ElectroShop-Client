@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   loading: false,
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchByPrice = createAsyncThunk(
-  'ByPriceFilter/fetch',
+  "ByPriceFilter/fetch",
   ({ min, max }) => {
     return axios
       .get(
@@ -20,7 +20,7 @@ export const fetchByPrice = createAsyncThunk(
 );
 
 export const fetchByCategory = createAsyncThunk(
-  'ByCategoryFilter/fetch',
+  "ByCategoryFilter/fetch",
   (id) => {
     return axios
       .get(`http://localhost:8080/api/v1/product/order/category/${id}`)
@@ -28,20 +28,20 @@ export const fetchByCategory = createAsyncThunk(
   }
 );
 
-export const fetchProducts = createAsyncThunk('items/fetch', () => {
+export const fetchProducts = createAsyncThunk("items/fetch", () => {
   return axios
-    .get('http://localhost:8080/api/v1/product')
+    .get("http://localhost:8080/api/v1/product")
     .then(({ data }) => data);
 });
 
-export const fetchCategories = createAsyncThunk('category/fetch', () => {
+export const fetchCategories = createAsyncThunk("category/fetch", () => {
   return axios
-    .get('http://localhost:8080/api/v1/category')
+    .get("http://localhost:8080/api/v1/category")
     .then(({ data }) => data);
 });
 
 const productSlice = createSlice({
-  name: 'items',
+  name: "items",
   initialState,
   reducers: {
     orderProducts: (state, action) => {
@@ -60,7 +60,7 @@ const productSlice = createSlice({
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;
       state.products = [...action.payload];
-      state.error = '';
+      state.error = "";
     });
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
