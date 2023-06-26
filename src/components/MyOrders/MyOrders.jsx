@@ -6,7 +6,6 @@ import { OrdersContainer } from "./Styles";
 const MyOrders = () => {
   return (
     <div>
-      <h1>My orders</h1>
       <OrdersContainer>
         <OrdersParser ordersArray={orders} products={products} />
       </OrdersContainer>
