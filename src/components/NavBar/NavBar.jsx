@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log(isAuthenticated);
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
