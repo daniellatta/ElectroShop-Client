@@ -12,7 +12,12 @@ export const loginUser = createAsyncThunk(
 );
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated:
+    typeof localStorage !== "undefined" &&
+    localStorage?.getItem("isAuthenticated")
+      ? JSON.parse(localStorage?.getItem("isAuthenticated"))
+      : false,
+  isAuthenticated: JSON.parse(localStorage.getItem("isAuthenticated")),
   user: null,
 };
 
@@ -23,9 +28,11 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.isAuthenticated = true;
       state.user = action.payload;
+      localStorage.setItem("isAuthenticated", "true");
     },
     logout: (state) => {
       state.isAuthenticated = false;
+      localStorage.setItem("isAuthenticated", "false");
     },
   },
 });

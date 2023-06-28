@@ -43,7 +43,7 @@ const page = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrorMessages({
@@ -58,6 +58,39 @@ const page = () => {
       city: "",
     });
     let hasError = false;
+
+    const [existingUser, setExistingUser] = useState({
+      dni: false,
+      phoneNumber: false,
+      username: false,
+      email: false,
+    });
+
+    // Llamada a la URL para obtener los usuarios
+    try {
+      const response = await fetch("https://example.com/usuarios");
+      const usuarios = await response.json();
+
+      // Comprobar si los datos coinciden con los usuarios existentes
+      const match = usuarios.some(
+        (usuario) =>
+          usuario.dni === formData.dni &&
+          usuario.phoneNumber === formData.phoneNumber &&
+          usuario.email === formData.email &&
+          usuario.username === formData.username
+      );
+
+      // Actualizar existingUser basado en la coincidencia
+      setExistingUser({
+        dni: match,
+        phoneNumber: match,
+        username: match,
+        email: match,
+      });
+    } catch (error) {
+      // Manejo de errores al obtener los usuarios
+      console.error("Error al obtener los usuarios:", error);
+    }
 
     const forbiddenWords = ["puto", "mierda", "joto"];
 
@@ -141,8 +174,6 @@ const page = () => {
       }));
       hasError = true;
     }
-
-    setError(hasError);
 
     setError(hasError);
     setValidUser(!hasError);
@@ -367,4 +398,3 @@ const page = () => {
 };
 
 export default page;
-
