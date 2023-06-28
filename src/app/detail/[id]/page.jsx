@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FaTruck } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { cleanDetail, fetchById } from '@/redux/features/products';
+import { addProduct } from '@/redux/features/shoppingCart';
 
 const DetailPage = ({ params }) => {
   const { id } = params;
@@ -23,6 +24,10 @@ const DetailPage = ({ params }) => {
     return <div>Loading...</div>;
   }
 
+  const handleBuyButton = () => {
+    dispatch(addProduct({ item: productDetail }));
+  };
+
   const { name, description, price, stock, image } = productDetail;
 
   return (
@@ -39,7 +44,7 @@ const DetailPage = ({ params }) => {
           <div className='w-9/10'>
             <Image
               width={600}
-              height={200}
+              height={600}
               src={image}
               alt=''
               className='object-cover h-full w-full p-4'
@@ -59,7 +64,9 @@ const DetailPage = ({ params }) => {
             <p className='text-gray-600 text-white mb-4'>{description}</p>
             <p className='text-xl text-white'>Stock: {stock}</p>
             <Link href='/completePurchase'>
-              <button className='bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4 w-full'>
+              <button
+                onClick={handleBuyButton}
+                className='bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4 w-full'>
                 Buy Now
               </button>
             </Link>
