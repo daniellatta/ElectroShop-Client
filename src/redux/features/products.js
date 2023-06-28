@@ -1,15 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   loading: false,
   products: [],
   categories: [],
   productsByPrice: [],
+  productDetail: {},
 };
 
 export const fetchByPrice = createAsyncThunk(
-  "ByPriceFilter/fetch",
+  'ByPriceFilter/fetch',
   ({ min, max }) => {
     return axios
       .get(
@@ -19,8 +20,17 @@ export const fetchByPrice = createAsyncThunk(
   }
 );
 
+export const fetchById = createAsyncThunk('productById/fetch', (id) => {
+  return axios
+    .get(`http://localhost:8080/api/v1/product/${id}`)
+    .then(({ data }) => data)
+    .catch((error) => {
+      console.error('Error fetching product details: ', error.message);
+    });
+});
+
 export const fetchByCategory = createAsyncThunk(
-  "ByCategoryFilter/fetch",
+  'ByCategoryFilter/fetch',
   (id) => {
     return axios
       .get(`http://localhost:8080/api/v1/product/order/category/${id}`)
@@ -28,20 +38,20 @@ export const fetchByCategory = createAsyncThunk(
   }
 );
 
-export const fetchProducts = createAsyncThunk("items/fetch", () => {
+export const fetchProducts = createAsyncThunk('items/fetch', () => {
   return axios
-    .get("http://localhost:8080/api/v1/product")
+    .get('http://localhost:8080/api/v1/product')
     .then(({ data }) => data);
 });
 
-export const fetchCategories = createAsyncThunk("category/fetch", () => {
+export const fetchCategories = createAsyncThunk('category/fetch', () => {
   return axios
-    .get("http://localhost:8080/api/v1/category")
+    .get('http://localhost:8080/api/v1/category')
     .then(({ data }) => data);
 });
 
 const productSlice = createSlice({
-  name: "items",
+  name: 'items',
   initialState,
   reducers: {
     orderProducts: (state, action) => {
@@ -52,6 +62,9 @@ const productSlice = createSlice({
         state.products.sort((a, b) => b.name.localeCompare(a.name));
       }
     },
+    cleanDetail: (state) => {
+      state.productDetail = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
@@ -60,7 +73,7 @@ const productSlice = createSlice({
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;
       state.products = [...action.payload];
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
@@ -71,8 +84,11 @@ const productSlice = createSlice({
     builder.addCase(fetchByCategory.fulfilled, (state, action) => {
       state.products = action.payload;
     });
+    builder.addCase(fetchById.fulfilled, (state, action) => {
+      state.productDetail = action.payload;
+    });
   },
 });
 
-export const { orderProducts } = productSlice.actions;
+export const { orderProducts, cleanDetail } = productSlice.actions;
 export default productSlice.reducer;

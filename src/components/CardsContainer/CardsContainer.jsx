@@ -42,7 +42,7 @@ export default function CardsContainer() {
   }
 
   return (
-    <div className='flex flex-col w-[90%]'>
+    <div className='flex flex-col w-[90%] gap-12'>
       <section className='grid grid-cols-3 gap-12'>
         {breedPage.map((product) => {
           return (

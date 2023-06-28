@@ -1,7 +1,7 @@
 'use client';
 
 import { useDispatch } from 'react-redux';
-import { fetchByPrice} from '@/redux/features/products';
+import { fetchByPrice } from '@/redux/features/products';
 import { useState } from 'react';
 import ByPrice from './ByPrice';
 
@@ -18,9 +18,9 @@ export default function FilterProducts() {
   };
 
   return (
-    <div className='w-2/12 h-screen bg-slate-600 fixed'>
-      <section className='text-white mt-10'>
-        <h3 className='text-center'>Price</h3>
+    <div className='w-2/12 h-screen bg-slate-800 fixed mt-16'>
+      <section className='mt-10'>
+        <h3 className='text-white text-center'>Price</h3>
         <ByPrice
           filterValues={filterValues.price}
           setFilterValues={(values) =>
