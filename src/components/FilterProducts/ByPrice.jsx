@@ -11,7 +11,7 @@ export default function ByPrice({ filterValues, setFilterValues }) {
   return (
     <div>
       <form className='flex flex-col justify-center gap-5 items-center w-full mt-3 text-white'>
-        <div className='flex gap-2 text-black'>
+        <div className='flex gap-2 text-white'>
           <div>
             <label>Min: </label>
             <input
@@ -19,7 +19,7 @@ export default function ByPrice({ filterValues, setFilterValues }) {
               name='min'
               value={min}
               onChange={handleChange}
-              className='w-14 text-center'
+              className='w-14 text-center text-black'
             />
           </div>
           <p>-</p>
@@ -30,7 +30,7 @@ export default function ByPrice({ filterValues, setFilterValues }) {
               name='max'
               value={max}
               onChange={handleChange}
-              className='w-14 text-center'
+              className='w-14 text-center text-black'
             />
           </div>
         </div>
