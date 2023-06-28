@@ -25,7 +25,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className='flex justify-center items-center mt-4'>
+    <div className='flex justify-center items-center mt-20'>
       <form onSubmit={handleSubmit} className='flex items-center'>
         <ByCategory />
         <input
