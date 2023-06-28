@@ -11,7 +11,6 @@ export default function ByCategory() {
     const category = e.target.value;
     if (category === 'All') return dispatch(fetchProducts());
     dispatch(fetchByCategory(category));
-    console.log(category);
   };
 
   return (

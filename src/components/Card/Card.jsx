@@ -37,7 +37,7 @@ export default function Card({
             description,
           })
         }
-        className='bg-slate-800 border-transparente rounded-lg p-2.5'>
+        className='bg-slate-800 border-transparente rounded-lg p-2.5 cursor-pointer'>
         {image && (
           <div className='flex justify-center items-center mx-0'>
             <Image

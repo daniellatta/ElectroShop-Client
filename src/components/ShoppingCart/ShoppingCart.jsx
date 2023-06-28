@@ -10,11 +10,7 @@ import ClearCartButton from "../ClearCartButton/ClearCartButton";
 const ShoppingCart = ({ location }) => {
   const cartStatus = useSelector((state) => state.shoppingCart.products);
   console.log(cartStatus);
-  const localStorageCart =
-    typeof localStorage !== "undefined"
-      ? JSON.parse(localStorage.getItem("cart"))
-      : null;
-
+  const localStorageCart = JSON.parse(localStorage.getItem("cart"));
   const router = useRouter();
 
   const handleProceedToPayment = () => {

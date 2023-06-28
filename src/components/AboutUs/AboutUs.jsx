@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AboutUs = () => {
+export default function AboutUs() {
   return (
     <div>
 
@@ -23,13 +23,13 @@ const AboutUs = () => {
       <section className='flex items-center flex-col bg-[#1e293b] p-4 rounded-md mt-3'>
         <h1 className='text-blue-400 font-extrabold tracking-widest text-3xl uppercase'>meet the team</h1>
         <ul className='text-center tracking-wide text-white my-4 uppercase font-light'>
-          <li>Leandro Solari</li>
-          <li>Andres Hernandez</li>
-          <li>Alan Romero</li>
           <li>Adrian Ballesteros</li>
-          <li>Luciano Fredes</li>
-          <li>Lemuel Fenske</li>
+          <li>Alan Romero</li>
+          <li>Andres Hernandez</li>
           <li>Daniel Latta</li>
+          <li>Leandro Solari</li>
+          <li>Lemuel Fenske</li>
+          <li>Luciano Fredes</li>
         </ul>
       </section>
       <section className='my-3 bg-slate-400 h-15 rounded-md'>
@@ -43,5 +43,3 @@ const AboutUs = () => {
     </div>
   )
 }
-
-export default AboutUs

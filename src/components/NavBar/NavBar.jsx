@@ -11,6 +11,7 @@ const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [username, setUsername] = useState(null);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+<<<<<<< HEAD
 
   useEffect(() => {
     setUsername(isAuthenticated)
@@ -18,6 +19,8 @@ const NavBar = () => {
   
   console.log(username, 'lemu');
  
+=======
+>>>>>>> c2582f1d6699fd7a3e65e05f57f35b51c79771a9
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
