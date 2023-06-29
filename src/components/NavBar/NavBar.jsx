@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuthenticated);
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -36,6 +37,14 @@ const NavBar = () => {
         >
           Our Products
         </Link>
+
+        <div className='ml-8'>
+          <Link
+            href="/admin"
+          >
+            Go to Dashboard
+          </Link>
+        </div>
 
         <div className="ml-auto flex flex-row items-center">
           {isAuthenticated ? (
