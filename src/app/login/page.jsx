@@ -1,17 +1,23 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGoogleAuth, login, loginUser } from '../../redux/features/login';
+import {
+  googleAuth,
+  googleAuthFunc,
+  login,
+  loginUser,
+} from '../../redux/features/login';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +34,7 @@ const LoginPage = () => {
       await dispatch(loginAction);
 
       const usersResponse = await axios.get(
-        'http://localhost:8080/api/v1/user'
+        'https://electroshop-api.onrender.com/api/v1/user'
       );
       const users = usersResponse.data;
 
@@ -54,18 +60,22 @@ const LoginPage = () => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
+    if (isAuthenticated) {
+      window.close();
+    }
+
     if (token && token.trim() !== '' && username && username.trim() !== '') {
       dispatch(login({ token, username }));
     }
   }, [dispatch]);
 
   const handleAuth = () => {
-    dispatch(fetchGoogleAuth());
-    window.open(
-      'http://localhost:8080/api/v1/auth/login/google',
-      'Popup',
-      '_blank'
-    );
+    let left = window.screen.width - 400;
+    left = left > 0 ? left / 2 : 0;
+    let top = window.screen.height - 300;
+    top = top > 0 ? top / 5 : 0;
+    const windowFeatures = `width=452, height=633, top=${top}, left=${left}`;
+    dispatch(googleAuth(windowFeatures));
   };
 
   return (
