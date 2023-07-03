@@ -10,8 +10,7 @@ import { Buttons, MainContainer } from './Styles';
 import AddRemoveProduct from '../AddRemoveProduct/AddRemoveProduct';
 
 const ShoppingCartNav = ({ location }) => {
-  const cartStatus = useSelector((state) => state.shoppingCart.products);
-  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  const { products } = useSelector((state) => state.shoppingCart);
 
   const router = useRouter();
 
@@ -23,11 +22,9 @@ const ShoppingCartNav = ({ location }) => {
     router.push('/products');
   };
 
-  useEffect(() => {}, [cartStatus]);
-
   return (
     <MainContainer>
-      {localStorageCart?.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div
             className='overflow-x-hidden overflow-y-auto mt-10'
@@ -36,26 +33,24 @@ const ShoppingCartNav = ({ location }) => {
               Products in your shopping cart:
             </div>
             {/* Renderizar los productos del carrito */}
-            {localStorageCart.map((product, index) => {
-              const productData = products.find(
-                (obj) => obj.productID === product.details.productID
-              );
-              return (
-                <ProductBox key={index}>
-                  <div>
-                    <p className='font-bold'>{productData.name}</p>
-                    <p>Unit price: ${productData.price}</p>
-                    <p>Quantity: {product.quantity}</p>
-                    <p>Product ID: {product.details.productID}</p>
-                  </div>
-                  {/* {console.log("product")}
+            {products &&
+              products.map((product) => {
+                return (
+                  <ProductBox key={product.details.id}>
+                    <div>
+                      <p className='font-bold'>{product.details.name}</p>
+                      <p>Unit price: ${product.details.price}</p>
+                      <p>Quantity: {product.quantity}</p>
+                      <p>Product ID: {product.details.id}</p>
+                    </div>
+                    {/* {console.log("product")}
                   {console.log(product)}
                   {console.log("productData")}
                   {console.log(productData)} */}
-                  <AddRemoveProduct product={productData} />
-                </ProductBox>
-              );
-            })}
+                    <AddRemoveProduct product={product} />
+                  </ProductBox>
+                );
+              })}
           </div>
           <Buttons>
             {/* Botón para proceder al pago */}
@@ -81,17 +76,6 @@ const ShoppingCartNav = ({ location }) => {
               Browse awesome products
             </button>
           </div>
-
-          {/* Renderizado condicional del botón según la ubicación */}
-          {/* {location === "sidebar" ? (
-            <button onClick={handleBrowseProducts}>
-              Browse awesome products
-            </button>
-          ) : (
-            <button onClick={handleBrowseProducts}>
-              Browse awesome products
-            </button>
-          )} */}
         </>
       )}
     </MainContainer>

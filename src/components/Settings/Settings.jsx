@@ -37,12 +37,12 @@ const Settings = () => {
           desc={data.desc}
         />
       ))}
-      <div className="flex justify-center ">
+      <div className="mt-12">
         <a
           href="delete"
-          className="w-full p-10 align-middle bg-red-500 mt-12 font-bold text-4xl text-center"
+          className="w-12 p-4 bg-red-500 text-[#fff] mt-12 font-medium rounded"
         >
-          DELETE ACCOUNT
+          Delete my account
         </a>
       </div>
     </div>

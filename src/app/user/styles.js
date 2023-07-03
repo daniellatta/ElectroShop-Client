@@ -51,10 +51,10 @@ export const NavigationItem = styled.button`
 `;
 
 export const LogoutButton = styled.button`
-  width: 70%;
+  width: 100%;
   height: 30px;
   line-height: 0px;
-  padding: 10px;
+  padding: 12px 10px;
   border: none;
   border-radius: 30px;
   text-align: center;

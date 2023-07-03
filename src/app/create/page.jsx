@@ -33,6 +33,7 @@ const page = () => {
     age: "",
     adress: "",
     phoneNumber: "",
+    city: "",
   });
 
   const handleChange = (e) => {
@@ -47,6 +48,7 @@ const page = () => {
 
     setErrorMessages({
       username: "",
+      password: "",
       name: "",
       dni: "",
       email: "",
@@ -65,11 +67,12 @@ const page = () => {
 
     if (
       containsForbiddenWord ||
-      !/^[a-zA-Z0-9_]{3,16}$/.test(formData.username)
+      !formData.username ||
+      !/^.{3,15}$/.test(formData.username)
     ) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        userName: "El nombre de usuario no es válido.",
+        username: "El nombre de usuario no es válido.",
       }));
       hasError = true;
     }
@@ -85,7 +88,7 @@ const page = () => {
     if (!/^.{2,25}$/.test(formData.dni)) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        dni: "Ingrese solamente su primer apellido, con un máximo de 25 caracteres.",
+        dni: "Ingrese su DNI correctamente.",
       }));
       hasError = true;
     }
@@ -110,7 +113,7 @@ const page = () => {
     if (formData.adress.length < 5 || formData.adress.length > 25) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        address: "La dirección debe tener entre 5 y 25 caracteres.",
+        adress: "La dirección debe tener entre 5 y 25 caracteres.",
       }));
       hasError = true;
     }
@@ -119,6 +122,22 @@ const page = () => {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
         phoneNumber: "Debes ingresar un número de teléfono válido.",
+      }));
+      hasError = true;
+    }
+
+    if (formData.city.length < 3 || formData.city.length > 25) {
+      setErrorMessages((prevErrorMessages) => ({
+        ...prevErrorMessages,
+        city: "La ciudad debe tener entre 3 y 25 caracteres.",
+      }));
+      hasError = true;
+    }
+
+    if (formData.password.length < 8 || formData.password.length > 20) {
+      setErrorMessages((prevErrorMessages) => ({
+        ...prevErrorMessages,
+        password: "La contraseña debe tener entre 8 y 20 caracteres.",
       }));
       hasError = true;
     }
@@ -348,3 +367,4 @@ const page = () => {
 };
 
 export default page;
+

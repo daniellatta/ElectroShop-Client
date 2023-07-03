@@ -1,5 +1,11 @@
+import UserData from "../userData/userData";
+
 const MyProfile = () => {
-  return <div></div>;
+  return (
+    <div>
+      <UserData />
+    </div>
+  );
 };
 
 export default MyProfile;
