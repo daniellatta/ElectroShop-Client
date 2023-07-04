@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ShippingForm = () => {
+const ShippingForm = ({handleSave}) => {
   const [formData, setFormData] = useState({
     address: "",
     phone: "",
@@ -16,66 +16,63 @@ const ShippingForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos al servidor
-    console.log(formData);
+    handleSave()
   };
 
   return (
-    <div>
-      <h2>Shipping Information</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="w-[60%] m-auto flex justify-between">
-          <label className="w-[29%] flex justify-start" htmlFor="address">
-            Address:
-          </label>
-          <input
-            className="w-[69%] flex border-[1px] border-solid border-gray-500 rounded"
-            type="text"
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="w-[60%] m-auto flex justify-between">
-          <label className="w-[29%] flex justify-start" htmlFor="phone">
-            Phone:
-          </label>
-          <input
-            className="w-[69%] border-[1px] border-solid border-gray-500 rounded"
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="w-[60%] m-auto flex justify-between">
-          <label
-            className="w-[29%] flex justify-start"
-            htmlFor="authorizedPersons"
-          >
-            Authorized Persons:
-          </label>
-          <textarea
-            className="w-[69%] border-[1px] border-solid border-gray-500 rounded"
-            id="authorizedPersons"
-            name="authorizedPersons"
-            value={formData.authorizedPersons}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-        <button
-          className="border-2 border-solid border-gray-500 rounded"
-          type="submit"
-        >
-          Save
-        </button>
-      </form>
+    <div className="bg-white p-6 rounded-lg">
+  <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
+  <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex items-center">
+      <label className="w-1/4" htmlFor="address">
+        Address:
+      </label>
+      <input
+        className="flex-1 border border-gray-500 rounded py-1 px-2"
+        type="text"
+        id="address"
+        name="address"
+        value={formData.address}
+        onChange={handleChange}
+        required
+      />
     </div>
+    <div className="flex items-center">
+      <label className="w-1/4" htmlFor="phone">
+        Phone:
+      </label>
+      <input
+        className="flex-1 border border-gray-500 rounded py-1 px-2"
+        type="tel"
+        id="phone"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="flex items-start">
+      <label className="w-1/4" htmlFor="authorizedPersons">
+        Authorized Persons:
+      </label>
+      <textarea
+        className="flex-1 border border-gray-500 rounded py-1 px-2"
+        id="authorizedPersons"
+        name="authorizedPersons"
+        value={formData.authorizedPersons}
+        onChange={handleChange}
+        required
+      ></textarea>
+    </div>
+    <button
+    onClick={handleSave}
+      className="border-2 border-blue-500 rounded px-4 py-2 text-blue-500 hover:bg-blue-500 hover:text-white"
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
   );
 };
 

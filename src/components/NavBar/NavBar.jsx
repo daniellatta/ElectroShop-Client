@@ -11,16 +11,15 @@ const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [username, setUsername] = useState(null);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-<<<<<<< HEAD
+
 
   useEffect(() => {
     setUsername(isAuthenticated)
   }, [isAuthenticated]);
   
-  console.log(username, 'lemu');
+
  
-=======
->>>>>>> c2582f1d6699fd7a3e65e05f57f35b51c79771a9
+
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -75,9 +74,6 @@ const NavBar = () => {
             </>
           )}
 
-          <div className="p-2 hover:text-blue-500 transition-colors duration-300">
-            <FaSearch className="text-lg" />
-          </div>
           <div className="p-2 hover:text-blue-500 transition-colors duration-300 z-20">
             <FaShoppingCart
               onClick={handleCartClick}

@@ -1,14 +1,38 @@
+'use client'
+import PaymentProgress from "@/components/PaymentProgress/PaymentProgress";
+import axios from "axios";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import {Container} from './Styles'
+
 
 const Confirmed = () => {
+  const user = useSelector((state) => state.auth.user); 
+  useEffect(() => {
+    const enviarCorreo = async () => {
+      try {
+        await console.log(user);
+        await axios.post('http://localhost:3001/mail/lemueljosias7@gmail.com');
+        console.log('Correo enviado exitosamente');
+      } catch (error) {
+        console.error('Error al enviar el correo:', error);
+      }
+    };
+
+    enviarCorreo();
+  }, []);
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-slate-700 text-white">
-      <h2 className="text-4xl  mb-8">Your purchase has been successfully completed.</h2>
+    <div className="flex flex-col pt-28 bg-slate-700 text-white min-h-screen">
+      <Container className="text-center">
+      <PaymentProgress stepsCompleted={4} />
+      <p className="text-2xl text-black  mb-8">Your purchase has been successfully completed.</p>
       <Link href="/">
-        <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 transition-colors duration-300 rounded-lg">
+        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-300">
           Continue Shopping
         </button>
       </Link>
+      </Container>
     </div>
   );
 };
