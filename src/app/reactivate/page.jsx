@@ -20,10 +20,10 @@ const page = () => {
     username: '',
     email: '',
   });
-  const { secureRouteUser } = useAuthenticate();
+  const { secureRouteReActive } = useAuthenticate();
 
   useEffect(() => {
-    secureRouteUser();
+    secureRouteReActive();
     dispatch(fetchUsers());
 
     const userInfo = users.find((user) => user.id === userDni);

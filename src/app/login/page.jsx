@@ -1,12 +1,18 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { googleAuth, googleAuthFunc, login, loginUser } from "../../redux/features/login";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { fetchUsers } from "@/redux/features/adminDelete";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+'use client';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  googleAuth,
+  googleAuthFunc,
+  login,
+  loginUser,
+} from '../../redux/features/login';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { fetchUsers } from '@/redux/features/adminDelete';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -48,26 +54,30 @@ const LoginPage = () => {
           userData.email === user.email && userData.password === user.password
       );
 
-      if (!foundUser) setError("Credenciales invalidas.");
+      if (!foundUser) setError('Credenciales invalidas.');
 
       if (foundUser) {
-        localStorage.setItem("active", foundUser.active);
-        localStorage.setItem("id", foundUser.id);
+        setError('');
+        localStorage.setItem('active', foundUser.active);
+        localStorage.setItem('id', foundUser.id);
+
         if (foundUser.active === true) {
           dispatch(login(foundUser));
           localStorage.setItem('token', foundUser.token);
           localStorage.setItem('email', foundUser.email);
-          localStorage.setItem('admin', foundUser.admin);
+          foundUser.hasOwnProperty('admin')
+            ? localStorage.setItem('admin', foundUser.admin)
+            : localStorage.setItem('admin', false);
           notify();
           setTimeout(() => {
-            router.push("/");
-          }, 4000);
+            router.push('/');
+          }, 3500);
         } else {
           notifyAccount();
           setTimeout(() => {
-            router.push("/reactivate");
-            localStorage.setItem("isAuthenticated", false);
-          }, 3000);
+            router.push('/reactivate');
+            localStorage.setItem('isAuthenticated', false);
+          }, 2500);
         }
       } else {
         console.log('Credenciales inválidas');
@@ -114,9 +124,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="bg-black h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-lg">
-        <h2 className="text-3xl font-bold mb-4">Login</h2>
+    <div className='bg-black h-screen flex items-center justify-center'>
+      <div className='bg-white p-16 rounded shadow-lg'>
+        <h2 className='text-3xl font-bold mb-4 text-center'>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label htmlFor='email' className='block font-bold mb-1'>
@@ -144,26 +154,27 @@ const LoginPage = () => {
           </div>
           {error && <p className='text-red-600 mb-2'>{error}</p>}
           <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
+            type='submit'
+            className='bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded'>
             Login
           </button>
         </form>
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col'>
+          <button onClick={handleAuth} className='flex'>
+            Login with google
+          </button>
           <Link
             href='/create'
             alt='create'
-            className='p-2 hover:text-blue-500 transition-colors duration-300'>
+            className='flex hover:text-blue-500 transition-colors duration-300'>
             Crear cuenta
           </Link>
-          <button onClick={handleAuth}>Login with google</button>
         </div>
         <ToastContainer />
         {isAuthenticated ? (
-          <p className="text-2xl text-green-600 mt-4">Hola, estoy logeado</p>
+          <p className='text-2xl text-green-600 mt-4'>Ingresando. . .</p>
         ) : (
-          <p className="text-2xl text-red-600 mt-4">Hola, no estoy logeado</p>
+          ''
         )}
       </div>
     </div>

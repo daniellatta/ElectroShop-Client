@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
@@ -6,10 +5,12 @@ export default function useAuthenticate() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
   const user = localStorage.getItem('email');
+  const id = parseInt(localStorage.getItem('id'), 10);
+  const active = JSON.parse(localStorage.getItem('active'));
   const admin =
-    localStorage.getItem('admin') === null
+    JSON.parse(localStorage.getItem('admin')) === null
       ? false
-      : localStorage.getItem('admin');
+      : JSON.parse(localStorage.getItem('admin'));
 
   const secureRouteUser = () => {
     if (!isAuthenticated || !user) {
@@ -26,9 +27,17 @@ export default function useAuthenticate() {
       router.push('/login');
     }
   };
+
+  const secureRouteReActive = () => {
+    if (!id || active) {
+      router.push('/');
+    }
+  };
+
   return {
     secureRouteUser,
     secureRouteAdmin,
+    secureRouteReActive,
     admin,
   };
 }
