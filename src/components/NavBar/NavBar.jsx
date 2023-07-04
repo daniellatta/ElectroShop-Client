@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   FaUser,
@@ -13,6 +14,7 @@ import CartContainer from "../CartContainer/CartContainer";
 import CartProductsCount from "@/app/CartProductsCount/CartProductsCount";
 import { useDispatch, useSelector } from "react-redux";
 import { hideCart, showCart } from "@/redux/features/shoppingCart";
+
 const NavBar = () => {
   // const [isCartOpen, setIsCartOpen] = useState(false);
   const isCartOpen = useSelector((state) => state.shoppingCart.isOpen);
@@ -24,14 +26,9 @@ const NavBar = () => {
   // =======
   // >>>>>>> develop
 
-
   useEffect(() => {
-    setUsername(isAuthenticated)
+    setUsername(isAuthenticated);
   }, [isAuthenticated]);
-  
-
- 
-
 
   const handleCartClick = () => {
     console.log(`Cart open? ${isCartOpen}`);
