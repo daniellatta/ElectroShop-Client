@@ -47,6 +47,14 @@ const NavBar = () => {
           Our Products
         </Link>
 
+        <div className='ml-8'>
+          <Link
+            href="/admin"
+          >
+            Go to Dashboard
+          </Link>
+        </div>
+
         <div className="ml-auto flex flex-row items-center">
           {username ? (
             <Link

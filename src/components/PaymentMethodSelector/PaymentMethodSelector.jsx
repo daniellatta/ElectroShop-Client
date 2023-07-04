@@ -4,20 +4,25 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import {Container} from './Styles'
 
-const PaymentPage = ({onClick}) => {
+const PaymentPage = ({ onClick }) => {
   const [paymentLink, setPaymentLink] = useState(null);
   const cart = useSelector((state) => state.shoppingCart);
   let total = 0;
-  cart?.products.forEach((prod) => (total += prod.details.price * prod.quantity));
+  cart?.products.forEach(
+    (prod) => (total += prod.details.price * prod.quantity)
+  );
 
   useEffect(() => {
     const handlePayment = async () => {
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/payment', {
-          name: 'Your shopping cart',
-          price: total,
-          quantity: 1
-        });
+        const response = await axios.post(
+          'https://electroshop-api.onrender.com/api/v1/payment',
+          {
+            name: 'Your shopping cart',
+            price: total,
+            quantity: 1,
+          }
+        );
         const paymentLink = await response.data.init_point;
         setPaymentLink(paymentLink);
       } catch (error) {
@@ -27,7 +32,6 @@ const PaymentPage = ({onClick}) => {
     handlePayment();
   }, []);
 
-
   return (
 <div className="flex flex-col pt-28 bg-slate-700 text-white min-h-screen">
       <Container className="mx-auto">
@@ -35,6 +39,7 @@ const PaymentPage = ({onClick}) => {
         {paymentLink ? (
           <Link href={paymentLink}>
             <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-300 mt-4">
+   
               Pay Now
             </button>
           </Link>
@@ -52,4 +57,3 @@ const PaymentPage = ({onClick}) => {
 };
 
 export default PaymentPage;
-

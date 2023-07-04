@@ -10,9 +10,7 @@ import { Buttons, MainContainer } from './Styles';
 import AddRemoveProduct from '../AddRemoveProduct/AddRemoveProduct';
 
 const ShoppingCartNav = ({ location }) => {
-  const cartStatus = useSelector((state) => state.shoppingCart.products);
   const { products } = useSelector((state) => state.shoppingCart);
-  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
 
   const router = useRouter();
 
@@ -24,11 +22,9 @@ const ShoppingCartNav = ({ location }) => {
     router.push('/products');
   };
 
-  useEffect(() => {}, [cartStatus]);
-
   return (
     <MainContainer>
-      {localStorageCart?.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div
             className='overflow-x-hidden overflow-y-auto mt-10'
@@ -80,17 +76,6 @@ const ShoppingCartNav = ({ location }) => {
               Browse awesome products
             </button>
           </div>
-
-          {/* Renderizado condicional del botón según la ubicación */}
-          {/* {location === "sidebar" ? (
-            <button onClick={handleBrowseProducts}>
-              Browse awesome products
-            </button>
-          ) : (
-            <button onClick={handleBrowseProducts}>
-              Browse awesome products
-            </button>
-          )} */}
         </>
       )}
     </MainContainer>
