@@ -13,7 +13,7 @@ export const Progress = styled.div`
   height: 100%;
   background-color: green;
   width: 0;
-  transition: width 0.3s ease;
+  transition: width 1s ease;
 `;
 
 

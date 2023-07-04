@@ -1,52 +1,75 @@
-'use client';
-import { Link } from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ProductBox } from '../MyOrders/Styles';
-import { products } from '../MyOrders/OrderData';
-import ClearCartButtonNav from '../ClearCartButtonNav/ClearCartButtonNav';
-import { Buttons, MainContainer } from './Styles';
-import AddRemoveProduct from '../AddRemoveProduct/AddRemoveProduct';
+"use client";
+// import { useRouter } from "next/navigation";
+// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { ProductBox } from "../MyOrders/Styles";
+import { Buttons, MainContainer } from "./Styles";
+import AddRemoveProduct from "../AddRemoveProduct/AddRemoveProduct";
+import ProceedToPaymentButton from "../ProceedToPaymentButton/ProceedToPaymentButton";
+import ClearCartButton from "../ClearCartButton/ClearCartButton";
+import BrowseProductsButton from "../BrowseProductsButton/BrowseProductsButton";
+// import { hideCart } from "@/redux/features/shoppingCart";
 
-const ShoppingCartNav = ({ location }) => {
+const ShoppingCartNav = () => {
   const { products } = useSelector((state) => state.shoppingCart);
 
-  const router = useRouter();
+  // const router = useRouter();
+  // const dispatch = useDispatch();
 
-  const handleProceedToPayment = () => {
-    router.push('/completePurchase');
-  };
+  // const handleProceedToPayment = () => {
+  //   router.push("/completePurchase");
+  // };
 
-  const handleBrowseProducts = () => {
-    router.push('/products');
-  };
+  // const handleBrowseProducts = () => {
+  //   router.push("/products");
+  //   dispatch(hideCart());
+  // };
 
   return (
     <MainContainer>
       {products.length > 0 ? (
         <>
           <div
-            className='overflow-x-hidden overflow-y-auto mt-10'
-            style={{ scrollbarWidth: 'thin' }}>
-            <div className='absolute flex justify-center w-full top-1.5'>
-              Products in your shopping cart:
+            className="overflow-x-hidden mt-10 mb-1 rounded-lg flex flex-col gap-1 box-border"
+            style={{
+              // border: "2px solid white",
+              // borderRadius: "5px 0 0 5px",
+              scrollbarWidth: "thin",
+            }}
+          >
+            <div className="absolute flex justify-center text-white text-lg font-bold w-full top-1">
+              Products in your shopping cart
             </div>
             {/* Renderizar los productos del carrito */}
             {products &&
               products.map((product) => {
                 return (
                   <ProductBox key={product.details.id}>
-                    <div>
-                      <p className='font-bold'>{product.details.name}</p>
+                    {/* IMAGEN */}
+                    <div
+                      style={{
+                        width: "100px",
+                        backgroundImage: `url(${product.details.image})`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        boxShadow: "inset 0 0 2px 2px black",
+                      }}
+                    ></div>
+                    {/* INFO DEL PRODUCTO */}
+                    <div
+                      className="bg-gradient-to-b from-white via-cyan-50 to-cyan-100"
+                      style={{
+                        width: "70%",
+                        borderLeft: "4px double #9998ffcc",
+                        padding: "0 3px 0 3px",
+                      }}
+                    >
+                      <p className="font-bold">{product.details.name}</p>
                       <p>Unit price: ${product.details.price}</p>
                       <p>Quantity: {product.quantity}</p>
                       <p>Product ID: {product.details.id}</p>
                     </div>
-                    {/* {console.log("product")}
-                  {console.log(product)}
-                  {console.log("productData")}
-                  {console.log(productData)} */}
+                    {/* BOTONES ADD ONE, REMOVE ONE, REMOVE ALL */}
                     <AddRemoveProduct product={product} />
                   </ProductBox>
                 );
@@ -54,27 +77,25 @@ const ShoppingCartNav = ({ location }) => {
           </div>
           <Buttons>
             {/* Botón para proceder al pago */}
-            <button
-              className='text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center m-0'
-              onClick={handleProceedToPayment}>
-              Proceed to Payment
-            </button>
+            <ProceedToPaymentButton />
 
             {/* Botón para vaciar el carrito */}
-            <ClearCartButtonNav className='flex ' />
+            <ClearCartButton />
           </Buttons>
         </>
       ) : (
         <>
           {/* Mensaje de carrito vacío */}
-          <div className='relative h-[300px] flex flex-col justify-center items-center text-lg bg-gradient-to-b from-emerald-500 to-transparent rounded-lg'>
+          <div className="relative h-[300px] flex flex-col justify-center items-center text-lg bg-gradient-to-b from-emerald-500 to-transparent rounded-lg">
             <p>Your cart is empty.</p>
             <br />
-            <button
-              className='text-white rounded-3xl border-2 border-white px-3 py-1 hover:bg-black/10 transition-all'
-              onClick={handleBrowseProducts}>
+            <BrowseProductsButton />
+            {/* <button
+              className="text-white rounded-3xl border-2 border-white px-3 py-1 hover:bg-black/10 transition-all"
+              onClick={handleBrowseProducts}
+            >
               Browse awesome products
-            </button>
+            </button> */}
           </div>
         </>
       )}
