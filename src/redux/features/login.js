@@ -36,11 +36,6 @@ const authSlice = createSlice({
       window.open(state.url, "Popup", action.payload);
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(googleAuthFunc.fulfilled, (state, action) => {
-      state.data = action.payload;
-    });
-  },
 });
 
 export const { login, logout, googleAuth } = authSlice.actions;

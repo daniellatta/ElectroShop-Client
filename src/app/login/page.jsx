@@ -49,15 +49,24 @@ const LoginPage = () => {
       );
 
       if (foundUser) {
-        dispatch(login(foundUser));
-        localStorage.setItem("token", foundUser.token);
-        localStorage.setItem("email", foundUser.email);
-        localStorage.setItem("admin", foundUser.admin);
-        localStorage.setItem("active", true);
-        notify();
-        setTimeout(() => {
-          router.push("/");
-        }, 4000);
+        localStorage.setItem("active", foundUser.active);
+        localStorage.setItem("id", foundUser.id);
+        if (foundUser.active === true) {
+          dispatch(login(foundUser));
+          localStorage.setItem("token", foundUser.token);
+          localStorage.setItem("email", foundUser.email);
+          localStorage.setItem("admin", foundUser.admin);
+          notify();
+          setTimeout(() => {
+            router.push("/");
+          }, 4000);
+        } else {
+          notifyAccount();
+          setTimeout(() => {
+            router.push("/reactivate");
+            localStorage.setItem("isAuthenticated", false);
+          }, 3000);
+        }
       } else {
         console.log("Credenciales inválidas");
       }
@@ -84,7 +93,16 @@ const LoginPage = () => {
   };
 
   const notify = () => {
-    toast.info("Redirigiendo al inicio", {
+    toast.info("Redirigiendo al inicio.", {
+      position: "top-left",
+      autoClose: 5000,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
+  const notifyAccount = () => {
+    toast.info("Reactiva tu cuenta.", {
       position: "top-left",
       autoClose: 5000,
       pauseOnHover: true,
