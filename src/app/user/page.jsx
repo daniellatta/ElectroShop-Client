@@ -27,7 +27,9 @@ const UserPage = () => {
   const onClickLogout = () => {
     dispatch(logout());
     localStorage.removeItem("token");
-    localStorage.removeItem("username");
+    localStorage.removeItem("email");
+    localStorage.removeItem("admin");
+    localStorage.removeItem("active");
   };
 
   const renderContent = () => {
