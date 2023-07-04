@@ -11,8 +11,8 @@ const UserData = () => {
         const response = await axios.get("http://localhost:8080/api/v1/user");
         const users = response.data;
 
-        const username = localStorage.getItem("username");
-        const user = users.find((userData) => userData.username === username);
+        const email = localStorage.getItem("email");
+        const user = users.find((userData) => userData.email === email);
 
         if (user) {
           setUserData(user);

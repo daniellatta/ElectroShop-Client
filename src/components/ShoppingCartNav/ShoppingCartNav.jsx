@@ -11,10 +11,7 @@ import AddRemoveProduct from "../AddRemoveProduct/AddRemoveProduct";
 
 const ShoppingCartNav = ({ location }) => {
   const cartStatus = useSelector((state) => state.shoppingCart.products);
-  const localStorageCart =
-    typeof localStorage !== "undefined"
-      ? JSON.parse(localStorage.getItem("cart"))
-      : null;
+  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
 
   const router = useRouter();
 

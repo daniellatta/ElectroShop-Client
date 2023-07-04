@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import ModalCard from '../ModalCard/ModalCard';
 import Image from 'next/image';
+import Link from 'next/link';
+import { BsBagPlus } from 'react-icons/bs';
 
 export default function Card({
   id,
@@ -25,34 +27,42 @@ export default function Card({
 
   return (
     <div>
-      <article
-        onClick={() =>
-          handleCardClick({
-            id,
-            name,
-            image,
-            price,
-            review,
-            stock,
-            description,
-          })
-        }
-        className='bg-slate-800 border-transparente rounded-lg p-2.5'>
-        {image && (
-          <div className='flex justify-center items-center mx-0'>
-            <Image
-              src={image}
-              width={300}
-              height={300}
-              alt={`Imagen de ${name}`}
-              priority
-              className='border-transparent rounded-lg w-full h-full'
-            />
-          </div>
-        )}
-        {name && <h3 className='text-white'>{name}</h3>}
-        {price && <h3 className='text-white'>{price}</h3>}
-        {review && <h3 className='text-white'>{review.rating}</h3>}
+      <article className='bg-slate-800 border-transparente rounded-lg p-2.5 cursor-pointer'>
+        <button
+          className='absolute mt-2 ml-2'
+          onClick={() =>
+            handleCardClick({
+              id,
+              name,
+              image,
+              price,
+              review,
+              stock,
+              description,
+            })
+          }>
+          <BsBagPlus
+            size={24}
+            className='text-white hover:-translate-y-1 hover:text-black-300 transition duration-300'
+          />
+        </button>
+        <Link href={`/detail/${id}`}>
+          {image && (
+            <div className='flex justify-center items-center mx-0'>
+              <Image
+                src={image}
+                width={300}
+                height={300}
+                alt={`Imagen de ${name}`}
+                priority
+                className='border-transparent rounded-lg w-full h-full'
+              />
+            </div>
+          )}
+          {name && <h3 className='text-white'>{name}</h3>}
+          {price && <h3 className='text-white'>{price}</h3>}
+          {review && <h3 className='text-white'>{review.rating}</h3>}
+        </Link>
       </article>
       {selectedCard && (
         <ModalCard

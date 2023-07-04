@@ -1,16 +1,21 @@
-'use client'
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import { TbArrowBigRightLinesFilled } from 'react-icons/tb';
-import CartContainer from '../CartContainer/CartContainer';
-import CartProductsCount from '@/app/CartProductsCount/CartProductsCount';
-import { useSelector } from 'react-redux';
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import {
+  FaUser,
+  FaShoppingCart,
+  FaSearch,
+  FaSignInAlt,
+  FaUserPlus,
+} from "react-icons/fa";
+import { TbArrowBigRightLinesFilled } from "react-icons/tb";
+import CartContainer from "../CartContainer/CartContainer";
+import CartProductsCount from "@/app/CartProductsCount/CartProductsCount";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log(isAuthenticated);
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
