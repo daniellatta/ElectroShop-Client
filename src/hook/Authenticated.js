@@ -7,9 +7,9 @@ export default function useAuthenticate() {
   const router = useRouter();
   const user = localStorage.getItem('email');
   const admin =
-    JSON.parse(localStorage.getItem('admin')) === null
+    localStorage.getItem('admin') === null
       ? false
-      : JSON.parse(localStorage.getItem('admin'));
+      : localStorage.getItem('admin');
 
   const secureRouteUser = () => {
     if (!isAuthenticated || !user) {
@@ -23,6 +23,7 @@ export default function useAuthenticate() {
       setTimeout(() => {
         alert('Necesitas permisos de administrador');
       }, '1000');
+      router.push('/login');
     }
   };
   return {

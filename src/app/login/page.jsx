@@ -1,18 +1,12 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  googleAuth,
-  googleAuthFunc,
-  login,
-  loginUser,
-} from '../../redux/features/login';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { fetchUsers } from '@/redux/features/adminDelete';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Link from 'next/link';
+"use client";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { googleAuth, googleAuthFunc, login, loginUser } from "../../redux/features/login";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { fetchUsers } from "@/redux/features/adminDelete";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -54,9 +48,11 @@ const LoginPage = () => {
           userData.email === user.email && userData.password === user.password
       );
 
+      if (!foundUser) setError("Credenciales invalidas.");
+
       if (foundUser) {
-        localStorage.setItem('active', foundUser.active);
-        localStorage.setItem('id', foundUser.id);
+        localStorage.setItem("active", foundUser.active);
+        localStorage.setItem("id", foundUser.id);
         if (foundUser.active === true) {
           dispatch(login(foundUser));
           localStorage.setItem('token', foundUser.token);
@@ -64,13 +60,13 @@ const LoginPage = () => {
           localStorage.setItem('admin', foundUser.admin);
           notify();
           setTimeout(() => {
-            router.push('/');
+            router.push("/");
           }, 4000);
         } else {
           notifyAccount();
           setTimeout(() => {
-            router.push('/reactivate');
-            localStorage.setItem('isAuthenticated', false);
+            router.push("/reactivate");
+            localStorage.setItem("isAuthenticated", false);
           }, 3000);
         }
       } else {
@@ -118,9 +114,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='bg-black h-screen flex items-center justify-center'>
-      <div className='bg-white p-8 rounded shadow-lg'>
-        <h2 className='text-3xl font-bold mb-4'>Login</h2>
+    <div className="bg-black h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded shadow-lg">
+        <h2 className="text-3xl font-bold mb-4">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label htmlFor='email' className='block font-bold mb-1'>
@@ -148,8 +144,9 @@ const LoginPage = () => {
           </div>
           {error && <p className='text-red-600 mb-2'>{error}</p>}
           <button
-            type='submit'
-            className='bg-blue-500 text-white px-4 py-2 rounded'>
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
             Login
           </button>
         </form>
@@ -164,9 +161,9 @@ const LoginPage = () => {
         </div>
         <ToastContainer />
         {isAuthenticated ? (
-          <p className='text-2xl text-green-600 mt-4'>Hola, estoy logeado</p>
+          <p className="text-2xl text-green-600 mt-4">Hola, estoy logeado</p>
         ) : (
-          <p className='text-2xl text-red-600 mt-4'>Hola, no estoy logeado</p>
+          <p className="text-2xl text-red-600 mt-4">Hola, no estoy logeado</p>
         )}
       </div>
     </div>
