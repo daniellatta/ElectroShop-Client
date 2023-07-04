@@ -22,7 +22,10 @@ const UserList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    handleSearch();
+    if (users.length > 0) {
+      const sortedUsers = users.slice().sort((a, b) => a.id - b.id);
+      setFilteredUsers(sortedUsers);
+    }
   }, [users]);
 
   const handleSearch = () => {
@@ -39,7 +42,7 @@ const UserList = () => {
     notify();
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1500);
   };
 
   const handleReactivateUser = (userId) => {
@@ -47,7 +50,7 @@ const UserList = () => {
     notifyActive();
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1500);
   };
 
   if (loading) {

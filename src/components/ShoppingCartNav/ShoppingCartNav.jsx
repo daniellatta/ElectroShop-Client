@@ -42,9 +42,9 @@ const ShoppingCartNav = () => {
             </div>
             {/* Renderizar los productos del carrito */}
             {products &&
-              products.map((product) => {
+              products.map((product, i) => {
                 return (
-                  <ProductBox key={product.details.id}>
+                  <ProductBox key={i}>
                     {/* IMAGEN */}
                     <div
                       style={{

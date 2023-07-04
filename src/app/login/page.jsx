@@ -1,7 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { googleAuth, googleAuthFunc, login, loginUser } from "../../redux/features/login";
+import {
+  googleAuth,
+  googleAuthFunc,
+  login,
+  loginUser,
+} from "../../redux/features/login";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { fetchUsers } from "@/redux/features/adminDelete";
@@ -48,9 +53,13 @@ const LoginPage = () => {
           userData.email === user.email && userData.password === user.password
       );
 
+      if (!foundUser) setError("Credenciales invalidas.");
+
       if (foundUser) {
+        setError("");
         localStorage.setItem("active", foundUser.active);
         localStorage.setItem("id", foundUser.id);
+
         if (foundUser.active === true) {
           dispatch(login(foundUser));
           localStorage.setItem("token", foundUser.token);
@@ -59,13 +68,13 @@ const LoginPage = () => {
           notify();
           setTimeout(() => {
             router.push("/");
-          }, 4000);
+          }, 3500);
         } else {
           notifyAccount();
           setTimeout(() => {
             router.push("/reactivate");
             localStorage.setItem("isAuthenticated", false);
-          }, 3000);
+          }, 2500);
         }
       } else {
         console.log("Credenciales inválidas");
@@ -90,7 +99,7 @@ const LoginPage = () => {
     top = top > 0 ? top / 5 : 0;
     const windowFeatures = `width=452, height=633, top=${top}, left=${left}`;
     dispatch(googleAuth(windowFeatures));
-    dispatch(googleAuthFunc())
+    dispatch(googleAuthFunc());
   };
 
   const notify = () => {
@@ -113,8 +122,8 @@ const LoginPage = () => {
 
   return (
     <div className="bg-black h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-lg">
-        <h2 className="text-3xl font-bold mb-4">Login</h2>
+      <div className="bg-white p-16 rounded shadow-lg">
+        <h2 className="text-3xl font-bold mb-4 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block font-bold mb-1">
@@ -143,7 +152,7 @@ const LoginPage = () => {
           {error && <p className="text-red-600 mb-2">{error}</p>}
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded"
           >
             Login
           </button>
@@ -151,9 +160,9 @@ const LoginPage = () => {
         <button onClick={handleAuth}>Login with google</button>
         <ToastContainer />
         {isAuthenticated ? (
-          <p className="text-2xl text-green-600 mt-4">Hola, estoy logeado</p>
+          <p className="text-2xl text-green-600 mt-4">Ingresando. . .</p>
         ) : (
-          <p className="text-2xl text-red-600 mt-4">Hola, no estoy logeado</p>
+          ""
         )}
       </div>
     </div>
