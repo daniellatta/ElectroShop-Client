@@ -8,7 +8,9 @@ const UserData = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/user");
+        const response = await axios.get(
+          "https://electroshop-api.onrender.com/api/v1/user"
+        );
         const users = response.data;
 
         const email = localStorage.getItem("email");

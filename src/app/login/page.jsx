@@ -8,9 +8,17 @@ import { fetchUsers } from "@/redux/features/adminDelete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import {
+  googleAuth,
+  googleAuthFunc,
+  login,
+  loginUser,
+} from "../../redux/features/login";
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const users = useSelector((state) => state.adminDelete.users);
   const [email, setEmail] = useState("");
@@ -38,7 +46,7 @@ const LoginPage = () => {
       await dispatch(loginAction);
 
       const usersResponse = await axios.get(
-        "http://localhost:8080/api/v1/user"
+        "https://electroshop-api.onrender.com/api/v1/user"
       );
       const users = usersResponse.data;
 
@@ -72,6 +80,10 @@ const LoginPage = () => {
     if (token && token.trim() !== "" && email && email.trim() !== "") {
       dispatch(login({ token, email }));
     }
+
+    if (token && token.trim() !== "" && username && username.trim() !== "") {
+      dispatch(login({ token, username }));
+    }
   }, [dispatch]);
 
   const handleAuth = () => {
@@ -81,6 +93,13 @@ const LoginPage = () => {
       "Popup",
       "_blank"
     );
+
+    let left = window.screen.width - 400;
+    left = left > 0 ? left / 2 : 0;
+    let top = window.screen.height - 300;
+    top = top > 0 ? top / 5 : 0;
+    const windowFeatures = `width=452, height=633, top=${top}, left=${left}`;
+    dispatch(googleAuth(windowFeatures));
   };
 
   const notify = () => {

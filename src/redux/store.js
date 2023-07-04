@@ -4,7 +4,10 @@ import byNameSlice from "@/redux/features/searchBar";
 import cartSlice from "@/redux/features/shoppingCart";
 import createUserSlice from "@/redux/features/create";
 import authSlice from "@/redux/features/login";
+
 import adminDelete from "@/redux/features/adminDelete";
+
+import reviewSlice from "@/redux/features/review";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +16,9 @@ export const store = configureStore({
     byName: byNameSlice,
     user: createUserSlice,
     auth: authSlice,
+
     adminDelete: adminDelete,
+
+    review: reviewSlice,
   },
 });

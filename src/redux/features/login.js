@@ -4,32 +4,26 @@ import axios from "axios";
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (loginData) => {
-    const response = await axios.get(
-      "http://localhost:8080/api/v1/user",
+    const response = await axios.post(
+      "https://electroshop-api.onrender.com/api/v1/user",
+
       loginData
     );
     return response.data;
   }
 );
 
-const initialState = {
-  isAuthenticated: false,
-  user: {},
-  error: "",
-};
-
-export const fetchGoogleAuth = createAsyncThunk("googleAuth/login", () => {
+export const googleAuthFunc = createAsyncThunk("googleAuth/fetch", () => {
   return axios
-    .get("http://localhost:8080/api/v1/auth/login/google")
-    .then(({ data }) => {
-      if (data.status === 1) {
-        const user = data.profile;
-        return user;
-      }
-      return "Error amiguito";
-    });
+    .get("https://electroshop-api.onrender.com/api/v1/auth/login/google")
+    .then(({ data }) => data);
 });
 
+const initialState = {
+  url: "https://electroshop-api.onrender.com/api/v1/auth/login/google",
+  isAuthenticated: false,
+  user: {},
+};
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -43,18 +37,16 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       localStorage.setItem("isAuthenticated", "false");
     },
+    googleAuth: (state, action) => {
+      window.open(state.url, "Popup", action.payload);
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchGoogleAuth.fulfilled, (state, action) => {
-      state.isAuthenticated = true;
-      state.user = action.payload;
-    });
-    builder.addCase(fetchGoogleAuth.rejected, (state, action) => {
-      state.isAuthenticated = false;
-      state.error = action.payload;
+    builder.addCase(googleAuthFunc.fulfilled, (state, action) => {
+      state.data = action.payload;
     });
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, googleAuth } = authSlice.actions;
 export default authSlice.reducer;

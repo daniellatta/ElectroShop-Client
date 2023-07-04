@@ -3,39 +3,64 @@ import MapBG from "../../images/Map.png";
 
 //#### Page 1 #############################################################
 //#########################################################################
-export const Header = styled.div`
-  display: flex;
-  width: 15%;
+export const Container = styled.div`
+  border-radius: 20px;
+  width: 60%;
+  padding: 30px; 
+  margin: 0 auto;
+  background-color: #cccccc;
   justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  border: 1px solid black;
-  background-image: linear-gradient(to bottom, aquamarine, cadetblue);
 `;
 
 export const Product = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 10px;
+  background-color: #eeeeee;
+  color: #333333;
+  font-family: Arial, sans-serif;
+`;
+
+export const Header = styled.div`
   display: flex;
   justify-content: center;
-  align-items: stretch;
-  /* border: 1px solid black; */
+  align-items: center;
+  font-weight: 500;
+  border: 1px solid #dddddd;
+  background-color: #3366ff;
+  color: #ffffff;
+  padding: 10px;
 `;
 
 export const ProductInfo = styled.div`
   display: flex;
-  width: 15%;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #dddddd;
+  padding: 10px;
 `;
 
 export const Total = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  width: 60%;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding-top: 10px;
+  color: #333333;
   font-weight: bold;
-  border: 1px solid black;
-  background-image: linear-gradient(to bottom, white, #ffe388);
+`;
+
+export const StyledButton = styled.button`
+  display: block;
+  margin: 30px auto;
+  padding: 10px 20px;
+  background-color: #3366ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
 `;
 //#########################################################################
 
@@ -49,22 +74,24 @@ export const Button = styled.button`
 
 //#### Page 2 #############################################################
 //#########################################################################
-
+export const Containerr = styled.div`
+  border-radius: 20px;
+  width: 60%;
+  padding: 30px; 
+  margin: 0 auto;
+  background-color: #cccccc;
+  justify-content: space-around;
+`;
 export const Section = styled.div`
   border: 1px solid lightgray;
-  border-radius: 5px;
-  height: auto;
-  animation: grow 0.5s ease-in infinite forwards;
-
-  @keyframes grow {
-    0% {
-      height: 0%;
-    }
-    100% {
-      height: 100%;
-    }
-  }
+  border-radius: 8px;
+  padding: 1px;
+  margin-top: 20px;
+  width: 100%;
+  heigth: 200px
+  background-color: #f7f7f7;
 `;
+
 
 export const Map = styled.div`
   position: relative;
@@ -74,24 +101,7 @@ export const Map = styled.div`
   margin: auto;
   border: 1px solid darkgray;
   border-radius: 5px;
-  /* background-image: url(${MapBG.src}); */
-  /* background-repeat: no-repeat; */
-  /* background-position: center; */
-  /* background-size: cover; */
-  transform: scale(1);
   overflow: hidden;
-  /* @media screen and (max-width: 900px) {
-    transform: scale(1.5);
-  }
-  @media screen and (max-width: 740px) {
-    transform: scale(1.25);
-  }
-  @media screen and (max-width: 630px) {
-    transform: scale(1.1);
-  }
-  @media screen and (max-width: 520px) {
-    transform: scale(1);
-  } */
 `;
 
 export const LocationNode = styled.div`
@@ -110,15 +120,19 @@ export const LocationNode = styled.div`
 export const MapOverlay = styled.div`
   position: absolute;
   display: flex;
-  width: 1862px;
+  width: 100%;
   height: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  /* border: 3px dashed red; */
   background-image: url(${MapBG.src});
   background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: 40%;
+  background-position: center 40%;
   background-size: cover;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 `;
