@@ -62,12 +62,6 @@ const NavBar = () => {
           ) : (
             <>
               <Link
-                href='/create'
-                alt='create'
-                className='p-2 hover:text-blue-500 transition-colors duration-300'>
-                <FaUserPlus className='text-lg' />
-              </Link>
-              <Link
                 href='/login'
                 alt='login'
                 className='p-2 hover:text-blue-500 transition-colors duration-300'>

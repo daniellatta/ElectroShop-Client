@@ -18,9 +18,11 @@ export default function useAuthenticate() {
   };
 
   const secureRouteAdmin = () => {
-    console.log(admin);
     if (!isAuthenticated || !admin) {
-      router.push('/login');
+      router.push('/');
+      setTimeout(() => {
+        alert('Necesitas permisos de administrador');
+      }, '1000');
     }
   };
   return {
