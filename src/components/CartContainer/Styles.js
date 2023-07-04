@@ -12,7 +12,15 @@ export const MainContainer = styled.div`
   max-height: 90%;
   color: black;
   background-color: #fffc;
+  background-image: linear-gradient(
+    to bottom,
+    black 1%,
+    #07134fcc 9%,
+    #07134fcc 7%,
+    #00084ade
+  );
   border: 3px solid white;
   border-radius: 10px;
   box-shadow: 0 0 20px 3px teal;
+  padding: 5px;
 `;

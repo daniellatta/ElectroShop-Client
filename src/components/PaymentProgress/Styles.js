@@ -17,7 +17,7 @@ export const Progress = styled.div`
   background-image: linear-gradient(to bottom, #00c5ff, #004d63);
   border-radius: 50px;
   width: 0;
-  transition: width 0.3s ease;
+  transition: width 1s ease;
 `;
 
 export const AlmostYours = styled.div`

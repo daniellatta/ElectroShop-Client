@@ -1,19 +1,30 @@
-'use client'
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
-import { TbArrowBigRightLinesFilled } from 'react-icons/tb';
-import CartContainer from '../CartContainer/CartContainer';
-import CartProductsCount from '@/app/CartProductsCount/CartProductsCount';
-import { useSelector } from 'react-redux';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  FaUser,
+  FaShoppingCart,
+  FaSearch,
+  FaSignInAlt,
+  FaUserPlus,
+} from "react-icons/fa";
+import { TbArrowBigRightLinesFilled } from "react-icons/tb";
+import CartContainer from "../CartContainer/CartContainer";
+import CartProductsCount from "@/app/CartProductsCount/CartProductsCount";
+import { useDispatch, useSelector } from "react-redux";
+import { hideCart, showCart } from "@/redux/features/shoppingCart";
 
 const NavBar = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  // const [isCartOpen, setIsCartOpen] = useState(false);
+  const isCartOpen = useSelector((state) => state.shoppingCart.isOpen);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   console.log(isAuthenticated);
+  const dispatch = useDispatch();
 
   const handleCartClick = () => {
-    setIsCartOpen(!isCartOpen);
+    console.log(`Cart open? ${isCartOpen}`);
+    isCartOpen ? dispatch(hideCart()) : dispatch(showCart());
+    // setIsCartOpen(!isCartOpen);
   };
 
   return (
@@ -38,12 +49,8 @@ const NavBar = () => {
           Our Products
         </Link>
 
-        <div className='ml-8'>
-          <Link
-            href="/admin"
-          >
-            Go to Dashboard
-          </Link>
+        <div className="ml-8">
+          <Link href="/admin">Go to Dashboard</Link>
         </div>
 
         <div className="ml-auto flex flex-row items-center">
