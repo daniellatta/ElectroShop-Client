@@ -13,16 +13,25 @@ import CartContainer from "../CartContainer/CartContainer";
 import CartProductsCount from "@/app/CartProductsCount/CartProductsCount";
 import { useDispatch, useSelector } from "react-redux";
 import { hideCart, showCart } from "@/redux/features/shoppingCart";
-
 const NavBar = () => {
   // const [isCartOpen, setIsCartOpen] = useState(false);
   const isCartOpen = useSelector((state) => state.shoppingCart.isOpen);
+  const [username, setUsername] = useState(null);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   // <<<<<<< HEAD
   console.log(isAuthenticated);
   const dispatch = useDispatch();
   // =======
   // >>>>>>> develop
+
+
+  useEffect(() => {
+    setUsername(isAuthenticated)
+  }, [isAuthenticated]);
+  
+
+ 
+
 
   const handleCartClick = () => {
     console.log(`Cart open? ${isCartOpen}`);
@@ -57,7 +66,7 @@ const NavBar = () => {
         </div>
 
         <div className="ml-auto flex flex-row items-center">
-          {isAuthenticated ? (
+          {username ? (
             <Link
               href="/user"
               className="p-2 hover:text-blue-500 transition-colors duration-300"
@@ -83,9 +92,6 @@ const NavBar = () => {
             </>
           )}
 
-          <div className="p-2 hover:text-blue-500 transition-colors duration-300">
-            <FaSearch className="text-lg" />
-          </div>
           <div className="p-2 hover:text-blue-500 transition-colors duration-300 z-20">
             <FaShoppingCart
               onClick={handleCartClick}
