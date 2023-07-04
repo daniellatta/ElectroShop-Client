@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, loginUser } from "../../redux/features/login";
+import { googleAuth, googleAuthFunc, login, loginUser } from "../../redux/features/login";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { fetchUsers } from "@/redux/features/adminDelete";
@@ -81,6 +81,7 @@ const LoginPage = () => {
     top = top > 0 ? top / 5 : 0;
     const windowFeatures = `width=452, height=633, top=${top}, left=${left}`;
     dispatch(googleAuth(windowFeatures));
+    dispatch(googleAuthFunc())
   };
 
   const notify = () => {
