@@ -1,31 +1,43 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 export default function useAuthenticate() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
-  const user = localStorage.getItem("email");
+  const user = localStorage.getItem('email');
+  const id = parseInt(localStorage.getItem('id'), 10);
+  const active = JSON.parse(localStorage.getItem('active'));
   const admin =
-    localStorage.getItem("admin") === null
+    JSON.parse(localStorage.getItem('admin')) === null
       ? false
-      : localStorage.getItem("admin");
+      : JSON.parse(localStorage.getItem('admin'));
 
   const secureRouteUser = () => {
     if (!isAuthenticated || !user) {
-      router.push("/login");
+      router.push('/login');
     }
   };
 
   const secureRouteAdmin = () => {
-    console.log(admin);
     if (!isAuthenticated || !admin) {
-      router.push("/login");
+      router.push('/');
+      setTimeout(() => {
+        alert('Necesitas permisos de administrador');
+      }, '1000');
+      router.push('/login');
     }
   };
+
+  const secureRouteReActive = () => {
+    if (!id || active) {
+      router.push('/');
+    }
+  };
+
   return {
     secureRouteUser,
     secureRouteAdmin,
+    secureRouteReActive,
     admin,
   };
 }

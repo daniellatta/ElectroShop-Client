@@ -4,13 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, fetchUsers } from "@/redux/features/adminDelete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthenticate from "@/hook/Authenticated";
 
 const page = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.adminDelete.users);
   const userEmail = localStorage.getItem("email");
+  const { secureRouteUser } = useAuthenticate();
 
   useEffect(() => {
+    secureRouteUser();
     dispatch(fetchUsers());
   }, [dispatch]);
 

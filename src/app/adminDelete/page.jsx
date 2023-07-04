@@ -8,6 +8,7 @@ import {
 } from "@/redux/features/adminDelete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthenticate from "@/hook/Authenticated";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -16,9 +17,12 @@ const UserList = () => {
   const error = useSelector((state) => state.adminDelete.error);
   const [searchId, setSearchId] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const { secureRouteAdmin } = useAuthenticate();
 
   useEffect(() => {
+    secureRouteAdmin();
     dispatch(fetchUsers());
+
   }, [dispatch]);
 
   useEffect(() => {
