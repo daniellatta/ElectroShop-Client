@@ -3,7 +3,7 @@ import React from "react";
 const PaymentBranchSelection = (props) => {
   const { handleRadioButtonChange, selectedBranch } = props;
   return (
-    <div className="flex flex-col border-2 rounded-lg border-gray-500 border-solid w-[80%] m-auto">
+    <div className="flex flex-col border-2 rounded-lg border-gray-500 border-solid w-[80%] mx-auto mt-4">
       <div>
         <input
           type="radio"

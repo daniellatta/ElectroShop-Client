@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaUser, FaShoppingCart, FaSearch, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { TbArrowBigRightLinesFilled } from 'react-icons/tb';
@@ -9,7 +9,17 @@ import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [username, setUsername] = useState(null);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+
+  useEffect(() => {
+    setUsername(isAuthenticated)
+  }, [isAuthenticated]);
+  
+
+ 
+
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -46,7 +56,7 @@ const NavBar = () => {
         </div>
 
         <div className="ml-auto flex flex-row items-center">
-          {isAuthenticated ? (
+          {username ? (
             <Link
               href="/user"
               className="p-2 hover:text-blue-500 transition-colors duration-300"
@@ -72,9 +82,6 @@ const NavBar = () => {
             </>
           )}
 
-          <div className="p-2 hover:text-blue-500 transition-colors duration-300">
-            <FaSearch className="text-lg" />
-          </div>
           <div className="p-2 hover:text-blue-500 transition-colors duration-300 z-20">
             <FaShoppingCart
               onClick={handleCartClick}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import {Container} from './Styles'
 
 const PaymentPage = ({ onClick }) => {
   const [paymentLink, setPaymentLink] = useState(null);
@@ -32,21 +33,23 @@ const PaymentPage = ({ onClick }) => {
   }, []);
 
   return (
-    <div className='h-screen flex flex-col items-center justify-center bg-slate-700 text-white'>
-      <div className='flex flex-col items-center justify-center flex-grow'>
+<div className="flex flex-col pt-28 bg-slate-700 text-white min-h-screen">
+      <Container className="mx-auto">
+        <p className="text-black">Proceed to Payment</p>
         {paymentLink ? (
           <Link href={paymentLink}>
-            <button className='bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded transition-colors duration-300'>
+            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-300 mt-4">
+   
               Pay Now
             </button>
           </Link>
         ) : (
-          <p>Creating payment link...</p>
+          <p className='p-4'>Creating payment link...</p>
         )}
-      </div>
-      <div className='mt-auto'>
-        <button onClick={onClick} className='text-white'>
-          Previous
+      </Container>
+      <div className="mt-4">
+        <button onClick={onClick} className="text-blue-300">
+         {'< Prev'}
         </button>
       </div>
     </div>
