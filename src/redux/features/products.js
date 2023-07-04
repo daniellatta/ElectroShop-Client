@@ -14,7 +14,7 @@ export const fetchByPrice = createAsyncThunk(
   ({ min, max }) => {
     return axios
       .get(
-        `http://localhost:8080/api/v1/product/order/price?min=${min}&max=${max}`
+        `https://electroshop-api.onrender.com/api/v1/product/order/price?min=${min}&max=${max}`
       )
       .then(({ data }) => data);
   }
@@ -22,7 +22,7 @@ export const fetchByPrice = createAsyncThunk(
 
 export const fetchById = createAsyncThunk('productById/fetch', (id) => {
   return axios
-    .get(`http://localhost:8080/api/v1/product/${id}`)
+    .get(`https://electroshop-api.onrender.com/api/v1/product/${id}`)
     .then(({ data }) => data)
     .catch((error) => {
       console.error('Error fetching product details: ', error.message);
@@ -33,20 +33,22 @@ export const fetchByCategory = createAsyncThunk(
   'ByCategoryFilter/fetch',
   (id) => {
     return axios
-      .get(`http://localhost:8080/api/v1/product/order/category/${id}`)
+      .get(
+        `https://electroshop-api.onrender.com/api/v1/product/order/category/${id}`
+      )
       .then(({ data }) => data);
   }
 );
 
 export const fetchProducts = createAsyncThunk('items/fetch', () => {
   return axios
-    .get('http://localhost:8080/api/v1/product')
+    .get('https://electroshop-api.onrender.com/api/v1/product')
     .then(({ data }) => data);
 });
 
 export const fetchCategories = createAsyncThunk('category/fetch', () => {
   return axios
-    .get('http://localhost:8080/api/v1/category')
+    .get('https://electroshop-api.onrender.com/api/v1/category')
     .then(({ data }) => data);
 });
 

@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const createUser = createAsyncThunk(
-  "user/createUser",
+  'user/createUser',
   async (userData) => {
     const response = await axios.post(
-      "http://localhost:8080/api/v1/user",
+      'https://electroshop-api.onrender.com/api/v1/user',
       userData
     );
     return response.data;
@@ -13,7 +13,7 @@ export const createUser = createAsyncThunk(
 );
 
 const createUserSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
@@ -23,6 +23,4 @@ const createUserSlice = createSlice({
   },
 });
 
-
 export default createUserSlice.reducer;
-

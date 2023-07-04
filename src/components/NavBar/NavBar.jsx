@@ -18,8 +18,11 @@ const NavBar = () => {
   // const [isCartOpen, setIsCartOpen] = useState(false);
   const isCartOpen = useSelector((state) => state.shoppingCart.isOpen);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // <<<<<<< HEAD
   console.log(isAuthenticated);
   const dispatch = useDispatch();
+  // =======
+  // >>>>>>> develop
 
   const handleCartClick = () => {
     console.log(`Cart open? ${isCartOpen}`);

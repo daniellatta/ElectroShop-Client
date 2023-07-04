@@ -24,6 +24,7 @@ const AddRemoveProduct = ({ product }) => {
   };
 
   return (
+    // <<<<<<< HEAD
     <div className="box-border relative flex flex-col justify-center font-bold text-white text-xl leading-none">
       <button
         className="relative flex justify-center items-center box-border bg-[#003]/80 hover:bg-[#005] border border-2 border-white outline outline-1 outline-gray-900 rounded-tr-lg shadow w-8 h-8 transition-all"
@@ -52,6 +53,12 @@ const AddRemoveProduct = ({ product }) => {
           <TbTrashXFilled className="relative w-[20px] h-[20px] top-[-10px] right-[10px]" />
         </div>
       </button>
+      {/* ======= */}
+      {/* <div className="flex justify-center gap-5">
+      <button className="bg-blue-300 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={handleRemoveOne}>-</button>
+      <button className="bg-blue-300 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={handleAddProduct}>+</button>
+      <button className="bg-red-500 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={handleDeleteProduct}>x</button>
+>>>>>>> develop */}
     </div>
   );
 };

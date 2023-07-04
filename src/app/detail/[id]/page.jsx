@@ -6,6 +6,8 @@ import { FaTruck } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { cleanDetail, fetchById } from '@/redux/features/products';
 import { addProduct } from '@/redux/features/shoppingCart';
+import Ratings from '@/components/Ratings/Ratings';
+
 
 const DetailPage = ({ params }) => {
   const { id } = params;
@@ -31,7 +33,7 @@ const DetailPage = ({ params }) => {
   const { name, description, price, stock, image } = productDetail;
 
   return (
-    <div className='flex flex-col bg-slate-700 h-screen'>
+    <div className='flex flex-col bg-slate-700 h-screen mt-10 gap-10'>
       <div className='px-4 pt-10 pb-0'>
         <Link
           href='/products'
@@ -39,16 +41,21 @@ const DetailPage = ({ params }) => {
           Back
         </Link>
       </div>
-      <div className='flex justify-center flex-grow'>
-        <div className='w-90vw mx-40 mb-10 mt-1 bg-slate-800 rounded-lg shadow-lg p-8 flex mt-4'>
+      <div className='flex flex-col items-center justify-center mx-60 bg-slate-800 rounded-lg shadow-lg p-10 gap-10'>
+        <div className='flex w-90vw'>
           <div className='w-9/10'>
-            <Image
-              width={600}
-              height={600}
-              src={image}
-              alt=''
-              className='object-cover h-full w-full p-4'
-            />
+            {image ? (
+              <Image
+                src={image}
+                width={600}
+                height={600}
+                priority
+                alt={`Image of ${name}`}
+                className='object-cover h-full w-full p-4'
+              />
+            ) : (
+              <div>Loading image...</div>
+            )}
           </div>
           <div className='ml-10 flex flex-col justify-between rounded-lg border border-gray-600 p-8 m-4'>
             <div>
@@ -71,6 +78,9 @@ const DetailPage = ({ params }) => {
               </button>
             </Link>
           </div>
+        </div>
+        <div>
+          <Ratings product={productDetail} />
         </div>
       </div>
     </div>
