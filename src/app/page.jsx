@@ -19,7 +19,7 @@ export default function Landing() {
 
         <FeaturedItems />
 
-        <NewItems />
+        {/* <NewItems /> */}
 
         <Banner />
 
