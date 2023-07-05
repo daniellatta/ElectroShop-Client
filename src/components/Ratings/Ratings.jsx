@@ -20,22 +20,22 @@ export default function Ratings({ product }) {
   };
 
   return (
-    <div className='flex flex-col items-center w-[500px] border border-gray-600 rounded-lg p-8 gap-10'>
-      <div className='flex w-full'>
-        <section className='flex flex-col w-1/2'>
+    <div className='flex flex-col items-center w-full border border-gray-600 rounded-lg p-8 gap-10 text-white'>
+      <div className='flex flex-col w-full justify-center items-center gap-12'>
+        <section className='flex flex-col items-center'>
           <h2>Customer reviews</h2>
-          <span className='flex'>{renderStars(review)}</span>
+          <span className='flex text-orange-300'>{renderStars(review)}</span>
           <span>{`${review} of 5`}</span>
         </section>
 
-        <div className='flex flex-col mt-20 gap-5 p-8 border border-gray-600 rounded-lg w-1/2'>
+        <div className='flex flex-col h-full w-[500px] gap-8 p-8 border border-gray-600 rounded-lg w-1/2'>
           {reviews &&
             reviews.map((e) => {
               return (
                 <article
                   key={e.id}
-                  className='flex flex-col h-200 w-200 bg-white-300'>
-                  <h3 className='flex'>{renderStars(e.rating)}</h3>
+                  className='flex flex-col h-200 w-full bg-white-300'>
+                  <h3 className='flex text-orange-300'>{renderStars(e.rating)}</h3>
                   <h3>{e.review}</h3>
                   <h3>{e.user.name}</h3>
                 </article>
