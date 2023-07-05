@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
@@ -6,6 +5,8 @@ export default function useAuthenticate() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
   const user = localStorage.getItem('email');
+  const id = parseInt(localStorage.getItem('id'), 10);
+  const active = JSON.parse(localStorage.getItem('active'));
   const admin =
     JSON.parse(localStorage.getItem('admin')) === null
       ? false
@@ -18,14 +19,25 @@ export default function useAuthenticate() {
   };
 
   const secureRouteAdmin = () => {
-    console.log(admin);
     if (!isAuthenticated || !admin) {
+      router.push('/');
+      setTimeout(() => {
+        alert('Necesitas permisos de administrador');
+      }, '1000');
       router.push('/login');
     }
   };
+
+  const secureRouteReActive = () => {
+    if (!id || active) {
+      router.push('/');
+    }
+  };
+
   return {
     secureRouteUser,
     secureRouteAdmin,
+    secureRouteReActive,
     admin,
   };
 }

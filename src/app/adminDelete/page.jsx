@@ -8,6 +8,7 @@ import {
 } from "@/redux/features/adminDelete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthenticate from "@/hook/Authenticated";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -16,13 +17,19 @@ const UserList = () => {
   const error = useSelector((state) => state.adminDelete.error);
   const [searchId, setSearchId] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const { secureRouteAdmin } = useAuthenticate();
 
   useEffect(() => {
+    secureRouteAdmin();
     dispatch(fetchUsers());
+
   }, [dispatch]);
 
   useEffect(() => {
-    handleSearch();
+    if (users.length > 0) {
+      const sortedUsers = users.slice().sort((a, b) => a.id - b.id);
+      setFilteredUsers(sortedUsers);
+    }
   }, [users]);
 
   const handleSearch = () => {
@@ -39,7 +46,7 @@ const UserList = () => {
     notify();
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1500);
   };
 
   const handleReactivateUser = (userId) => {
@@ -47,7 +54,7 @@ const UserList = () => {
     notifyActive();
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1500);
   };
 
   if (loading) {
