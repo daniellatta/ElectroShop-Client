@@ -71,13 +71,13 @@ const LoginPage = () => {
           notify();
           setTimeout(() => {
             router.push('/');
-          }, 3500);
+          }, 2000);
         } else {
           notifyAccount();
           setTimeout(() => {
             router.push('/reactivate');
             localStorage.setItem('isAuthenticated', false);
-          }, 2500);
+          }, 1200);
         }
       } else {
         console.log('Credenciales inválidas');
