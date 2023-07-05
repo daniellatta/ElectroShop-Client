@@ -48,16 +48,17 @@ export default function Card({
         </button>
         <Link href={`/detail/${id}`}>
           {image && (
-            <div className='flex justify-center items-center mx-0'>
-              <Image
-                src={image}
-                width={300}
-                height={300}
-                alt={`Imagen de ${name}`}
-                priority
-                className='border-transparent rounded-lg w-full h-full'
-              />
-            </div>
+            <div className='flex justify-center items-center mx-0 max-h-200' >
+            <Image
+              style={{ width: '300px', height: '200px' }}
+              src={image}
+              width={300}
+              height={200}
+              alt={`Imagen de ${name}`}
+              priority
+              className='border-transparent rounded-lg'
+            />
+          </div>
           )}
           {name && <h3 className='text-white'>{name}</h3>}
           {price && <h3 className='text-white'>{price}</h3>}
