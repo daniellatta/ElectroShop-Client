@@ -13,7 +13,7 @@ const nextConfig = {
         hostname: "**onrender.com",
         port: "",
         pathname: "/**",
-      },
+      }
     ],
   },
 };
