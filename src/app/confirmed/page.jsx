@@ -8,14 +8,28 @@ import {Container} from './Styles'
 
 const Confirmed = () => {
   const email = localStorage.getItem('email');
-  const cartData = localStorage.getItem('cart');
-  console.log(cartData);
-  
+  const cartData = JSON.parse(localStorage.getItem('cart'));
+  const userId = localStorage.getItem('id')
+
+  const cart = {
+    userId,
+    products : cartData.map((product) => {
+      return  {
+      productId: product.details.id,
+      quantity: product.quantity,
+			unitPrice: parseInt(product.details.price) 
+    }
+    })
+  }
+
+  console.log(cart);
+
   useEffect(() => {
     const enviarCorreo = async () => {
       try {
         await axios.post(`https://electroshop-api.onrender.com/api/v1/contact/complete/${email}`);
-        // await axios.post('https://electroshop-api.onrender.com/api/v1/order', cartData)
+        await axios.post('https://electroshop-api.onrender.com/api/v1/order', cart)
+        //await axios.post('http://localhost:8080/api/v1/order', cart)
         console.log('Correo enviado exitosamente');
       } catch (error) {
         console.error('Error al enviar el correo:', error);
