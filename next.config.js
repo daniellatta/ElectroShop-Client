@@ -8,6 +8,12 @@ const nextConfig = {
         port: '',
         pathname: '/640/480/cats',
       },
+      {
+        protocol: "https",
+        hostname: "**onrender.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
