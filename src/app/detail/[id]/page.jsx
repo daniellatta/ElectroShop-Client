@@ -33,7 +33,7 @@ const DetailPage = ({ params }) => {
   const { name, description, price, stock, image } = productDetail;
 
   return (
-    <div className='flex flex-col bg-slate-700 h-screen mt-10 gap-10'>
+    <div className='flex flex-col bg-slate-700 h-full min-h-screen mt-10 gap-10'>
       <div className='px-4 pt-10 pb-0'>
         <Link
           href='/products'
@@ -41,7 +41,7 @@ const DetailPage = ({ params }) => {
           Back
         </Link>
       </div>
-      <div className='flex flex-col items-center justify-center mx-60 bg-slate-800 rounded-lg shadow-lg p-10 gap-10'>
+      <div className='flex flex-col items-center justify-center mx-60 bg-slate-800 rounded-lg shadow-lg p-10 gap-10 mb-10 '>
         <div className='flex w-90vw'>
           <div className='w-9/10'>
             {image ? (
@@ -79,7 +79,7 @@ const DetailPage = ({ params }) => {
             </Link>
           </div>
         </div>
-        <div>
+        <div className='w-full'>
           <Ratings product={productDetail} />
         </div>
       </div>

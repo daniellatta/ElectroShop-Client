@@ -35,7 +35,7 @@ const FeaturedItems = () => {
   return (
     <div>
     <h1 className="text-center text-2xl font-black text-indigo-400 pt-4 pb-6">Featured products</h1>
-    <div className="grid grid-cols-4 gap-4 px-4 ">
+    <div className="grid grid-cols-4 gap-4 px-4 w-[85%] m-auto">
       <div className="col-span-2">
       <p
             className="absolute cursor-pointer z-10 p-2 text-white hover:text-blue-500"
@@ -51,7 +51,7 @@ const FeaturedItems = () => {
           width={450}
           height={450}
           priority
-          className="w-full border-white border-2 rounded-xl cursor-pointer h-[450px] hover:scale-105 transition-all duration-500"
+          className="w-full border-white border-2 rounded-xl cursor-pointer h-[450px] hover:scale-[1.02] transition-all duration-500"
         />
         </Link>
       </div>
@@ -70,7 +70,7 @@ const FeaturedItems = () => {
             alt="Featured Item"
             width={220}
             height={220}
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer "
+            className="w-full h-[220px] hover:scale-[1.02] transition-all duration-500 border-white border-2 rounded-xl cursor-pointer "
           />
           </Link>
         </div>
@@ -88,7 +88,7 @@ const FeaturedItems = () => {
             alt="Featured Item"
             width={220}
             height={220}
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+            className="w-full h-[220px] hover:scale-[1.02] transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
           />
           </Link>
         </div>
@@ -108,7 +108,7 @@ const FeaturedItems = () => {
             alt="Featured Item"
             width={220}
             height={220}
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+            className="w-full h-[220px] hover:scale-[1.02] transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
           />
           </Link> 
         </div>
@@ -126,7 +126,7 @@ const FeaturedItems = () => {
             alt="Featured Item"
             width={220}
             height={220}
-            className="w-full h-[220px] hover:scale-105 transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
+            className="w-full h-[220px] hover:scale-[1.02] transition-all duration-500 border-white border-2 rounded-xl cursor-pointer"
           />
           </Link>
         </div>
