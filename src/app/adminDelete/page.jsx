@@ -22,7 +22,6 @@ const UserList = () => {
   useEffect(() => {
     secureRouteAdmin();
     dispatch(fetchUsers());
-
   }, [dispatch]);
 
   useEffect(() => {
