@@ -1,13 +1,11 @@
 'use client'
 import React, { useEffect } from "react";
-import { FaShoppingBag } from "react-icons/fa";
 import Image from "next/image";
-import laptop from "../../images/Laptop.jpg";
-import laptop2 from "../../images/Laptop2.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/features/products";
 import Link from "next/link";
 import { addProduct } from "@/redux/features/shoppingCart";
+import { BsBagPlus } from 'react-icons/bs';
 
 const ForYou = () => {
   const items = useSelector((state) => state.items);
@@ -35,7 +33,7 @@ const ForYou = () => {
   return (
     <div>
       <h1 className="flex justify-center text-4xl text-center font-bold pb-6 bg-gradient-to-r from-green-500 via-indigo-400 to-green-500 text-transparent bg-clip-text">
-        Tambien podria interesarte
+      You might also be interested
       </h1>
       <div className="flex justify-between px-12 text-center">
         <div className="p-4">
@@ -43,7 +41,7 @@ const ForYou = () => {
             className="absolute cursor-pointer p-2 text-white hover:text-blue-500"
             onClick={() => handleAddToCart(products[randomIndices[0]])} // Invoca handleAddToCart con el producto correspondiente
           >
-            <FaShoppingBag size="1.5em" />{" "}
+            <BsBagPlus size="1.5em" />{" "}
           </p>
           <Link href={`/detail/${products[randomIndices[0]]?.id}`}>
             <Image
@@ -60,7 +58,7 @@ const ForYou = () => {
             className="absolute cursor-pointer z-1 p-2 text-white hover:text-blue-500"
             onClick={() => handleAddToCart(products[randomIndices[1]])} // Invoca handleAddToCart con el producto correspondiente
           >
-            <FaShoppingBag size="1.5em" />{" "}
+            <BsBagPlus size="1.5em" />{" "}
           </p>
           <Link href={`/detail/${products[randomIndices[1]]?.id}`}>
             <Image
@@ -77,7 +75,7 @@ const ForYou = () => {
             className="absolute cursor-pointer p-2 text-white hover:text-blue-500"
             onClick={() => handleAddToCart(products[randomIndices[2]])} // Invoca handleAddToCart con el producto correspondiente
           >
-            <FaShoppingBag size="1.5em" />{" "}
+            <BsBagPlus size="1.5em" />{" "}
           </p>
           <Link href={`/detail/${products[randomIndices[2]]?.id}`}>
             <Image

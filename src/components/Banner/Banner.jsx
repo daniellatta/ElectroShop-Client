@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div>
       <h1 className="text-2xl font-black text-center text-[#fff] tracking-wide pt-4 uppercase">
-        Unite a nuestra comunidad en Discord:
+      Join our community on Discord:
       </h1>
       <div className="flex justify-center py-12 ">
         <Link href='https://discord.com/' target="_blank">
