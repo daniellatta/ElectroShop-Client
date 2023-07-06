@@ -16,7 +16,7 @@ const PaymentPage = ({ onClick }) => {
     const handlePayment = async () => {
       try {
         const response = await axios.post(
-          'http://localhost:8080/api/v1/payment',
+          'https://electroshop-api.onrender.com/api/v1/payment',
           {
             name: 'Your shopping cart',
             price: total,

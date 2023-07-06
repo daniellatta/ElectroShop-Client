@@ -24,13 +24,13 @@ export default function useAuthenticate() {
       setTimeout(() => {
         alert('Necesitas permisos de administrador');
       }, '1000');
-      router.push('/login');
+      router.push('/');
     }
   };
 
   const secureRouteReActive = () => {
     if (!id || active) {
-      router.push('/');
+      router.push('/login');
     }
   };
 

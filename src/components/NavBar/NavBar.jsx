@@ -43,9 +43,14 @@ const NavBar = () => {
           About Us
         </Link>
         <Link
-          href="/products"
-          className="px-6 py-2 hover:text-blue-500 transition-colors duration-300"
-        >
+          href='/contactUs'
+          className='px-6 py-2 hover:text-blue-500 transition-colors duration-300'>
+          Contact Us
+        </Link>
+    
+        <Link
+          href='/products'
+          className='px-6 py-2 hover:text-blue-500 transition-colors duration-300'>
           Our Products
         </Link>
 

@@ -3,17 +3,33 @@ import PaymentProgress from "@/components/PaymentProgress/PaymentProgress";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import {Container} from './Styles'
 
 
 const Confirmed = () => {
-  const user = useSelector((state) => state.auth.user); 
+  const email = localStorage.getItem('email');
+  const cartData = JSON.parse(localStorage.getItem('cart'));
+  const userId = localStorage.getItem('id')
+
+  const cart = {
+    userId,
+    products : cartData.map((product) => {
+      return  {
+      productId: product.details.id,
+      quantity: product.quantity,
+			unitPrice: parseInt(product.details.price) 
+    }
+    })
+  }
+
+  console.log(cart);
+
   useEffect(() => {
     const enviarCorreo = async () => {
       try {
-        await console.log(user);
-        await axios.post('http://localhost:3001/mail/lemueljosias7@gmail.com');
+        await axios.post(`https://electroshop-api.onrender.com/api/v1/contact/complete/${email}`);
+        await axios.post('https://electroshop-api.onrender.com/api/v1/order', cart)
+        //await axios.post('http://localhost:8080/api/v1/order', cart)
         console.log('Correo enviado exitosamente');
       } catch (error) {
         console.error('Error al enviar el correo:', error);
