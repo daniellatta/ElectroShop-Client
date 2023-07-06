@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import useAuthenticate from "@/hook/Authenticated";
 import CreateProductForm from "@/components/CreateProductForm/CreateProductForm";
 
-const productCreate = () => {
+const ProductCreate = () => {
   const { secureRouteAdmin, admin } = useAuthenticate();
 
   useEffect(() => {

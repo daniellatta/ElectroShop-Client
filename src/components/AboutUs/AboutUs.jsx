@@ -12,12 +12,12 @@ export default function AboutUs() {
           </div>
 
           <div className='flex items-center flex-col mt-4'>
-              <p>We're a team of enthusiasts who are passionate about bringing the best products to the market.</p>
+              <p>We are a team of enthusiasts who are passionate about bringing the best products to the market.</p>
               <p>Our goal is to help you find the perfect product that meets your needs and exceeds your expectations.</p>
 
-              <p>We're committed to offering you a wide selection of high-quality products at competitive prices.</p>
-              <p>Our team is dedicated to providing you with exceptional customer service. If you have any questions or concerns, don't hesitate to reach out to us.</p>
-              <p className='font-semibold'>We're always here to help.</p>
+              <p>We are committed to offering you a wide selection of high-quality products at competitive prices.</p>
+              <p>Our team is dedicated to providing you with exceptional customer service. If you have any questions or concerns, do not hesitate to reach out to us.</p>
+              <p className='font-semibold'>We are always here to help.</p>
           </div>
       </section>
       <section className='flex items-center flex-col bg-[#1e293b] p-4 rounded-md mt-3'>

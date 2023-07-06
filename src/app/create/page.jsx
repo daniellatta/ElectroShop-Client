@@ -7,7 +7,7 @@ import { fetchUsers } from "@/redux/features/adminDelete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const page = () => {
+const Create = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.adminDelete.users);
 
@@ -391,4 +391,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Create;

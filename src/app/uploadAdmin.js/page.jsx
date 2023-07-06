@@ -1,6 +1,6 @@
 import React from "react";
 
-const page = () => {
+const UploadAdmin = () => {
   return (
     <div>
       <div>
@@ -22,4 +22,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default UploadAdmin;

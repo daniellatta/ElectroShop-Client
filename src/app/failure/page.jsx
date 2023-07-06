@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function failure() {
+export default function Failure() {
   return (
     <div className='flex justify-center items-center h-screen bg-slate-900'>
       <div className='flex flex-col justify-center items-center gap-4'>

@@ -3,7 +3,7 @@ import ReviewForm from '@/components/ReviewForm/ReviewForm';
 import useAuthenticate from '@/hook/Authenticated';
 import { useEffect } from 'react';
 
-export default function review({ params }) {
+export default function Review({ params }) {
   const { secureRouteUser } = useAuthenticate();
 
   useEffect(() => {

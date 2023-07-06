@@ -4,7 +4,7 @@ import Admin from '@/components/Admin/Admin';
 import useAuthenticate from '@/hook/Authenticated';
 import { useEffect } from 'react';
 
-export default function admin() {
+export default function AdminPage() {
   const { secureRouteAdmin, admin } = useAuthenticate();
 
   useEffect(() => {
