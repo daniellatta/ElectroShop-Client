@@ -29,8 +29,20 @@ export const Title = styled.div`
   flex: 1;
   position: absolute;
   z-index: 1;
-  top: 75px;
+  top: 100px;
   width: 100%;
   color: white;
   text-shadow: 0 0 10px #006b84;
+  background-image: linear-gradient(
+    to right,
+    #0000,
+    #0001,
+    #0004,
+    #000a,
+    #000d,
+    #000a,
+    #0004,
+    #0001,
+    #0000
+  );
 `;
