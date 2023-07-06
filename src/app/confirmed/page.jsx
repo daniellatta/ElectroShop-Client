@@ -17,7 +17,7 @@ const Confirmed = () => {
 
   const cart = {
     userId,
-    products: cartData.map((product) => {
+    products: cartData?.map((product) => {
       return {
         productId: product.details.id,
         quantity: product.quantity,

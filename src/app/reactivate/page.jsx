@@ -13,9 +13,9 @@ const Reactivate = () => {
   const router = useRouter();
   const { user } = useSelector((state) => state.auth);
   const [userData, setUserData] = useState({
-    token: user.user.data.token,
-    email: user.user.data.email,
-    admin: user.user.data.admin,
+    token: user.user?.data.token,
+    email: user.user?.data.email,
+    admin: user.user?.data.admin,
   });
   const { secureRouteReActive } = useAuthenticate();
 
