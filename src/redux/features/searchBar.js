@@ -9,6 +9,7 @@ const initialState = {
 export const fetchProductByName = createAsyncThunk(
   'itemByName/fetch',
   (name) => {
+    if (!name.length) return [];
     return axios
       .get(`https://electroshop-api.onrender.com/api/v1/product/find/${name}`)
       .then(({ data }) => data);

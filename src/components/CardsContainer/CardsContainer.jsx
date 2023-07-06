@@ -9,21 +9,31 @@ import LoadingCard from '../LoadingCard/LoadingCard';
 export default function CardsContainer() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items);
+  let { products } = useSelector((state) => state.items);
   const byName = useSelector((state) => state.byName);
   const [currentPage, setCurrentPage] = useState(1);
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchProducts());
-    dispatch(fetchCategories());
-  }, []);
+    if (!products.length) {
+      dispatch(fetchProducts());
+    }
+    if (!byName.length) {
+      dispatch(fetchCategories());
+    }
+    if (paginado.length < 9) {
+      setFlag(false);
+    } else setFlag(true);
+    
+    setCurrentPage(1);
+  }, [products]);
 
   // Paginado
-  let products = [...items.products];
-  if (byName.productsByName.length) products = [...byName.productsByName];
-  if (items.productsByPrice.length) products = [...items.productsByPrice];
+  let paginado = [...items.products];
+  if (byName.productsByName.length) paginado = [...byName.productsByName];
   const lastIndex = currentPage * 9;
   const firstIndex = lastIndex - 9;
-  let breedPage = products.slice(firstIndex, lastIndex);
+  let productpage = paginado.slice(firstIndex, lastIndex);
   //
 
   if (items.loading) {
@@ -44,7 +54,7 @@ export default function CardsContainer() {
   return (
     <div className='flex flex-col w-[90%] gap-12'>
       <section className='grid grid-cols-3 gap-12'>
-        {breedPage.map((product) => {
+        {productpage.map((product) => {
           return (
             <section key={product.id}>
               <Card
@@ -61,19 +71,22 @@ export default function CardsContainer() {
           );
         })}
       </section>
-      <footer className='flex justify-center gap-4'>
-        <button
-          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}>
-          prev
-        </button>
-        <p>{currentPage}</p>
-        <button
-          onClick={() =>
-            lastIndex <= products.length - 1 && setCurrentPage(currentPage + 1)
-          }>
-          next
-        </button>
-      </footer>
+      {flag && (
+        <footer className='flex justify-center gap-4'>
+          <button
+            onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}>
+            prev
+          </button>
+          <p>{currentPage}</p>
+          <button
+            onClick={() =>
+              lastIndex <= paginado.length - 1 &&
+              setCurrentPage(currentPage + 1)
+            }>
+            next
+          </button>
+        </footer>
+      )}
     </div>
   );
 }

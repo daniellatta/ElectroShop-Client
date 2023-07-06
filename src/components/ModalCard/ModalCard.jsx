@@ -65,7 +65,8 @@ const ModalCard = ({
           )}
           <button
             onClick={handleAddToCart}
-            className='bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4'>
+            disabled={!stock}
+            className={stock > 0 ? `bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4` : `bg-red-500 text-white rounded-md py-2 px-4 mt-4`}>
             Add to Cart
           </button>
         </div>

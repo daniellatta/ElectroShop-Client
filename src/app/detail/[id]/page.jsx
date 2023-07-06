@@ -70,13 +70,13 @@ const DetailPage = ({ params }) => {
             </div>
             <p className='text-gray-600 text-white mb-4'>{description}</p>
             <p className='text-xl text-white'>Stock: {stock}</p>
-            <Link href='/completePurchase'>
+            {stock ? <Link href='/completePurchase'>
               <button
                 onClick={handleBuyButton}
                 className='bg-green-500 hover:bg-green-700 text-white rounded-md py-2 px-4 mt-4 w-full'>
                 Buy Now
               </button>
-            </Link>
+            </Link> : <p className='text-white text-xl font-bold'>Out of stock</p>}
           </div>
         </div>
         <div className='w-full'>

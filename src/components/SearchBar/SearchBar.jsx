@@ -34,7 +34,7 @@ export default function SearchBar() {
           placeholder='Keyboard...'
           onChange={handleChange}
           value={input}
-          className='bg-gray-50 w-[450px] block border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"'
+          className='bg-gray-50 w-[350px] block border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"'
         />
         <button
           type='submit'
@@ -52,6 +52,10 @@ export default function SearchBar() {
           </option>
           <option value='Az'>Alphabetically, A to Z</option>
           <option value='Za'>Alphabetically, Z to A</option>
+          <option value='P<'>Price, Low to High</option>
+          <option value='P>'>Price, High to Low</option>
+          <option value="R<">Rating, Low to High</option>
+          <option value="R>">Rating, High to Low</option>
         </select>
       </div>
     </div>
