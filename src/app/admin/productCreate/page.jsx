@@ -17,4 +17,4 @@ const ProductCreate = () => {
   );
 };
 
-export default productCreate;
+export default ProductCreate;

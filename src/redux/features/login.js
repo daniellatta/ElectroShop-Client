@@ -1,9 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+let defaultIsAuthenticated = false;
+
+if (
+  typeof localStorage !== 'undefined' &&
+  localStorage.getItem('isAuthenticated')
+) {
+  defaultIsAuthenticated = JSON.parse(localStorage.getItem('isAuthenticated'));
+}
+
 const initialState = {
   url: 'https://electroshop-api.onrender.com/api/v1/auth/login/google',
-  isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated')),
+  isAuthenticated: defaultIsAuthenticated,
   user: {},
   rejected: '',
 };
