@@ -43,26 +43,26 @@ export default function Card({
           }>
           <BsBagPlus
             size={24}
-            className='text-white hover:-translate-y-1 hover:text-black-300 transition duration-300'
+            className='text-slate-400 hover:-translate-y-1 hover:text-black-300 transition duration-300'
           />
         </button>
         <Link href={`/detail/${id}`}>
           {image && (
-            <div className='flex justify-center items-center mx-0 max-h-200' >
-            <Image
-              style={{ width: '300px', height: '200px' }}
-              src={image}
-              width={300}
-              height={200}
-              alt={`Imagen de ${name}`}
-              priority
-              className='border-transparent rounded-lg'
-            />
-          </div>
+            <div className='flex justify-center items-center mx-0 max-h-200'>
+              <Image
+                style={{ width: '300px', height: '200px' }}
+                src={image}
+                width={300}
+                height={200}
+                alt={`Imagen de ${name}`}
+                priority
+                className='border-transparent rounded-lg'
+              />
+            </div>
           )}
           {name && <h3 className='text-white'>{name}</h3>}
-          {price && <h3 className='text-white'>{price}</h3>}
-          {review && <h3 className='text-white'>{review.rating}</h3>}
+          {price && <h3 className='text-white'>${price}</h3>}
+          {review && <h3 className='text-white'>{review}</h3>}
         </Link>
       </article>
       {selectedCard && (

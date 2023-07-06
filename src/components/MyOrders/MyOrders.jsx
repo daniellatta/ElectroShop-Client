@@ -7,13 +7,11 @@ import axios from "axios";
 const MyOrders = () => {
   const [userOrders, setUserOrders] = useState([]);
   const userID = JSON.parse(localStorage.id);
-  console.log(userOrders);
 
   const getUserOrders = async () => {
     try {
       const response = await axios.get(
-        // `https://electroshop-api.onrender.com/api/v1/order/user/${userID}`
-        `https://electroshop-api.onrender.com/api/v1/order/user/80`
+        `https://electroshop-api.onrender.com/api/v1/order/user/${userID}`
       );
       return response;
     } catch (error) {

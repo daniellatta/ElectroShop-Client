@@ -39,7 +39,7 @@ export default function Ratings({ product }) {
                     {renderStars(e.rating)}
                   </h3>
                   <h3>{e.review}</h3>
-                  <h3>{e.user.name}</h3>
+                  <h3 className='font-bold'>{e.user.name}</h3>
                 </article>
               );
             })}

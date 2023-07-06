@@ -87,6 +87,14 @@ const CreateProductForm = () => {
       .catch((error) => {
         console.error(error);
       });
+    setProduct({
+      name: "",
+      description: "",
+      image: "",
+      stock: 0,
+      price: 0,
+      categoryId: "",
+    })
   };
 
   return (
