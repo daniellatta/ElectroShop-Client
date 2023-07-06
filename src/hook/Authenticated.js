@@ -4,13 +4,20 @@ import { useRouter } from 'next/navigation';
 export default function useAuthenticate() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
-  const user = localStorage.getItem('email');
-  const id = parseInt(localStorage.getItem('id'), 10);
-  const active = JSON.parse(localStorage.getItem('active'));
+  const user =
+    typeof localStorage !== 'undefined' ? localStorage.getItem('email') : null;
+  const id =
+    typeof localStorage !== 'undefined'
+      ? parseInt(localStorage.getItem('id'), 10)
+      : null;
+  const active =
+    typeof localStorage !== 'undefined'
+      ? JSON.parse(localStorage.getItem('active'))
+      : null;
   const admin =
-    JSON.parse(localStorage.getItem('admin')) === null
-      ? false
-      : JSON.parse(localStorage.getItem('admin'));
+    typeof localStorage !== 'undefined' && localStorage.getItem('admin')
+      ? JSON.parse(localStorage.getItem('admin'))
+      : false;
 
   const secureRouteUser = () => {
     if (!isAuthenticated || !user) {
