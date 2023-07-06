@@ -1,43 +1,37 @@
-import React from "react";
-import { products, orders } from "./OrderData";
+import React, { useEffect, useState } from "react";
+// import { products, orders } from "./OrderData";
 import OrdersParser from "./OrdersParser";
 import { OrdersContainer } from "./Styles";
+import axios from "axios";
 
 const MyOrders = () => {
+  const [userOrders, setUserOrders] = useState([]);
+  const userID = JSON.parse(localStorage.id);
+
+  const getUserOrders = async () => {
+    try {
+      const response = await axios.get(
+        `https://electroshop-api.onrender.com/api/v1/order/user/${userID}`
+      );
+      return response;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getUserOrders();
+      setUserOrders(response.data);
+    };
+    getData();
+  }, []);
+
   return (
     <div>
-      <div className="pb-20">
-        <div className="w-full shadow-fb rounded bg-white p-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <img
-                src="https://picsum.photos/id/1025/500"
-                alt="img"
-                className="h-10 w-10 rounded-full"
-              />
-              <div className="ml-4">
-                <span className="cursor-pointer font-bold">Ronald Oliver</span>{" "}
-              </div>
-            </div>
-            <button className="w-22 h-9 rounded-full bg-fFill flex items-center justify-center focus:outline-none bg-red-500 ">
-              Volver al inicio
-            </button>
-          </div>
-          <div className="w-full mt-4">
-            Nunc scelerisque tincidunt elit. Vestibulum non mi ipsum. Cras
-            pretium suscipit tellus sit amet aliquet. Vestibulum maximus lacinia
-            massa non porttitor.
-          </div>
-          <img
-            src="https://picsum.photos/id/1014/2000"
-            alt="img"
-            className="w-full h-72 object-cover mt-4 rounded"
-          />
-        </div>
-      </div>
-      MyOrders
       <OrdersContainer>
-        <OrdersParser ordersArray={orders} products={products} />
+        <OrdersParser ordersArray={userOrders} />
+        {/* <OrdersParser ordersArray={userOrders} products={products} /> */}
       </OrdersContainer>
     </div>
   );

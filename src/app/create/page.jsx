@@ -1,13 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "@/redux/features/create";
+import { fetchUsers } from "@/redux/features/adminDelete";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const page = () => {
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.adminDelete.users);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -33,6 +39,7 @@ const page = () => {
     age: "",
     adress: "",
     phoneNumber: "",
+    city: "",
   });
 
   const handleChange = (e) => {
@@ -42,11 +49,12 @@ const page = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrorMessages({
       username: "",
+      password: "",
       name: "",
       dni: "",
       email: "",
@@ -65,11 +73,13 @@ const page = () => {
 
     if (
       containsForbiddenWord ||
-      !/^[a-zA-Z0-9_]{3,16}$/.test(formData.username)
+      !formData.username ||
+      !/^.{3,15}$/.test(formData.username) ||
+      users.find((user) => user.username == formData.username)
     ) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        userName: "El nombre de usuario no es válido.",
+        username: "El nombre de usuario NO es válido.",
       }));
       hasError = true;
     }
@@ -82,22 +92,31 @@ const page = () => {
       hasError = true;
     }
 
-    if (!/^.{2,25}$/.test(formData.dni)) {
+    if (
+      !/^.{2,25}$/.test(formData.dni) ||
+      users.find((user) => user.dni == formData.dni)
+    ) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        dni: "Ingrese solamente su primer apellido, con un máximo de 25 caracteres.",
+        dni: "El dni NO es valido",
       }));
       hasError = true;
     }
 
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-    if (!emailRegex.test(formData.email)) {
+    if (
+      !emailRegex.test(formData.email) ||
+      users.find((user) => user.email == formData.email)
+    ) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        email: "Por favor ingrese un correo electrónico válido.",
+        email: "El correo electronico NO es valido.",
       }));
       hasError = true;
     }
+
+    const regexFecha =
+      /^(19[1-9]\d|20[0-1]\d|2022)-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/;
 
     if (!formData.birthDate) {
       setErrorMessages((prevErrorMessages) => ({
@@ -105,25 +124,50 @@ const page = () => {
         birthDate: "Debes ingresar una fecha de nacimiento.",
       }));
       hasError = true;
+    } else if (!regexFecha.test(formData.birthDate)) {
+      setErrorMessages((prevErrorMessages) => ({
+        ...prevErrorMessages,
+        birthDate: "La fecha de nacimiento ingresada no es válida.",
+      }));
+      hasError = true;
     }
 
     if (formData.adress.length < 5 || formData.adress.length > 25) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        address: "La dirección debe tener entre 5 y 25 caracteres.",
+        adress: "La dirección debe tener entre 5 y 25 caracteres.",
       }));
       hasError = true;
     }
 
-    if (!/^\d{5,15}$/.test(formData.phoneNumber)) {
+    const regexNumeroTelefono = /^[1-9]\d{5,15}$/;
+
+    if (
+      !regexNumeroTelefono.test(formData.phoneNumber) ||
+      users.find((user) => user.phoneNumber === formData.phoneNumber)
+    ) {
       setErrorMessages((prevErrorMessages) => ({
         ...prevErrorMessages,
-        phoneNumber: "Debes ingresar un número de teléfono válido.",
+        phoneNumber: "El número de teléfono NO es válido.",
       }));
       hasError = true;
     }
 
-    setError(hasError);
+    if (formData.city.length < 3 || formData.city.length > 25) {
+      setErrorMessages((prevErrorMessages) => ({
+        ...prevErrorMessages,
+        city: "La ciudad debe tener entre 3 y 25 caracteres.",
+      }));
+      hasError = true;
+    }
+
+    if (formData.password.length < 8 || formData.password.length > 20) {
+      setErrorMessages((prevErrorMessages) => ({
+        ...prevErrorMessages,
+        password: "La contraseña debe tener entre 8 y 20 caracteres.",
+      }));
+      hasError = true;
+    }
 
     setError(hasError);
     setValidUser(!hasError);

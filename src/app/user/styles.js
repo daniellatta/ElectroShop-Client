@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 64px;
   background-image: linear-gradient(to bottom, #ffff, #aaaa),
     url(${BG_Image.src});
   background-size: 50%;
@@ -51,10 +52,10 @@ export const NavigationItem = styled.button`
 `;
 
 export const LogoutButton = styled.button`
-  width: 70%;
+  width: 100%;
   height: 30px;
   line-height: 0px;
-  padding: 10px;
+  padding: 12px 10px;
   border: none;
   border-radius: 30px;
   text-align: center;

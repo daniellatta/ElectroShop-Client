@@ -2,12 +2,13 @@
 
 import { fetchProductByName } from '@/redux/features/searchBar';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import ByCategory from './ByCategory';
+import { orderProducts } from '@/redux/features/products';
 
 export default function SearchBar() {
   const [input, setInput] = useState('');
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.items);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,16 +20,21 @@ export default function SearchBar() {
     setInput(event.target.value);
   };
 
+  const handleOrder = (e) => {
+    dispatch(orderProducts(e.target.value));
+  };
+
   return (
-    <div className='mt-4'>
+    <div className='flex justify-center items-center mt-20'>
       <form onSubmit={handleSubmit} className='flex items-center'>
+        <ByCategory />
         <input
           type='text'
           name='product'
           placeholder='Keyboard...'
           onChange={handleChange}
           value={input}
-          className='bg-gray-50 w-[350px] block border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"'
+          className='bg-gray-50 w-[350px] block border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"'
         />
         <button
           type='submit'
@@ -36,28 +42,22 @@ export default function SearchBar() {
           search
         </button>
       </form>
-      {products
-        .filter((item) => {
-          const searchTerm = input.toLowerCase();
-          const name = item.name.toLowerCase();
-          return (
-            searchTerm &&
-            (name.startsWith(searchTerm) || name.includes(searchTerm)) &&
-            name !== searchTerm
-          );
-        })
-        .slice(0, 6)
-        .map((item) => {
-          return (
-            <div
-              key={item.id}
-              onClick={() => {
-                setInput(item.name);
-              }}>
-              {item.name}
-            </div>
-          );
-        })}
+      <div className='absolute right-4'>
+        <select
+          onChange={handleOrder}
+          defaultValue={'default'}
+          className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+          <option value='default' hidden disabled>
+            Order
+          </option>
+          <option value='Az'>Alphabetically, A to Z</option>
+          <option value='Za'>Alphabetically, Z to A</option>
+          <option value='P<'>Price, Low to High</option>
+          <option value='P>'>Price, High to Low</option>
+          <option value="R<">Rating, Low to High</option>
+          <option value="R>">Rating, High to Low</option>
+        </select>
+      </div>
     </div>
   );
 }

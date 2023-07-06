@@ -4,7 +4,7 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 
 export default function productPage() {
   return (
-    <div className='flex bg-slate-700 mt-16'>
+    <div className='flex bg-slate-900 h-full min-h-screen'>
       <section className='w-1/5'>
         <FilterProducts />
       </section>

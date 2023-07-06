@@ -4,12 +4,13 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     products: JSON.parse(localStorage?.getItem("cart")) || [],
+    isOpen: false,
   },
   reducers: {
     addProduct: (state, action) => {
       const { item } = action.payload;
       const existingProduct = state.products.find(
-        (product) => product.details.productID === item.productID
+        (product) => product.details.id === item.id
       );
       if (existingProduct) {
         existingProduct.quantity += 1;
@@ -21,14 +22,14 @@ const cartSlice = createSlice({
     removeOne: (state, action) => {
       const { item } = action.payload;
       const existingProduct = state.products.find(
-        (product) => product.details.productID === item.productID
+        (product) => product.details.id === item.id
       );
       if (existingProduct) {
         if (existingProduct.quantity > 1) {
           existingProduct.quantity -= 1;
         } else {
           let filtered = state.products.filter(
-            (product) => product.details.productID !== item.productID
+            (product) => product.details.id !== item.id
           );
           console.log(filtered);
           state.products = filtered;
@@ -37,15 +38,21 @@ const cartSlice = createSlice({
       }
     },
     deleteProduct: (state, action) => {
-      const { productID } = action.payload;
+      const { item } = action.payload;
       state.products = state.products.filter(
-        (product) => product.details.productID !== productID
+        (product) => product.details.id !== item.id
       );
       localStorage?.setItem("cart", JSON.stringify(state.products));
     },
     emptyCart: (state) => {
       state.products = [];
       localStorage?.setItem("cart", JSON.stringify(state.products));
+    },
+    hideCart: (state) => {
+      state.isOpen = false;
+    },
+    showCart: (state) => {
+      state.isOpen = true;
     },
   },
 });
@@ -55,7 +62,8 @@ export const {
   removeOne,
   deleteProduct,
   emptyCart,
-  // bulkAddProducts,
+  hideCart,
+  showCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

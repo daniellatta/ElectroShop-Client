@@ -13,7 +13,7 @@ const ClearCartButton = (props) => {
     <div>
       <button
         type="button"
-        className="flex justify-center items-center w-full h-12 text-white bg-gradient-to-tl from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-lg text-center"
+        className="flex justify-center items-center transition-all ease-in-out duration-300 text-white bg-gradient-to-r from-red-800/80 via-red-500/80 to-red-800/80 bg-black/0 hover:bg-gradient-to-r hover:from-red-800/80 hover:via-red-500/80 hover:to-red-800/80 hover:bg-black/100 shadow-[inset_0_0_0_0_#000] hover:shadow-[inset_0_0_5px_0_#000] focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-lg text-center mt-[5px] w-full h-12"
         onClick={clearCart}
       >
         <svg

@@ -50,8 +50,20 @@ export const InfoItem = styled.div`
 `;
 
 export const ProductBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: white;
+  border: 2px solid #0006;
+  border-radius: 0 10px 10px 0;
+`;
+
+export const OrderProductBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
   background-color: white;
   border: 2px solid #0006;
   border-radius: 10px;
-  padding: 3px;
 `;

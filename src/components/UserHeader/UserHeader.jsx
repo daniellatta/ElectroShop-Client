@@ -6,7 +6,9 @@ const UserHeader = () => {
     <MainDiv id="UserHeader">
       <Avatar id="Avatar" />
       <Title id="Title">
-        <h1 className="text-5xl text-center font-semibold">User Profile</h1>
+        <h1 className="text-5xl text-center font-semibold px-12 py-10 rounded-xl ">
+          My Profile
+        </h1>
       </Title>
     </MainDiv>
   );
