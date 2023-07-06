@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 64px;
   background-image: linear-gradient(to bottom, #ffff, #aaaa),
     url(${BG_Image.src});
   background-size: 50%;
