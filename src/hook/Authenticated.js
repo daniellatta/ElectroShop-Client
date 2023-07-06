@@ -23,7 +23,7 @@ export default function useAuthenticate() {
       router.push('/');
       setTimeout(() => {
         alert('Necesitas permisos de administrador');
-      }, '1000');
+      }, '3000');
       router.push('/');
     }
   };

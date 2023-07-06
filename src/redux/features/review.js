@@ -6,11 +6,23 @@ const initialState = {
   error: '',
 };
 
-export const postReview = createAsyncThunk('postReview/fetch', (review) => {
-  return axios
-    .post('https://electroshop-api.onrender.com/api/v1/review', review)
-    .then(({ data }) => data);
-});
+export const postReview = createAsyncThunk(
+  'postReview/fetch',
+  (review, token) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return axios
+      .post(
+        'https://electroshop-api.onrender.com/api/v1/review',
+        review,
+        config
+      )
+      .then(({ data }) => data);
+  }
+);
 
 const reviewSlice = createSlice({
   name: 'review',

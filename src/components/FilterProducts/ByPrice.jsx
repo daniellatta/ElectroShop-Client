@@ -11,7 +11,7 @@ export default function ByPrice({ filterValues, setFilterValues }) {
   return (
     <div>
       <form className='flex flex-col justify-center gap-5 items-center w-full mt-3 text-white'>
-        <div className='flex gap-2 w-[80%] text-white'>
+        <div className='flex gap-2 text-white'>
           <div>
             <label>Min: </label>
             <input

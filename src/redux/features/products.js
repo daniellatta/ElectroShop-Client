@@ -62,6 +62,14 @@ const productSlice = createSlice({
         state.products.sort((a, b) => a.name.localeCompare(b.name));
       } else if (orderType === 'za') {
         state.products.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (orderType === 'p<') {
+        state.products.sort((a, b) => a.price - b.price);
+      } else if (orderType === 'p>') {
+        state.products.sort((a, b) => b.price - a.price);
+      } else if (orderType === 'r<') {
+        state.products.sort((a, b) => a.review - b.review);
+      } else if (orderType === 'r>') {
+        state.products.sort((a, b) => b.review - a.review);
       }
     },
     cleanDetail: (state) => {
@@ -81,7 +89,7 @@ const productSlice = createSlice({
       state.categories = action.payload;
     });
     builder.addCase(fetchByPrice.fulfilled, (state, action) => {
-      state.productsByPrice = action.payload;
+      state.products = action.payload;
     });
     builder.addCase(fetchByCategory.fulfilled, (state, action) => {
       state.products = action.payload;

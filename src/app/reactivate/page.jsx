@@ -11,32 +11,17 @@ import useAuthenticate from '@/hook/Authenticated';
 const page = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const users = useSelector((state) => state.adminDelete.users);
-  const userDni = JSON.parse(localStorage.getItem('id'));
-  const [userData, setUserData] = useState({
-    id: 0,
-    dni: '',
-    name: '',
-    username: '',
-    email: '',
-  });
+  const { user } = useSelector((state) => state.auth);
+  const [userData, setUserData ] = useState({
+    token: user.user.data.token,
+    email: user.user.data.email,
+    admin: user.user.data.admin,
+  })
   const { secureRouteReActive } = useAuthenticate();
 
   useEffect(() => {
     secureRouteReActive();
-    dispatch(fetchUsers());
-
-    const userInfo = users.find((user) => user.id === userDni);
-    if (userInfo) {
-      setUserData({
-        id: userInfo.id,
-        name: userInfo.name,
-        dni: userInfo.dni,
-        username: userInfo.username,
-        email: userInfo.email,
-      });
-    }
-  }, [dispatch, users]);
+  }, []);
 
   const handleHome = () => {
     router.push("/");
@@ -44,7 +29,7 @@ const page = () => {
 
   const handleReactivateUser = (userId) => {
     dispatch(reactivateAccount(userId));
-    dispatch(login(userId));
+    dispatch(login());
     localStorage.setItem('token', userData.token);
     localStorage.setItem('email', userData.email);
     localStorage.setItem('admin', userData.admin);
@@ -56,7 +41,7 @@ const page = () => {
   };
 
   const notifyActive = () => {
-    toast.success('Usuario REactivado correctamente', {
+    toast.success('Usuario Reactivado correctamente', {
       position: 'top-center',
       autoClose: 2000,
       pauseOnHover: true,

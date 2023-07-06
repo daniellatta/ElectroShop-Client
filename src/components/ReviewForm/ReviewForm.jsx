@@ -7,10 +7,11 @@ import StarsRating from './StarsRating';
 
 export default function ReviewForm({ id }) {
   const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
   const [review, setReview] = useState({
     rating: 0,
     review: '',
-    userId: 35,
+    userId: JSON.parse(localStorage.getItem('id')),
     productId: id,
   });
 
@@ -22,12 +23,14 @@ export default function ReviewForm({ id }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postReview(review));
+    dispatch(postReview(review, token));
     setReview({ rating: 0, review: '', userId: 0, productId: 0 });
   };
   return (
     <div className='shadow rounded-lg p-20 bg-slate-900'>
-      <form className='flex flex-col items-center gap-5' onSubmit={handleSubmit}>
+      <form
+        className='flex flex-col items-center gap-5'
+        onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor='rating'

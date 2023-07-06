@@ -4,19 +4,10 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/features/products";
 import Link from "next/link";
-import { addProduct } from "@/redux/features/shoppingCart";
-import { BsBagPlus } from 'react-icons/bs';
 
 const ForYou = () => {
   const items = useSelector((state) => state.items);
   const dispatch = useDispatch();
-
-  const handleAddToCart = (item) => { 
-    const foo = {
-      item: item
-    };
-    dispatch(addProduct(foo));
-  };
 
   let products = [...items.products];
 
@@ -37,12 +28,6 @@ const ForYou = () => {
       </h1>
       <div className="flex justify-between px-12 text-center">
         <div className="p-4">
-          <p
-            className="absolute cursor-pointer p-2 text-white hover:text-blue-500"
-            onClick={() => handleAddToCart(products[randomIndices[0]])} // Invoca handleAddToCart con el producto correspondiente
-          >
-            <BsBagPlus size="1.5em" />{" "}
-          </p>
           <Link href={`/detail/${products[randomIndices[0]]?.id}`}>
             <Image
               src={products[randomIndices[0]]?.image}
@@ -54,12 +39,6 @@ const ForYou = () => {
           </Link>
         </div>
         <div className="p-4">
-          <p
-            className="absolute cursor-pointer z-1 p-2 text-white hover:text-blue-500"
-            onClick={() => handleAddToCart(products[randomIndices[1]])} // Invoca handleAddToCart con el producto correspondiente
-          >
-            <BsBagPlus size="1.5em" />{" "}
-          </p>
           <Link href={`/detail/${products[randomIndices[1]]?.id}`}>
             <Image
               src={products[randomIndices[1]]?.image}
@@ -71,12 +50,6 @@ const ForYou = () => {
           </Link>
         </div>
         <div className="p-4">
-          <p
-            className="absolute cursor-pointer p-2 text-white hover:text-blue-500"
-            onClick={() => handleAddToCart(products[randomIndices[2]])} // Invoca handleAddToCart con el producto correspondiente
-          >
-            <BsBagPlus size="1.5em" />{" "}
-          </p>
           <Link href={`/detail/${products[randomIndices[2]]?.id}`}>
             <Image
               src={products[randomIndices[2]]?.image}

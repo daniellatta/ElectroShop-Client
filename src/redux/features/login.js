@@ -5,6 +5,7 @@ const initialState = {
   url: 'https://electroshop-api.onrender.com/api/v1/auth/login/google',
   isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated')),
   user: {},
+  rejected: '',
 };
 
 export const loginUser = createAsyncThunk(
@@ -15,6 +16,18 @@ export const loginUser = createAsyncThunk(
       loginData
     );
     return response.data;
+  }
+);
+
+export const userAuth = createAsyncThunk(
+  'userAutSv/post',
+  ({ email, password }) => {
+    return axios
+      .post('https://electroshop-api.onrender.com/api/v1/auth/login', {
+        email,
+        password,
+      })
+      .then(({ data }) => data);
   }
 );
 
@@ -30,22 +43,22 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.isAuthenticated = true;
-      state.user = action.payload;
       localStorage.setItem('isAuthenticated', 'true');
     },
     logout: (state) => {
       state.isAuthenticated = false;
+      state.user = {};
       localStorage.setItem('isAuthenticated', 'false');
     },
     googleAuth: (state, action) => {
       window.open(state.url, 'Popup', action.payload);
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(googleAuth.fulfilled, (state, action) => {
-  //     user: action.payload
-  //   })
-  // }
+  extraReducers: (builder) => {
+    builder.addCase(userAuth.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+  },
 });
 
 export const { login, logout, googleAuth } = authSlice.actions;

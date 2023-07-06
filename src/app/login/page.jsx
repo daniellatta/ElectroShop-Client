@@ -6,94 +6,62 @@ import {
   googleAuthFunc,
   login,
   loginUser,
+  userAuth,
 } from '../../redux/features/login';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { fetchUsers } from '@/redux/features/adminDelete';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import GoogleLoginButton from '@/components/GoogleButton/GoogleButton';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const users = useSelector((state) => state.adminDelete.users);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    if (Object.keys(user).length && user.status) {
+      setError('');
+      if (!user.user.data.active) {
+        localStorage.setItem('active', user.user.data.active);
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('email', user.user.data.email);
+        localStorage.setItem('id', user.user.data.id);
+        localStorage.setItem('admin', user.user.data.admin);
+        notifyAccount();
+        setTimeout(() => {
+          router.push('/reactivate');
+          localStorage.setItem('isAuthenticated', false);
+        }, 1200);
+      } else {
+        localStorage.setItem('active', user.user.data.active);
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('email', user.user.data.email);
+        localStorage.setItem('id', user.user.data.id);
+        localStorage.setItem('admin', user.user.data.admin);
+        dispatch(login());
+        notify();
+        setTimeout(() => {
+          router.push('/');
+        }, 2000);
+      }
+    } else if (Object.keys(user).length && !user.status) {
+      setError('Invalid Credentials');
+    }
+  }, [email, user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     if (email.trim() === '' || password.trim() === '') {
       setError('Por favor, completa todos los campos');
       return;
     }
-
-    users.find((user) => user.email === email && user.password === password);
-
-    const user = { email, password };
-
-    try {
-      const loginAction = loginUser(user);
-      await dispatch(loginAction);
-
-      const usersResponse = await axios.get(
-        'https://electroshop-api.onrender.com/api/v1/user'
-      );
-      const users = usersResponse.data;
-
-      const foundUser = users.find(
-        (userData) =>
-          userData.email === user.email && userData.password === user.password
-      );
-
-      if (!foundUser) setError('Credenciales invalidas.');
-
-      if (foundUser) {
-        setError('');
-        localStorage.setItem('active', foundUser.active);
-        localStorage.setItem('id', foundUser.id);
-
-        if (foundUser.active === true) {
-          dispatch(login(foundUser));
-          localStorage.setItem('token', foundUser.token);
-          localStorage.setItem('email', foundUser.email);
-          foundUser.hasOwnProperty('admin')
-            ? localStorage.setItem('admin', foundUser.admin)
-            : localStorage.setItem('admin', false);
-          notify();
-          setTimeout(() => {
-            router.push('/');
-          }, 2000);
-        } else {
-          notifyAccount();
-          setTimeout(() => {
-            router.push('/reactivate');
-            localStorage.setItem('isAuthenticated', false);
-          }, 1200);
-        }
-      } else {
-        console.log('Credenciales inválidas');
-      }
-    } catch (error) {
-      console.log('Error:', error);
-    }
+    dispatch(userAuth({ email, password }));
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email');
-    if (token && token.trim() !== '' && email && email.trim() !== '') {
-      dispatch(login({ token, email }));
-    }
-  }, [dispatch]);
 
   const handleAuth = () => {
     let left = window.screen.width - 400;
@@ -101,8 +69,8 @@ const LoginPage = () => {
     let top = window.screen.height - 300;
     top = top > 0 ? top / 5 : 0;
     const windowFeatures = `width=452, height=633, top=${top}, left=${left}`;
+    console.log("Me pulsaste cachon");
     dispatch(googleAuth(windowFeatures));
-    dispatch(googleAuthFunc());
   };
 
   const notify = () => {
@@ -130,7 +98,7 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label htmlFor='email' className='block font-bold mb-1'>
-              email
+              Email
             </label>
             <input
               type='text'
@@ -159,20 +127,18 @@ const LoginPage = () => {
             Login
           </button>
         </form>
-        <div className='flex flex-col'>
-          <button onClick={handleAuth} className='flex'>
-            Login with google
-          </button>
+        <div className='flex flex-col items-center gap-2 mt-4'>
+          <GoogleLoginButton onClick={handleAuth} />
           <Link
             href='/create'
             alt='create'
             className='flex hover:text-blue-500 transition-colors duration-300'>
-            Crear cuenta
+            Create an account
           </Link>
         </div>
         <ToastContainer />
         {isAuthenticated ? (
-          <p className='text-2xl text-green-600 mt-4'>Ingresando. . .</p>
+          <p className='text-2xl text-green-600 mt-4'>Signing In. . .</p>
         ) : (
           ''
         )}

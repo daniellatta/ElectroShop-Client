@@ -4,8 +4,8 @@ import { FaRegStar } from 'react-icons/fa';
 import { FaStar } from 'react-icons/fa';
 
 export default function Ratings({ product }) {
-  const { review, reviews, id } = product;
-
+  let { review, reviews, id } = product;
+  if (review === null) review = 0;
   const renderStars = (review) => {
     const starComponents = [];
     const filledStars = Math.floor(review);
@@ -35,7 +35,9 @@ export default function Ratings({ product }) {
                 <article
                   key={e.id}
                   className='flex flex-col h-200 w-full bg-white-300'>
-                  <h3 className='flex text-orange-300'>{renderStars(e.rating)}</h3>
+                  <h3 className='flex text-orange-300'>
+                    {renderStars(e.rating)}
+                  </h3>
                   <h3>{e.review}</h3>
                   <h3>{e.user.name}</h3>
                 </article>
