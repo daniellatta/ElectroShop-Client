@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useAuthenticate from '@/hook/Authenticated';
 import { useRouter } from 'next/navigation';
 
-const page = () => {
+const Delete = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const users = useSelector((state) => state.adminDelete.users);
@@ -115,4 +115,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Delete;

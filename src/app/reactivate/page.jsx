@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuthenticate from '@/hook/Authenticated';
 
-const page = () => {
+const Reactivate = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { user } = useSelector((state) => state.auth);

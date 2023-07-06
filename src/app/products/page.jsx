@@ -2,7 +2,7 @@ import CardsContainer from '@/components/CardsContainer/CardsContainer';
 import FilterProducts from '@/components/FilterProducts/FilterProducts';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
-export default function productPage() {
+export default function ProductPage() {
   return (
     <div className='flex bg-slate-900 h-full min-h-screen'>
       <section className='w-1/5'>

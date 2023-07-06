@@ -1,6 +1,6 @@
 import ContactUs from "@/components/ContactUs/ContactUs";
 
-export default function contactUs() {
+export default function ContactUs() {
   return (
     <div>
       <ContactUs />
