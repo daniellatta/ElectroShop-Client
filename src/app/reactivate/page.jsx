@@ -12,11 +12,11 @@ const Reactivate = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { user } = useSelector((state) => state.auth);
-  const [userData, setUserData ] = useState({
+  const [userData, setUserData] = useState({
     token: user.user.data.token,
     email: user.user.data.email,
     admin: user.user.data.admin,
-  })
+  });
   const { secureRouteReActive } = useAuthenticate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Reactivate = () => {
   }, []);
 
   const handleHome = () => {
-    router.push("/");
+    router.push('/');
   };
 
   const handleReactivateUser = (userId) => {
@@ -50,30 +50,28 @@ const Reactivate = () => {
   };
 
   return (
-    <div className="h-screen bg-slate-300 pt-20">
+    <div className='h-screen bg-slate-300 pt-20'>
       <div>
-        <div className="flex items-center justify-center">
-          <p className="text-lg font-bold">Reactiva tu cuenta</p>
+        <div className='flex items-center justify-center'>
+          <p className='text-lg font-bold'>Reactiva tu cuenta</p>
           <button
             onClick={() => handleReactivateUser(userData.id)}
-            className="bg-green-600 px-4 py-2 ml-4 text-white rounded hover:bg-green-700 focus:outline-none"
-          >
+            className='bg-green-600 px-4 py-2 ml-4 text-white rounded hover:bg-green-700 focus:outline-none'>
             Reactivar
           </button>
           <button
             onClick={handleHome}
-            className="bg-purple-600 px-4 py-2 ml-4 text-white rounded hover:bg-purple-800 focus:outline-none"
-          >
+            className='bg-purple-600 px-4 py-2 ml-4 text-white rounded hover:bg-purple-800 focus:outline-none'>
             Volver al inicio
           </button>
         </div>
-        <div className="px-40">
-          <div className="flex flex-col mt-4 bg-slate-600 rounded-xl p-4 text-center">
-            <p className="font-bold">Son estos tus datos?</p>
-            <p className="my-1">Nombre: {userData.name}</p>
-            <p className="my-1">DNI: {userData.dni}</p>
-            <p className="my-1">Nombre de usuario: {userData.username}</p>
-            <p className="my-1">Correo electrónico: {userData.email}</p>
+        <div className='px-40'>
+          <div className='flex flex-col mt-4 bg-slate-600 rounded-xl p-4 text-center'>
+            <p className='font-bold'>Son estos tus datos?</p>
+            <p className='my-1'>Nombre: {userData.name}</p>
+            <p className='my-1'>DNI: {userData.dni}</p>
+            <p className='my-1'>Nombre de usuario: {userData.username}</p>
+            <p className='my-1'>Correo electrónico: {userData.email}</p>
           </div>
         </div>
       </div>
@@ -82,4 +80,4 @@ const Reactivate = () => {
   );
 };
 
-export default page;
+export default Reactivate;

@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useClient } from 'next-auth/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, fetchUsers } from '@/redux/features/adminDelete';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,7 +12,8 @@ const Delete = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const users = useSelector((state) => state.adminDelete.users);
-  const userEmail = localStorage.getItem('email');
+  const client = useClient();
+  const userEmail = client && client.session ? client.session.user.email : null;
   const { secureRouteUser } = useAuthenticate();
 
   useEffect(() => {
